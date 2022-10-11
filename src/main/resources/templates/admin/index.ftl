@@ -15,7 +15,7 @@
             <div class="small-box bg-aqua">
                 <div class="inner">
                     <h3>${channelCount}</h3>
-                    <p>栏目</p>
+                    <p>分类</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-bars"></i>
@@ -29,7 +29,7 @@
             <div class="small-box bg-green">
                 <div class="inner">
                     <h3>${postCount}</h3>
-                    <p>文章</p>
+                    <p>词条</p>
                 </div>
                 <div class="icon">
                     <i class="fa fa-clone"></i>
