@@ -246,7 +246,7 @@ public class PostServiceImpl implements PostService {
                     attr.setId(po.getId());
                     postAttributeRepository.save(attr);
 
-                    tagService.batchUpdate(po.getTags(), po.getId());
+//                    tagService.batchUpdate(po.getTags(), po.getId());
 
                     countResource(po.getId(), originContent, p.getContent());
                 }

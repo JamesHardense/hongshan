@@ -45,7 +45,7 @@ public class PostController extends BaseController {
 			PostVO view = postService.get(id);
 
 			Assert.notNull(view, "该文章已被删除");
-			Assert.isTrue(view.getAuthorId() == profile.getId(), "该文章不属于你");
+//			Assert.isTrue(view.getAuthorId() == profile.getId(), "该文章不属于你");
 
 			Assert.isTrue(view.getChannel().getStatus() == Consts.STATUS_NORMAL, "请在后台编辑此文章");
 			model.put("view", view);
@@ -76,7 +76,7 @@ public class PostController extends BaseController {
 		if (post.getId() > 0) {
 			PostVO exist = postService.get(post.getId());
 			Assert.notNull(exist, "文章不存在");
-			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
+//			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
 
 			postService.update(post);
 		} else {

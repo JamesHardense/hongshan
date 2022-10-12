@@ -12,6 +12,13 @@
                 <input type="hidden" name="id" value="${view.id}"/>
                 <input type="hidden" name="authorId" value="${view.authorId}"/>
             </#if>
+            <div class="col-xs-12 col-md-12">
+                <div class="form-group">
+                    <div class="text-right">
+                        <button type="button" data-status="0" class="btn btn-primary" event="post_submit" style="padding-left: 30px; padding-right: 30px;">发布</button>
+                    </div>
+                </div>
+            </div>
             <h3>词条名称</h3>
             <input type="hidden" id="thumbnail" name="thumbnail" value="${view.thumbnail}"/>
 
@@ -93,13 +100,13 @@
             </div>
             <br>
             <br>
-            <div class="col-xs-12 col-md-12">
-                <div class="form-group">
-                    <div class="text-center">
-                        <button type="button" data-status="0" class="btn btn-primary" event="post_submit" style="padding-left: 30px; padding-right: 30px;">发布</button>
-                    </div>
-                </div>
-            </div>
+<#--            <div class="col-xs-12 col-md-12">-->
+<#--                <div class="form-group">-->
+<#--                    <div class="text-center">-->
+<#--                        <button type="button" data-status="0" class="btn btn-primary" event="post_submit" style="padding-left: 30px; padding-right: 30px;">发布</button>-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--            </div>-->
         </div>
     </div>
 </form>
@@ -109,9 +116,9 @@ seajs.use('post', function (post) {
 	post.init();
 }
 );
-$(function (){
-    $("[data-toggle='popover']").popover();
-});
+// $(function (){
+//     $("[data-toggle='popover']").popover();
+// });
 var J = jQuery;
 $(function () {
     $('#popup').on('click', function(){
@@ -126,12 +133,12 @@ $(function () {
         });
 
     });
-    $('#qrcode').on('show.bs.modal', function (event) {
-        var modal = $(this);  //get modal itself
-        modal.find('')
-        modal.find('.modal-body #message').text('your message');
-        modal.find('.modal-body #scan').attr("src", 'image src');
-    });
+    // $('#qrcode').on('show.bs.modal', function (event) {
+    //     var modal = $(this);  //get modal itself
+    //     modal.find('')
+    //     modal.find('.modal-body #message').text('your message');
+    //     modal.find('.modal-body #scan').attr("src", 'image src');
+    // });
 });
 </script>
 </@layout>

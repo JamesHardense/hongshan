@@ -24,10 +24,10 @@
 
                                 <div class="pull-right hidden-xs">
                                     <#if owner>
-                                        <a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${row.id}" data-toggle="tooltip" title="编辑文章">
+                                        <a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${row.id}" data-toggle="tooltip" title="编辑词条">
                                             <i class="icon icon-note"></i>
                                         </a>
-                                        <a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="${row.id}" data-toggle="tooltip" title="删除文章">
+                                        <a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="${row.id}" data-toggle="tooltip" title="删除词条">
                                             <i class="icon icon-close"></i>
                                         </a>
                                     </#if>

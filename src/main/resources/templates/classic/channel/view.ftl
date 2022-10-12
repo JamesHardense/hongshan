@@ -17,6 +17,12 @@
                     </a>
                     <abbr class="timeago">${timeAgo(view.created)}</abbr>
                     <abbr>⋅ ${view.views} 阅读</abbr>
+
+                    <div class="text-right">
+                        <a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${view.id}" data-toggle="tooltip" title="编辑词条">
+                            <i class="icon icon-note"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -169,6 +175,9 @@
             }
         });
     });
-
+    $('a[data-evt=edit]').click(function () {
+        var id = $(this).attr('data-id');
+        window.location.href='${base}/post/editing?id=' + id;
+    });
 </script>
 </@layout>
