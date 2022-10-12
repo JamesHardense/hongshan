@@ -4,7 +4,7 @@
 <script type="text/javascript" src="${base}/dist/vendors/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
 <section class="content-header">
-    <h1>文章编辑</h1>
+    <h1>词条编辑</h1>
     <ol class="breadcrumb">
         <li><a href="${base}/admin">首页</a></li>
         <li><a href="${base}/admin/post/list">词条管理</a></li>

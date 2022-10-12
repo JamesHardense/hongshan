@@ -31,7 +31,10 @@
                             登录 Use it
                         </button>
                     </div>
-<#--                    <@controls name="register">-->
+                    <div name="register">
+                        <a href="${base}/register" class="btn btn-primary btn-block">注册 Register it</a>
+                    </div>
+<#--                    <@controls name="oauth-register">-->
 <#--                        <fieldset class="form-group">-->
 <#--                            <#if site.hasValue("weibo_client_id")>-->
 <#--                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_weibo">-->
@@ -50,9 +53,6 @@
 <#--                            </#if>-->
 <#--                        </fieldset>-->
 <#--                    </@controls>-->
-                    <div class="form-group">
-                        <button  class="btn btn-primary btn-sm signup">注册</button>
-                    </div>
                 </form>
             </div>
         </div>

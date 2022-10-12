@@ -38,12 +38,12 @@ public class MessageEventHandler implements ApplicationListener<MessageEvent> {
         switch (event.getEvent()) {
             case Consts.MESSAGE_EVENT_FAVOR_POST:
                 p = postService.get(event.getPostId());
-                Assert.notNull(p, "文章不存在");
+                Assert.notNull(p, "词条不存在");
                 nt.setUserId(p.getAuthorId());
                 break;
             case Consts.MESSAGE_EVENT_COMMENT:
                 p = postService.get(event.getPostId());
-                Assert.notNull(p, "文章不存在");
+                Assert.notNull(p, "词条不存在");
                 nt.setUserId(p.getAuthorId());
                 // 自增评论数
                 postService.identityComments(event.getPostId());
