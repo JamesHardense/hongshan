@@ -27,26 +27,24 @@ public class Channel implements Serializable {
 	private int id;
 
 	/**
-	 * 一级分类
+	 * 名称
 	 */
 	@Column(length = 100)
-	private String classone;
-
+	private String name;
 
 	/**
-	 * 二级分类
+	 * 唯一关键字
 	 */
-	@Column(length = 100)
-	private String classtwo;
-
+	@Column(name = "key_", unique = true, length = 100)
+	private String key;
 
 	/**
 	 * 预览图
 	 */
-	@Column(length = 128)
+	@Column(length = 100)
 	private String thumbnail;
 
-	@Column(length = 5)
+	@Column(length = 11)
 	private int status;
 
 	/**
@@ -62,20 +60,20 @@ public class Channel implements Serializable {
 		this.id = id;
 	}
 
-	public String getClassone() {
-		return classone;
+	public String getName() {
+		return name;
 	}
 
-	public void setClassone(String classone) {
-		this.classone = classone;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getClasstwo() {
-		return classtwo;
+	public String getKey() {
+		return key;
 	}
 
-	public void setClasstwo(String classtwo) {
-		this.classtwo = classtwo;
+	public void setKey(String key) {
+		this.key = key;
 	}
 
 	public int getStatus() {

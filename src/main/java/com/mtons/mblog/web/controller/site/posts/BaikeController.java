@@ -25,8 +25,9 @@ public class BaikeController extends BaseController {
      * 查看抽取信息
      * @return
      */
-    @GetMapping("/baike")
-    public String  find(String title,ModelMap model) {
+//    @ResponseBody
+    @RequestMapping("/baike")
+    public String find(String title,ModelMap model) {
         model.put("baike",baiKeService.findByTitle(title));
         return "/post/baike";
     }

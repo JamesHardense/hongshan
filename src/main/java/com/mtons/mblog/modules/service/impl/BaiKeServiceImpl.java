@@ -1,6 +1,7 @@
 package com.mtons.mblog.modules.service.impl;
 
 import com.mtons.mblog.modules.entity.BaiKe;
+import com.mtons.mblog.modules.entity.Channel;
 import com.mtons.mblog.modules.repository.BaiKeRepository;
 import com.mtons.mblog.modules.service.BaiKeService;
 import org.springframework.beans.factory.annotation.Autowired;

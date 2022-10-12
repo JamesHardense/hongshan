@@ -18,12 +18,12 @@
             <div class="form-group">
                 <input type="text"  class="form-control" name="title" maxlength="128" value="${view.title}" placeholder="请输入标题" required>
             </div>
-            <h3>编辑区</h3>
+<#--            <h3>编辑区</h3>-->
 
 <#--            <h3>抽取百度百科词条</h3>-->
-            <div class="text-right">
-                <button type="button" data-status="0" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px;">抽取</button>
-            </div>
+<#--            <div class="text-right">-->
+<#--                <button type="button" data-status="0" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px;">抽取</button>-->
+<#--            </div>-->
             <br>
 
 
@@ -52,7 +52,7 @@
                     <select class="form-control" name="channelId" required>
                         <option value="">请选择分类</option>
                         <#list channels as row>
-                            <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.classtwo}</option>
+                            <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
                         </#list>
                     </select>
                 </div>
@@ -78,10 +78,14 @@
                 <div id="div1"  style="display: none">
                     <div class="text-left">
                         <h5>简介</h5>
-                        <span></span>
+<#--                        <#list BaiKe as row>-->
+<#--                            <span>${row.summary}</span>-->
+<#--                        </#list>-->
                         <br>
                         <h5>基本信息</h5>
-                        <span></span>
+<#--                        <#list BaiKe as row>-->
+<#--                            <span>${row.basicInfo}</span>-->
+<#--                        </#list>-->
                         <br>
                     </div>
                 </div>
@@ -105,9 +109,9 @@ seajs.use('post', function (post) {
 	post.init();
 }
 );
-// $(function (){
-//     $("[data-toggle='popover']").popover();
-// });
+$(function (){
+    $("[data-toggle='popover']").popover();
+});
 var J = jQuery;
 $(function () {
     $('#popup').on('click', function(){
@@ -122,12 +126,12 @@ $(function () {
         });
 
     });
-    // $('#qrcode').on('show.bs.modal', function (event) {
-    //     var modal = $(this);  //get modal itself
-    //     modal.find('')
-    //     modal.find('.modal-body #message').text('your message');
-    //     modal.find('.modal-body #scan').attr("src", 'image src');
-    // });
+    $('#qrcode').on('show.bs.modal', function (event) {
+        var modal = $(this);  //get modal itself
+        modal.find('')
+        modal.find('.modal-body #message').text('your message');
+        modal.find('.modal-body #scan').attr("src", 'image src');
+    });
 });
 </script>
 </@layout>
