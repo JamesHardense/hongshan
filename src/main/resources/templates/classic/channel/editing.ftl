@@ -11,49 +11,56 @@
                 <input type="hidden" name="id" value="${view.id}"/>
                 <input type="hidden" name="authorId" value="${view.authorId}"/>
             </#if>
+            <h3>词条名称</h3>
             <input type="hidden" id="thumbnail" name="thumbnail" value="${view.thumbnail}"/>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="title" maxlength="128" value="${view.title}" placeholder="请输入标题" required>
+                <input type="text"  class="form-control" name="title" maxlength="128" value="${view.title}" placeholder="请输入标题" required>
             </div>
+<#--            <h3>抽取百度百科词条</h3>-->
+            <div class="text-right">
+                <button type="button" data-status="0" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px;">抽取</button>
+            </div>
+            <br>
+
             <div class="form-group">
                 <#include "/classic/channel/editor/${editor}.ftl"/>
             </div>
         </div>
         <div class="col-xs-12 col-md-4 side-right">
-            <div class="panel panel-default">
-                <div class="thumbnail-box">
-                    <div class="convent_choice" id="thumbnail_image"  <#if view.thumbnail?? && view.thumbnail?length gt 0> style="background: url(<@resource src=view.thumbnail/>);" </#if>>
-                        <div class="upload-btn">
-                            <label>
-                                <span>点击选择一张图片</span>
-                                <input id="upload_btn" type="file" name="file" accept="image/*" title="点击添加图片">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<#--            <div class="panel panel-default">-->
+<#--                <div class="thumbnail-box">-->
+<#--                    <div class="convent_choice" id="thumbnail_image"  <#if view.thumbnail?? && view.thumbnail?length gt 0> style="background: url(<@resource src=view.thumbnail/>);" </#if>>-->
+<#--                        <div class="upload-btn">-->
+<#--                            <label>-->
+<#--                                <span>点击选择一张图片</span>-->
+<#--                                <input id="upload_btn" type="file" name="file" accept="image/*" title="点击添加图片">-->
+<#--                            </label>-->
+<#--                        </div>-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--            </div>-->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">发布到</h3>
+                    <h3 class="panel-title">分类</h3>
                 </div>
                 <div class="panel-body">
                     <select class="form-control" name="channelId" required>
                         <option value="">请选择分类</option>
                         <#list channels as row>
-                            <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
+                            <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.classtwo}</option>
                         </#list>
                     </select>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">标签(用逗号或空格分隔)</h3>
-                </div>
-                <div class="panel-body">
-                    <input type="text" id="tags" name="tags" class="form-control" value="${view.tags}" placeholder="添加相关标签，逗号分隔 (最多4个)">
-                </div>
-            </div>
+<#--            <div class="panel panel-default">-->
+<#--                <div class="panel-heading">-->
+<#--                    <h3 class="panel-title">标签(用逗号或空格分隔)</h3>-->
+<#--                </div>-->
+<#--                <div class="panel-body">-->
+<#--                    <input type="text" id="tags" name="tags" class="form-control" value="${view.tags}" placeholder="添加相关标签，逗号分隔 (最多4个)">-->
+<#--                </div>-->
+<#--            </div>-->
             <div class="col-xs-12 col-md-12">
                 <div class="form-group">
                     <div class="text-center">
@@ -68,6 +75,7 @@
 <script type="text/javascript">
 seajs.use('post', function (post) {
 	post.init();
-});
+}
+);
 </script>
 </@layout>

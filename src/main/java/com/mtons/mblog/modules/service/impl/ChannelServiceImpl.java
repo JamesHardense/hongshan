@@ -41,6 +41,7 @@ public class ChannelServiceImpl implements ChannelService {
 		} else {
 			list = channelRepository.findAll(sort);
 		}
+//		System.out.println(list);
 		return list;
 	}
 

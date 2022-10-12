@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9090
   use-forward-headers: true
   undertow:
     io-threads: 2
@@ -48,7 +48,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost/mblog?useSSL=false&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
-    password: 123456
+    password: 2000
   jpa:
     database: mysql
     show-sql: false
@@ -87,13 +87,13 @@ site:
   location: ${user.dir}
   controls:
     # 注册开关
-    register: false
+    register: true
     # 注册开启邮箱验证
     register_email_validate: false
     # 发布文章开关
     post: true
     # 评论开关
-    comment: false
+    comment: true
   options:
     theme: classic
     site_logo: /dist/images/logo/logo.png

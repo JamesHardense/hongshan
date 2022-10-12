@@ -167,7 +167,7 @@ public class PostServiceImpl implements PostService {
 		}
 
 		postRepository.save(po);
-		tagService.batchUpdate(po.getTags(), po.getId());
+//		tagService.batchUpdate(po.getTags(), po.getId());
 
         String key = ResourceLock.getPostKey(po.getId());
         AtomicInteger lock = ResourceLock.getAtomicInteger(key);
