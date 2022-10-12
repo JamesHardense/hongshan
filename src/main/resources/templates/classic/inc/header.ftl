@@ -88,9 +88,9 @@
 							<a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
 						</li>
 					</#list>
-                        <li>
-                            <a href="${base}/tags" nav="tags">标签</a>
-                        </li>
+<#--                        <li>-->
+<#--                            <a href="${base}/tags" nav="tags">标签</a>-->
+<#--                        </li>-->
                 </ul>
                 <ul class="navbar-button list-inline" id="header_user">
                     <li view="search" class="hidden-xs hidden-sm">
@@ -128,9 +128,9 @@
                     </li>
 				<#else>
                     <li><a href="${base}/login" class="btn btn-default btn-sm signup">登录</a></li>
-                    <@controls name="register">
-                        <li><a href="${base}/register" class="btn btn-primary btn-sm signup">注册</a></li>
-                    </@controls>
+<#--                    <@controls name="register">-->
+                    <li><a href="${base}/register" class="btn btn-primary btn-sm signup">注册</a></li>
+<#--                    </@controls>-->
 				</#if>
 
                 </ul>

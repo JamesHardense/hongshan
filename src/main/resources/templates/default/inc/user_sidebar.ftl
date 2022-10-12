@@ -40,13 +40,13 @@
     <div id="home-navbar" class="collapse navbar-collapse">
         <ul class="list-group user-nav first">
             <li class="list-group-item">
-                <a href="${base}/users/${user.id}"><i class="icon icon-list"></i> 发表的文章</a>
+                <a href="${base}/users/${user.id}"><i class="icon icon-list"></i> 发表的词条</a>
             </li>
             <li class="list-group-item">
                 <a href="${base}/users/${user.id}/comments"><i class="icon icon-speech"></i> 发表的评论</a>
             </li>
             <li class="list-group-item">
-                <a href="${base}/users/${user.id}/favorites"><i class="icon icon-heart"></i> 收藏的文章</a>
+                <a href="${base}/users/${user.id}/favorites"><i class="icon icon-heart"></i> 收藏的词条</a>
             </li>
         </ul>
 

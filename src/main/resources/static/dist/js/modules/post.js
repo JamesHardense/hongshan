@@ -74,7 +74,7 @@ define(function(require, exports, module) {
                 },
                 messages: {
                     title: '请输入标题',
-                    channelId: '请选择栏目',
+                    channelId: '请选择主题',
                     content: {
                         required: '内容不能为空',
                         check_editor: '内容不能为空'

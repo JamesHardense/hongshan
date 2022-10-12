@@ -7,8 +7,8 @@
     <h1>文章编辑</h1>
     <ol class="breadcrumb">
         <li><a href="${base}/admin">首页</a></li>
-        <li><a href="${base}/admin/post/list">文章管理</a></li>
-        <li class="active">文章编辑</li>
+        <li><a href="${base}/admin/post/list">词条管理</a></li>
+        <li class="active">词条编辑</li>
     </ol>
 </section>
 <section class="content container-fluid">
@@ -23,7 +23,7 @@
             <div class="col-md-9 side-left">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">文章编辑</h3>
+                        <h3 class="box-title">词条编辑</h3>
                     </div>
                     <div class="box-body">
                         <div class="form-group">
@@ -56,17 +56,17 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="form-group">
-                            <label>栏目</label>
+                            <label>分类</label>
                             <select class="form-control" name="channelId">
                                 <#list channels as row>
                                     <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
                                 </#list>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>标签</label>
-                            <input type="text" name="tags" data-role="tagsinput" class="form-control" value="${view.tags}" placeholder="添加相关标签，逗号分隔 (最多4个)">
-                        </div>
+<#--                        <div class="form-group">-->
+<#--                            <label>标签</label>-->
+<#--                            <input type="text" name="tags" data-role="tagsinput" class="form-control" value="${view.tags}" placeholder="添加相关标签，逗号分隔 (最多4个)">-->
+<#--                        </div>-->
                     </div>
                     <div class="box-footer">
                         <button type="button" data-status="1" class="btn btn-default btn-sm" event="post_submit">草稿</button>

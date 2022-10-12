@@ -31,25 +31,28 @@
                             登录 Use it
                         </button>
                     </div>
-                    <@controls name="register">
-                        <fieldset class="form-group">
-                            <#if site.hasValue("weibo_client_id")>
-                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_weibo">
-                                <i class="fa fa-weibo"></i> 微博帐号登录
-                            </a>
-                            </#if>
-                            <#if site.hasValue("qq_app_id")>
-                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_qq">
-                                <i class="fa fa-qq"></i> QQ帐号登录
-                            </a>
-                            </#if>
-                            <#if site.hasValue("github_client_id")>
-                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_github">
-                                <i class="fa fa-github"></i> Github帐号登录
-                            </a>
-                            </#if>
-                        </fieldset>
-                    </@controls>
+<#--                    <@controls name="register">-->
+<#--                        <fieldset class="form-group">-->
+<#--                            <#if site.hasValue("weibo_client_id")>-->
+<#--                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_weibo">-->
+<#--                                <i class="fa fa-weibo"></i> 微博帐号登录-->
+<#--                            </a>-->
+<#--                            </#if>-->
+<#--                            <#if site.hasValue("qq_app_id")>-->
+<#--                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_qq">-->
+<#--                                <i class="fa fa-qq"></i> QQ帐号登录-->
+<#--                            </a>-->
+<#--                            </#if>-->
+<#--                            <#if site.hasValue("github_client_id")>-->
+<#--                            <a class="btn btn-default btn-block" href="${base}/oauth/callback/call_github">-->
+<#--                                <i class="fa fa-github"></i> Github帐号登录-->
+<#--                            </a>-->
+<#--                            </#if>-->
+<#--                        </fieldset>-->
+<#--                    </@controls>-->
+                    <div class="form-group">
+                        <button  class="btn btn-primary btn-sm signup">注册</button>
+                    </div>
                 </form>
             </div>
         </div>
