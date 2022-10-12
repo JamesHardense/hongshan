@@ -24,8 +24,8 @@
                             <thead>
                             <tr>
                                 <th width="80">#</th>
-                                <th>一级分类</th>
-                                <th>二级分类</th>
+                                <th>Key</th>
+                                <th>分类</th>
                                 <th>状态</th>
                                 <th width="140">操作</th>
                             </tr>
@@ -34,8 +34,8 @@
                                 <#list list as row>
                                 <tr>
                                     <td>${row.id}</td>
-                                    <td>${row.classone}</td>
-                                    <td>${row.classtwo}</td>
+                                    <td>${row.key}</td>
+                                    <td>${row.name}</td>
                                     <td>
                                         <#if (row.status == 0)>
                                             显示

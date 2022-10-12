@@ -16,7 +16,7 @@
             <input type="hidden" id="thumbnail" name="thumbnail" value="${view.thumbnail}"/>
 
             <div class="form-group">
-                <input type="text"  class="form-control" name="title" maxlength="128" value="${view.title}" placeholder="请输入标题" required>
+                <input type="text" id="title"  class="form-control" name="title" maxlength="128" value="${view.title}" placeholder="请输入标题" required>
             </div>
 <#--            <h3>编辑区</h3>-->
 
@@ -78,11 +78,13 @@
                 <div id="div1"  style="display: none">
                     <div class="text-left">
                         <h5>简介</h5>
+                        <span id="summary"></span>
 <#--                        <#list BaiKe as row>-->
 <#--                            <span>${row.summary}</span>-->
 <#--                        </#list>-->
                         <br>
                         <h5>基本信息</h5>
+                        <span id="basicInfo"></span>
 <#--                        <#list BaiKe as row>-->
 <#--                            <span>${row.basicInfo}</span>-->
 <#--                        </#list>-->
@@ -96,7 +98,7 @@
             <div class="col-xs-12 col-md-12">
                 <div class="form-group">
                     <div class="text-center">
-                        <button type="button" data-status="0" class="btn btn-primary" event="post_submit" style="padding-left: 30px; padding-right: 30px;">发布</button>
+                        <button type="button" data-status="0" class="btn btn-primary" event="post_submit" style="padding-left: 30px; padding-right: 30px;margin-left: -500px;margin-top: 370px;">发布</button>
                     </div>
                 </div>
             </div>
@@ -116,22 +118,24 @@ var J = jQuery;
 $(function () {
     $('#popup').on('click', function(){
         var div = $("#div1").get(0);
+        // if(document.getElementById("title").value===""){
+        //     alert("请输入词条名称");
+        // }
         if(div.style.display == ""){
             div.style.display = "none";
         }else{
             div.style.display = "";
         }
-        J.getJSON('${base}/post/baike', J.param({'title': '计算机'}, true), function (result){
-
+        var data = fetch(`http://localhost:9090/post/baike`,{
+            method:'POST',
+            body:JSON.stringify({title:document.getElementById("title").value}),
+            headers:{'Content-Type':'application/json'}}).then((res)=>{
+            return res.text()
+        }).then((res)=>{
+            var response = JSON.parse(res);
+            document.getElementById("summary").innerText = response.summary
+            document.getElementById("basicInfo").innerText = response.basicInfo
         });
-
-    });
-    $('#qrcode').on('show.bs.modal', function (event) {
-        var modal = $(this);  //get modal itself
-        modal.find('')
-        modal.find('.modal-body #message').text('your message');
-        modal.find('.modal-body #scan').attr("src", 'image src');
-    });
-});
+})});
 </script>
 </@layout>
