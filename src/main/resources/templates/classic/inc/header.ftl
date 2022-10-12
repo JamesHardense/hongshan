@@ -91,6 +91,45 @@
 <#--                        <li>-->
 <#--                            <a href="${base}/tags" nav="tags">标签</a>-->
 <#--                        </li>-->
+<#--					<#list channels as row>-->
+<#--						<li>-->
+<#--							<a href="${base}/channel/${row.id}" nav="${row.classtwo}">${row.classtwo}</a>-->
+<#--						</li>-->
+<#--					</#list>-->
+                        <li>
+                            <a style="color: #000000">
+                                社会&nbsp;&nbsp;
+                                <select>
+                                    <option><a href="${base}/channel/1">学校</a></option>
+                                    <option><a href="${base}/channel/2">企业</a></option>
+                                    <option><a href="${base}/channel/3">医院</a></option>
+                                    <option><a href="${base}/channel/4">科研机构</a></option>
+                                </select>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a style="color: #000000">
+                                科技&nbsp;&nbsp;
+                                <select>
+                                    <option><a href="${base}/channel/5">软件</a></option>
+                                    <option><a href="${base}/channel/6">网站</a></option>
+                                    <option><a href="${base}/channel/7">电子产品</a></option>
+                                    <option><a href="${base}/channel/8">药品</a></option>
+                                </select>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color: #000000">
+                                人物&nbsp;&nbsp;
+                                <select>
+                                    <option><a href="${base}/channel/9">企业人物</a></option>
+                                    <option><a href="${base}/channel/10">体育人物</a></option>
+                                    <option><a href="${base}/channel/11">科学人物</a></option>
+                                    <option><a href="${base}/channel/12">文化人物</a></option>
+                                </select>
+                            </a>
+                        </li>
                 </ul>
                 <ul class="navbar-button list-inline" id="header_user">
                     <li view="search" class="hidden-xs hidden-sm">

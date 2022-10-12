@@ -19,6 +19,14 @@
                 <input type="text"  class="form-control" name="title" maxlength="128" value="${view.title}" placeholder="请输入标题" required>
             </div>
             <h3>编辑区</h3>
+
+<#--            <h3>抽取百度百科词条</h3>-->
+            <div class="text-right">
+                <button type="button" data-status="0" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px;">抽取</button>
+            </div>
+            <br>
+
+
             <div class="form-group">
                 <#include "/classic/channel/editor/${editor}.ftl"/>
             </div>
@@ -44,7 +52,7 @@
                     <select class="form-control" name="channelId" required>
                         <option value="">请选择分类</option>
                         <#list channels as row>
-                            <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
+                            <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.classtwo}</option>
                         </#list>
                     </select>
                 </div>
