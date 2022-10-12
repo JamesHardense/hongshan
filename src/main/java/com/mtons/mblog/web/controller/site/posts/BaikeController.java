@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 文章操作
@@ -25,7 +26,7 @@ public class BaikeController extends BaseController {
      * 查看抽取信息
      * @return
      */
-//    @ResponseBody
+    @ResponseBody
     @RequestMapping("/baike")
     public String find(String title,ModelMap model) {
         model.put("baike",baiKeService.findByTitle(title));
