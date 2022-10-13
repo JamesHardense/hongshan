@@ -9,6 +9,7 @@
 */
 package com.mtons.mblog.modules.repository;
 
+import com.mtons.mblog.modules.entity.BaiKe;
 import com.mtons.mblog.modules.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +37,9 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
 
     @Query("select coalesce(max(weight), 0) from Post")
     int maxWeight();
+
+    @Query(value = "SELECT * FROM mto_post WHERE title =:title ", nativeQuery = true)
+    Post findPostByTitle(@Param("title")String title);
 
     @Modifying
     @Query("update Post set views = views + :increment where id = :id")

@@ -35,8 +35,14 @@ public class SidebarDirective extends TemplateDirective {
             case "hottest_posts":
                 handler.put(RESULTS, postService.findHottestPosts(size));
                 break;
-            case "latest_comments":
-                handler.put(RESULTS, commentService.findLatestComments(size));
+//            case "latest_comments":
+//                handler.put(RESULTS, commentService.findLatestComments(size));
+//                break;
+            case  "comments_posts":
+                handler.put(RESULTS, postService.findCommentsPosts(size));
+                break;
+            case  "favors_posts":
+                handler.put(RESULTS,postService.findFavorsPosts(size));
                 break;
         }
         handler.render();

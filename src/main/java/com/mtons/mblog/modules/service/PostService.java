@@ -11,6 +11,7 @@ package com.mtons.mblog.modules.service;
 
 import com.mtons.mblog.base.lang.Consts;
 import com.mtons.mblog.modules.data.PostVO;
+import com.mtons.mblog.modules.entity.Post;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -63,6 +64,22 @@ public interface PostService {
 	 */
 	@Cacheable(key = "'hottest_' + #maxResults")
 	List<PostVO> findHottestPosts(int maxResults);
+
+	/**
+	 * 查询热门评论词条 - 按评论次数排序
+	 * @param maxResults
+	 * @return
+	 */
+	@Cacheable(key = "'comments_' + #maxResults")
+	List<PostVO> findCommentsPosts(int maxResults);
+
+	/**
+	 * 查询热门评论词条 - 按评论次数排序
+	 * @param maxResults
+	 * @return
+	 */
+	@Cacheable(key = "'favors_' + #maxResults")
+	List<PostVO> findFavorsPosts(int maxResults);
 	
 	/**
 	 * 根据Ids查询
@@ -156,4 +173,6 @@ public interface PostService {
 	void unfavor(long userId, long postId);
 
 	long count();
+
+	Post findPostByTitle(String title);
 }

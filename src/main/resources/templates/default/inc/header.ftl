@@ -88,9 +88,9 @@
 							<a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
 						</li>
 					</#list>
-                        <li>
-                            <a href="${base}/tags" nav="tags">标签</a>
-                        </li>
+<#--                        <li>-->
+<#--                            <a href="${base}/tags" nav="tags">标签</a>-->
+<#--                        </li>-->
                 </ul>
                 <ul class="navbar-button list-inline" id="header_user">
                     <li view="search" class="hidden-xs hidden-sm">
@@ -103,11 +103,11 @@
                     </li>
 
 				<#if profile??>
-                    <@controls name="post">
-                        <li>
-                            <a href="${base}/post/editing" class="plus"><i class="icon icon-note"></i> 写文章</a>
-                        </li>
-                    </@controls>
+<#--                    <@controls name="post">-->
+<#--                        <li>-->
+<#--                            <a href="${base}/post/editing" class="plus"><i class="icon icon-note"></i> 写文章</a>-->
+<#--                        </li>-->
+<#--                    </@controls>-->
                     <li class="dropdown">
                         <a href="#" class="user dropdown-toggle" data-toggle="dropdown">
                             <img class="img-circle" src="<@resource src=profile.avatar + '?t=' + .now?time />">

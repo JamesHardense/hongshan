@@ -126,7 +126,17 @@ public class PostServiceImpl implements PostService {
 	public List<PostVO> findHottestPosts(int maxResults) {
 		return find("views", maxResults).stream().map(BeanMapUtils::copy).collect(Collectors.toList());
 	}
-	
+
+	@Override
+	public List<PostVO> findCommentsPosts(int maxResults) {
+		return find("comments", maxResults).stream().map(BeanMapUtils::copy).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<PostVO> findFavorsPosts(int maxResults) {
+		return find("favors", maxResults).stream().map(BeanMapUtils::copy).collect(Collectors.toList());
+	}
+
 	@Override
 	@PostStatusFilter
 	public Map<Long, PostVO> findMapByIds(Set<Long> ids) {
@@ -352,6 +362,11 @@ public class PostServiceImpl implements PostService {
 	@PostStatusFilter
 	public long count() {
 		return postRepository.count();
+	}
+
+	@Override
+	public Post findPostByTitle(String title) {
+		return postRepository.findPostByTitle(title);
 	}
 
 	@PostStatusFilter
