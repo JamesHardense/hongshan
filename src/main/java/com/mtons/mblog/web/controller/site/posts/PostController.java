@@ -68,7 +68,7 @@ public class PostController extends BaseController {
 		Assert.notNull(post, "参数不完整");
 		Assert.state(StringUtils.isNotBlank(post.getTitle()), "标题不能为空");
 		Assert.state(StringUtils.isNotBlank(post.getContent()), "内容不能为空");
-		if (postService.findPostByTitle(post.getTitle()) != null){
+		if (postService.findPostByTitle(post.getTitle()) != null && post.getId()<=0){
 			String message= "已有词条"+post.getTitle()+"的信息，请勿重新创建";
 		    Assert.state(false,message );
 		}
