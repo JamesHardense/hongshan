@@ -392,6 +392,12 @@ public class PostServiceImpl implements PostService {
 		return postRepository.findPostByTitle(title);
 	}
 
+	@Override
+	public Boolean updateStatus(long id, int status) {
+		postRepository.updateStatus(id,status);
+		return true;
+	}
+
 	@PostStatusFilter
 	private List<Post> find(String orderBy, int size) {
 		Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, orderBy));

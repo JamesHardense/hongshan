@@ -14,9 +14,10 @@
     <section class="content container-fluid">
         <div class="row">
             <form id="qForm" method="post" action="${base}/admin/post/update">
-                <#if view??>
-                    <input type="hidden" name="id" id="word_id" value="${view.id}"/>
-                </#if>
+<#--                <#if view??>-->
+                <input type="hidden" name="id" id="word_id" value="${view.id}"/>
+                <input type="hidden" name="hid" id="hid" value="${view.hid}"/>
+<#--                </#if>-->
                 <input type="hidden" name="status" value="${view.status!0}"/>
                 <input type="hidden" name="editor" value="${editor!'tinymce'}"/>
                 <input type="hidden" id="thumbnail" name="thumbnail" value="${view.thumbnail}">
@@ -32,8 +33,8 @@
                             <div class="form-group">
                                 <textarea class="form-control" id="word_content" rows="10"></textarea>
                             </div>
-                            <button type="button"  class="btn btn-primary" style="margin-left: 600px;">审核不通过</button>
-                            <button type="button" class="btn btn-primary" style="margin-left: 7px;">审核通过</button>
+                            <button type="button"  class="btn btn-warning" style="margin-left: 600px;" id="disagree">审核不通过</button>
+                            <button type="button" class="btn btn-primary" style="margin-left: 7px;" id="agree">审核通过</button>
                         </div>
                     </div>
                 </div>
@@ -44,59 +45,17 @@
         // $(document).ready(function(){
         //
         // })
-        $(function() {
-            var urlParam = decodeURI(window.location.href.split("?")[1].split("=")[1])
-            var data = fetch(`http://localhost:9090/admin/post/log/list`,{
+        $('#agree').on('click', function(){
+            console.log()
+            var data = fetch(`http://localhost:9090/admin/post/log/agree`,{
                 method:'POST',
-                body:JSON.stringify({id:urlParam}),
+                body:JSON.stringify({id:document.getElementById("word_id").value,
+                    hid:document.getElementById("hid").value}),
                 headers:{'Content-Type':'application/json'}}).then((res)=>{
                 return res.text()
-            }).then((res)=>{
-                var response = JSON.parse(res);
-                console.log(response)
-                document.getElementById("word_title").value = response.title
-                document.getElementById("word_content").innerText = response.summary
-            });
-
-            $('button[event="post_submit"]').click(function () {
-                var status = $(this).data('status');
-                $("input[name='status']").val(status);
-                $("form").submit();
-            });
-
-            $("form").submit(function () {
-                if (typeof tinyMCE == "function") {
-                    tinyMCE.triggerSave();
-                }
-            }).validate({
-                ignore: "",
-                rules: {
-                    title: "required",
-                    content: {
-                        required: true,
-                        check_editor: true
-                    }
-                },
-                errorElement: "em",
-                errorPlacement: function (error, element) {
-                    error.addClass("help-block");
-
-                    if (element.prop("type") === "checkbox") {
-                        error.insertAfter(element.parent("label"));
-                    } else if (element.is("textarea")) {
-                        error.insertAfter(element.next());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest("div").addClass("has-error").removeClass("has-success");
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest("div").addClass("has-success").removeClass("has-error");
-                }
-            });
-
+            }).then((res)=> {
+                window.location.href = "http://localhost:9090/admin/index"
+            })
         });
     </script>
 </@layout>

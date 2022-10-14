@@ -54,4 +54,14 @@ public class LogController extends BaseController {
         return logService.findLatestTitle(log.getTitle());
     }
 
+    @PostMapping("/log/agree")
+    public Boolean updateAgree(@RequestParam("id") long id, @RequestParam("hid") long hid){
+        return  logService.updateStatus(id,hid,1);
+    }
+
+    @PostMapping("/log/disagree")
+    public Boolean updateDisagree(@RequestParam("id") long id,@RequestParam("hid")long hid){
+        return  logService.updateStatus(id,hid,0);
+    }
+
 }

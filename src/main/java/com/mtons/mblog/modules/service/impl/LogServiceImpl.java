@@ -2,6 +2,7 @@ package com.mtons.mblog.modules.service.impl;
 
 import com.mtons.mblog.modules.entity.Log;
 import com.mtons.mblog.modules.repository.LogRepository;
+import com.mtons.mblog.modules.repository.PostRepository;
 import com.mtons.mblog.modules.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,8 @@ import java.util.Optional;
 public class LogServiceImpl implements LogService {
     @Autowired
     private LogRepository logRepository;
-
+    @Autowired
+    private PostRepository postRepository;
     @Override
     public List<Log> findAllLog() {
         return logRepository.findAllLog();
@@ -39,5 +41,12 @@ public class LogServiceImpl implements LogService {
     @Override
     public List<Log> findLatestTitle(String title) {
         return logRepository.findLatestTitle(title);
+    }
+
+    @Override
+    public Boolean updateStatus(long id,long hid ,int status) {
+        logRepository.updateStaus(hid,status);
+        postRepository.updateStatus(id,status);
+        return true;
     }
 }
