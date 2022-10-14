@@ -35,8 +35,13 @@ public class LogController extends BaseController {
     }
 
     @PostMapping("/log/list")
-    public Log getLogById(@RequestBody Log log){
+    public List<Log> getLogById(@RequestBody Log log){
         return logService.findById(log.getId());
+    }
+
+    @PostMapping("/log/read")
+    public Log getReadById(@RequestBody Log log){
+        return logService.findByIdRead(log.getId());
     }
 
     @GetMapping("/log/latest")

@@ -46,7 +46,7 @@
         // })
         $(function() {
             var urlParam = decodeURI(window.location.href.split("?")[1].split("=")[1])
-            var data = fetch(`http://localhost:9090/admin/post/log/list`,{
+            var data = fetch(`http://localhost:9090/admin/post/log/read`,{
                 method:'POST',
                 body:JSON.stringify({id:urlParam}),
                 headers:{'Content-Type':'application/json'}}).then((res)=>{

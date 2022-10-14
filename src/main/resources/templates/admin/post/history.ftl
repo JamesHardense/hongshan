@@ -5,7 +5,7 @@
         <h1>词条日志</h1>
         <ol class="breadcrumb">
             <li><a href="${base}/admin">首页</a></li>
-            <li class="active">词条管理</li>
+            <li class="active">词条日志</li>
         </ol>
     </section>
     <section class="content container-fluid">
@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">词条列表</h3>
+                        <h3 class="box-title">词条日志</h3>
                         <#--                    <div class="box-tools">-->
                         <#--                        <a class="btn btn-default btn-sm" href="${base}/admin/post/view">新建</a>-->
                         <#--                        <a class="btn btn-default btn-sm" href="javascrit:;" data-action="batch_del">批量删除</a>-->
@@ -22,18 +22,18 @@
                     <div class="box-body">
                         <form id="qForm" class="form-inline search-row">
                             <input type="hidden" name="pageNo" value="${page.number + 1}"/>
-                            <div class="form-group">
-                                <select class="form-control" name="channelId" data-select="${channelId}">
-                                    <option value="0">查询所有分类</option>
-                                    <#list channels as row>
-                                        <option value="${row.id}">${row.name}</option>
-                                    </#list>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="title" class="form-control" value="${title}" placeholder="请输入标题关键字">
-                            </div>
-                            <button type="submit" class="btn btn-default">查询</button>
+<#--                            <div class="form-group">-->
+<#--                                <select class="form-control" name="channelId" data-select="${channelId}">-->
+<#--                                    <option value="0">查询所有分类</option>-->
+<#--                                    <#list channels as row>-->
+<#--                                        <option value="${row.id}">${row.name}</option>-->
+<#--                                    </#list>-->
+<#--                                </select>-->
+<#--                            </div>-->
+<#--                            <div class="form-group">-->
+<#--                                <input type="text" name="title" class="form-control" value="${title}" placeholder="请输入标题关键字">-->
+<#--                            </div>-->
+<#--                            <button type="submit" class="btn btn-default">查询</button>-->
                             <#--                    </form>-->
                             <div class="table-responsive">
                                 <table id="dataGrid" class="table table-striped table-bordered">
@@ -48,11 +48,12 @@
                                         <th width="100">访问数</th>
                                         <#--                                <th width="80">状态</th>-->
                                         <th width="100">状态</th>
-                                        <th width="200">操作</th>
+<#--                                        <th width="200">操作</th>-->
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <#list logs as row>
+
+                                    <#list items as row>
                                         <tr>
                                             <td id="id">
                                                 <input type="checkbox" name="id" value="${row.id}">
@@ -60,11 +61,12 @@
                                             <td id="title">
                                                 <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
                                             </td>
-                                            <th id="name">${row.channel.name}</th>
-                                            <td id="username">${row.author.username}</td>
-                                            <td id="time">${row.created?string('yyyy-MM-dd')}</td>
-                                            <td id="views"><span class="label label-default">${row.views}</span></td>
-                                            <td >
+
+                                            <th>${row.channelId}</th>
+                                            <td>${row.authorId}</td>
+                                            <td>${row.created?string('yyyy-MM-dd')}</td>
+                                            <td><span class="label label-default">${row.views}</span></td>
+                                            <td>
                                                 <#if (row.status = 1)>
                                                     <span class="label label-default">已发布</span>
                                                 </#if>
@@ -72,12 +74,14 @@
                                                     <span class="label label-warning">待审核</span>
                                                 </#if>
                                             </td>
-                                            <td>
-                                                <a id="shenhe" href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
-                                                <a id="log" href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
-                                                <a id="update" href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
-                                                <a id="delete" href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
-                                            </td>
+<#--                                            <td>-->
+
+<#--                                                <a href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>-->
+<#--                                                <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>-->
+<#--                                                <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>-->
+<#--                                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>-->
+
+<#--                                            </td>-->
                                         </tr>
                                     </#list>
                                     </tbody>
@@ -119,19 +123,19 @@
         }
 
         $(function() {
-            fetch(`http://localhost:9090/admin/post/log/latest`,{
+            fetch(`http://localhost:9090/admin/post/log/list`,{
                 method:'GET',
                 headers:{'Content-Type':'application/json'}}).then((res)=>{
                 return res.text()
             }).then(res=>{
-                var response = JSON.parse(res)
-                // console.log(response)
-                for(let row of response){
-                    console.log(row)
-                    console.log(row.channelId)
-                    // document.getElementById("id").value = 14
-                    document.getElementById("name").innerText= row.channelId
-                }
+                // var response = JSON.parse(res)
+                // // console.log(response)
+                // for(let row of response){
+                //     console.log(row)
+                //     console.log(row.channelId)
+                //     // document.getElementById("id").value = 14
+                //     document.getElementById("name").innerText= row.channelId
+                // }
             });
             // 删除
             $('#dataGrid a[rel="delete"]').bind('click', function(){
@@ -196,7 +200,7 @@
                 }, function(){
                 });
                 return false;
-            });
+            })
 
             $('a[data-action="batch_del"]').click(function () {
                 var check_length=$("input[type=checkbox][name=id]:checked").length;

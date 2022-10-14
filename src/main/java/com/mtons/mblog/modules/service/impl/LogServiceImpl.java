@@ -22,8 +22,12 @@ public class LogServiceImpl implements LogService {
     }
 
 
-    public Log findById(long id){
+    public List<Log> findById(long id){
         return logRepository.findById(id);
+    }
+
+    public Log findByIdRead(long id){
+        return logRepository.findByIdRead(id);
     }
 
     @Override

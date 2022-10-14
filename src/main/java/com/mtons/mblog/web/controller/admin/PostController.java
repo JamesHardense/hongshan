@@ -168,17 +168,19 @@ public class PostController extends BaseController {
 	}
 
 	@RequestMapping(value = "/history", method = RequestMethod.GET)
-	public String toHistory(Long id, ModelMap model) {
-		String editor = siteOptions.getValue("editor");
-		if (null != id && id > 0) {
-			PostVO audit = postService.get(id);
-			if (StringUtils.isNoneBlank(audit.getEditor())) {
-				editor = audit.getEditor();
-			}
-			model.put("audit", audit);
-		}
-		model.put("editor", editor);
+	public String list1(String title, ModelMap model, HttpServletRequest request) {
+		long id = ServletRequestUtils.getLongParameter(request, "id", Consts.ZERO);
+		int channelId = ServletRequestUtils.getIntParameter(request, "channelId", Consts.ZERO);
+
+		Pageable pageable = wrapPageable(Sort.by(Sort.Direction.DESC, "weight", "created"));
+		Page<PostVO> page = postService.paging4Admin(pageable, channelId, title);
+		model.put("page", page);
+		List<Log> list = logService.findById(id);
+		model.put("items",list);
+		model.put("title", title);
+		model.put("id", id);
+		model.put("channelId", channelId);
 		model.put("channels", channelService.findAll(Consts.IGNORE));
-		return "/admin/post/audit";
+		return "/admin/post/history";
 	}
 }

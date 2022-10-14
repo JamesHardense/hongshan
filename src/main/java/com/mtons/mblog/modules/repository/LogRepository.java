@@ -13,8 +13,11 @@ public interface LogRepository extends JpaRepository<Log, Long>, JpaSpecificatio
     @Query(value = "SELECT * FROM mto_post_history", nativeQuery = true)
     List<Log> findAllLog();
 
+    @Query(value = "SELECT * FROM mto_post_history WHERE id =:id and status = 1", nativeQuery = true)
+    List<Log> findById(@Param("id")long id);
+
     @Query(value = "SELECT * FROM mto_post_history WHERE id =:id", nativeQuery = true)
-    Log findById(@Param("id")long id);
+    Log findByIdRead(@Param("id")long id);
 
     @Query(value = "SELECT * FROM mto_post_history AS b \n" +" WHERE b.hid in\n" +
         " (SELECT MAX(a.hid) FROM mto_post_history as a GROUP BY a.id)", nativeQuery = true)
