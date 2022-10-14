@@ -188,7 +188,7 @@ public class PostServiceImpl implements PostService {
 		postRepository.save(po);
 		Post post1 = postRepository.findPostByTitle(po.getTitle());
 		log.setId(post1.getId());
-		System.out.println(log.getId());
+//		System.out.println(log.getId());
 		logRepository.save(log);
 //		tagService.batchUpdate(po.getTags(), po.getId());
 

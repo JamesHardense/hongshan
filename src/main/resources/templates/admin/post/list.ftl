@@ -14,10 +14,10 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">词条列表</h3>
-                    <div class="box-tools">
-                        <a class="btn btn-default btn-sm" href="${base}/admin/post/view">新建</a>
-                        <a class="btn btn-default btn-sm" href="javascrit:;" data-action="batch_del">批量删除</a>
-                    </div>
+<#--                    <div class="box-tools">-->
+<#--                        <a class="btn btn-default btn-sm" href="${base}/admin/post/view">新建</a>-->
+<#--                        <a class="btn btn-default btn-sm" href="javascrit:;" data-action="batch_del">批量删除</a>-->
+<#--                    </div>-->
                 </div>
                 <div class="box-body">
                     <form id="qForm" class="form-inline search-row">
@@ -34,7 +34,7 @@
                             <input type="text" name="title" class="form-control" value="${title}" placeholder="请输入标题关键字">
                         </div>
                         <button type="submit" class="btn btn-default">查询</button>
-                    </form>
+<#--                    </form>-->
                     <div class="table-responsive">
                         <table id="dataGrid" class="table table-striped table-bordered">
                             <thead>
