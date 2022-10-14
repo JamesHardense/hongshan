@@ -26,4 +26,6 @@ public interface LogRepository extends JpaRepository<Log, Long>, JpaSpecificatio
     @Query(value = "SELECT * FROM mto_post_history AS b  WHERE b.hid IN (SELECT MAX(a.hid) FROM mto_post_history as a GROUP BY a.id) AND b.title =:title",nativeQuery = true)
     List<Log> findLatestTitle(@Param("title") String title);
 
+
+
 }

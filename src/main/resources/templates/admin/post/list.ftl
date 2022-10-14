@@ -52,27 +52,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <#list page.content as row>
+                                <#list logs as row>
                                 <tr>
-                                    <td>
+                                    <td id="id">
                                         <input type="checkbox" name="id" value="${row.id}">
                                     </td>
-                                    <td>
+                                    <td id="title">
                                         <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
                                     </td>
-                                    <th>${row.channel.name}</th>
-                                    <td>${row.author.username}</td>
-                                    <td>${row.created?string('yyyy-MM-dd')}</td>
-                                    <td><span class="label label-default">${row.views}</span></td>
-<#--                                    <td>-->
-<#--                                        <#if (row.featured > 0)>-->
-<#--                                            <span class="label label-danger">推荐</span>-->
-<#--                                        </#if>-->
-<#--                                        <#if (row.weight > 0)>-->
-<#--                                            <span class="label label-warning">置顶</span>-->
-<#--                                        </#if>-->
-<#--                                    </td>-->
-                                    <td>
+                                    <th id="name">${row.channel.name}</th>
+                                    <td id="username">${row.author.username}</td>
+                                    <td id="time">${row.created?string('yyyy-MM-dd')}</td>
+                                    <td id="views"><span class="label label-default">${row.views}</span></td>
+                                    <td >
                                         <#if (row.status = 1)>
                                             <span class="label label-default">已发布</span>
                                         </#if>
@@ -81,27 +73,17 @@
                                         </#if>
                                     </td>
                                     <td>
-<#--                                        <#if (row.featured == 0)>-->
-<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" rel="featured">推荐</a>-->
-<#--                                        <#else>-->
-<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="unfeatured">消荐</a>-->
-<#--                                        </#if>-->
-
-<#--                                        <#if (row.weight == 0)>-->
-<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" rel="weight">置顶</a>-->
-<#--                                        <#else>-->
-<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-warning" data-id="${row.id}" rel="unweight">消顶</a>-->
-<#--                                        </#if>-->
-                                        <a href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
-                                        <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
-                                        <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
-                                        <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
+                                        <a id="shenhe" href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
+                                        <a id="log" href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
+                                        <a id="update" href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
+                                        <a id="delete" href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
                                     </td>
                                 </tr>
                                 </#list>
                             </tbody>
                         </table>
                     </div>
+                    </form>
                 </div>
                 <div class="box-footer">
                     <@pager "list" page 5 />
@@ -137,6 +119,20 @@ function doUpdateWeight(id, weight) {
 }
 
 $(function() {
+    fetch(`http://localhost:9090/admin/post/log/latest`,{
+        method:'GET',
+        headers:{'Content-Type':'application/json'}}).then((res)=>{
+        return res.text()
+    }).then(res=>{
+        var response = JSON.parse(res)
+        // console.log(response)
+        for(let row of response){
+            console.log(row)
+            console.log(row.channelId)
+            // document.getElementById("id").value = 14
+            document.getElementById("name").innerText= row.channelId
+        }
+    });
 	// 删除
     $('#dataGrid a[rel="delete"]').bind('click', function(){
         var that = $(this);
