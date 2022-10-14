@@ -7,6 +7,7 @@ import com.mtons.mblog.modules.entity.Log;
 import com.mtons.mblog.modules.service.BaiKeService;
 import com.mtons.mblog.modules.service.LogService;
 import com.mtons.mblog.web.controller.BaseController;
+import org.jboss.logging.annotations.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,21 @@ public class LogController extends BaseController {
     @PostMapping("/log/list")
     public Log getLogById(@RequestBody Log log){
         return logService.findById(log.getId());
+    }
+
+    @GetMapping("/log/latest")
+    public List<Log> getLogLatest() {
+        return logService.findLatestLog();
+    }
+
+    @PostMapping("/log/channel")
+    public List<Log> getLogByChannel(@RequestBody Log log){
+        return logService.findLatestChannel(log.getChannelId());
+    }
+
+    @PostMapping("/log/title")
+    public List<Log> getLogByTitle(@RequestBody Log log){
+        return logService.findLatestTitle(log.getTitle());
     }
 
 }

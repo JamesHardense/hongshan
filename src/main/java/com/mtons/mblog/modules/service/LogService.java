@@ -12,4 +12,7 @@ import java.util.List;
 public interface LogService {
     List<Log> findAllLog();
     Log findById(long id);
+    List<Log> findLatestLog();
+    List<Log> findLatestChannel(long channel_id);
+    List<Log> findLatestTitle(String title);
 }

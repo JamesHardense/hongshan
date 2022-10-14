@@ -25,4 +25,19 @@ public class LogServiceImpl implements LogService {
     public Log findById(long id){
         return logRepository.findById(id);
     }
+
+    @Override
+    public List<Log> findLatestLog() {
+        return logRepository.findLatestLog();
+    }
+
+    @Override
+    public List<Log> findLatestChannel(long channel_id) {
+        return logRepository.findLatestChannel(channel_id);
+    }
+
+    @Override
+    public List<Log> findLatestTitle(String title) {
+        return logRepository.findLatestTitle(title);
+    }
 }
