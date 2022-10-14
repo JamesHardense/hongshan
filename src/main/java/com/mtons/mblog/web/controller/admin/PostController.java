@@ -145,4 +145,34 @@ public class PostController extends BaseController {
 		}
 		return data;
 	}
+
+	@RequestMapping(value = "/audit", method = RequestMethod.GET)
+	public String toAudit(Long id, ModelMap model) {
+		String editor = siteOptions.getValue("editor");
+		if (null != id && id > 0) {
+			PostVO audit = postService.get(id);
+			if (StringUtils.isNoneBlank(audit.getEditor())) {
+				editor = audit.getEditor();
+			}
+			model.put("audit", audit);
+		}
+		model.put("editor", editor);
+		model.put("channels", channelService.findAll(Consts.IGNORE));
+		return "/admin/post/audit";
+	}
+
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
+	public String toHistory(Long id, ModelMap model) {
+		String editor = siteOptions.getValue("editor");
+		if (null != id && id > 0) {
+			PostVO audit = postService.get(id);
+			if (StringUtils.isNoneBlank(audit.getEditor())) {
+				editor = audit.getEditor();
+			}
+			model.put("audit", audit);
+		}
+		model.put("editor", editor);
+		model.put("channels", channelService.findAll(Consts.IGNORE));
+		return "/admin/post/audit";
+	}
 }

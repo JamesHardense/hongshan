@@ -39,16 +39,16 @@
                         <table id="dataGrid" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th width="30"><input type="checkbox" class="checkall"></th>
-                                <th width="80">#</th>
+                                <th width="50"><input type="checkbox" class="checkall"></th>
+<#--                                <th width="80">#</th>-->
                                 <th>词条标题</th>
                                 <th width="120">分类</th>
                                 <th width="120">作者</th>
-                                <th width="100">发表日期</th>
-                                <th width="60">访问数</th>
-                                <th width="80">状态</th>
-                                <th width="80">发布</th>
-                                <th width="180">操作</th>
+                                <th width="120">发表日期</th>
+                                <th width="100">访问数</th>
+<#--                                <th width="80">状态</th>-->
+                                <th width="100">状态</th>
+                                <th width="200">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -58,23 +58,20 @@
                                         <input type="checkbox" name="id" value="${row.id}">
                                     </td>
                                     <td>
-                                        <img src="<@resource src=row.thumbnail/>" style="width: 80px;">
-                                    </td>
-                                    <td>
                                         <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
                                     </td>
                                     <th>${row.channel.name}</th>
                                     <td>${row.author.username}</td>
                                     <td>${row.created?string('yyyy-MM-dd')}</td>
                                     <td><span class="label label-default">${row.views}</span></td>
-                                    <td>
-                                        <#if (row.featured > 0)>
-                                            <span class="label label-danger">推荐</span>
-                                        </#if>
-                                        <#if (row.weight > 0)>
-                                            <span class="label label-warning">置顶</span>
-                                        </#if>
-                                    </td>
+<#--                                    <td>-->
+<#--                                        <#if (row.featured > 0)>-->
+<#--                                            <span class="label label-danger">推荐</span>-->
+<#--                                        </#if>-->
+<#--                                        <#if (row.weight > 0)>-->
+<#--                                            <span class="label label-warning">置顶</span>-->
+<#--                                        </#if>-->
+<#--                                    </td>-->
                                     <td>
                                         <#if (row.status = 1)>
                                             <span class="label label-default">已发布</span>
@@ -84,20 +81,21 @@
                                         </#if>
                                     </td>
                                     <td>
-                                        <#if (row.featured == 0)>
-                                            <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" rel="featured">推荐</a>
-                                        <#else>
-                                            <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="unfeatured">消荐</a>
-                                        </#if>
+<#--                                        <#if (row.featured == 0)>-->
+<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" rel="featured">推荐</a>-->
+<#--                                        <#else>-->
+<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="unfeatured">消荐</a>-->
+<#--                                        </#if>-->
 
-                                        <#if (row.weight == 0)>
-                                            <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" rel="weight">置顶</a>
-                                        <#else>
-                                            <a href="javascript:void(0);" class="btn btn-xs btn-warning" data-id="${row.id}" rel="unweight">消顶</a>
-                                        </#if>
-
-                                        <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-info">修改</a>
-                                        <a href="javascript:void(0);" class="btn btn-xs btn-primary" data-id="${row.id}" rel="delete">删除</a>
+<#--                                        <#if (row.weight == 0)>-->
+<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" rel="weight">置顶</a>-->
+<#--                                        <#else>-->
+<#--                                            <a href="javascript:void(0);" class="btn btn-xs btn-warning" data-id="${row.id}" rel="unweight">消顶</a>-->
+<#--                                        </#if>-->
+                                        <a href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
+                                        <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
+                                        <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
+                                        <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
                                     </td>
                                 </tr>
                                 </#list>

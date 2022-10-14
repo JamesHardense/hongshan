@@ -85,35 +85,35 @@ public class PostController extends BaseController {
 //		} else {
 //			postService.post(post);
 //		}
-//		return String.format(Views.REDIRECT_USER_HOME, profile.getId());
+//		return String.format(Views._USER_HOME, profile.getId());
 //	}
 
-	@PostMapping("/submit")
-	public String post(@RequestBody PostVO post) {
-//		System.out.println(post.getEditor());
-		Assert.notNull(post, "参数不完整");
-		Assert.state(StringUtils.isNotBlank(post.getTitle()), "标题不能为空");
-		Assert.state(StringUtils.isNotBlank(post.getContent()), "内容不能为空");
-		if (postService.findPostByTitle(post.getTitle()) != null && post.getId()<=0){
-			String message= "已有词条"+post.getTitle()+"的信息，请勿重新创建";
-			Assert.state(false,message );
-		}
-		AccountProfile profile = getProfile();
-		post.setAuthorId(profile.getId());
-
-		// 修改时, 验证归属
-		if (post.getId() > 0) {
-			PostVO exist = postService.get(post.getId());
-			Assert.notNull(exist, "文章不存在");
-//			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
-
-			postService.update(post);
-		} else {
-			postService.post(post);
-		}
-
-		return "ok";
-	}
+//	@PostMapping("/submit")
+//	public String post(@RequestBody PostVO post) {
+////		System.out.println(post.getEditor());
+//		Assert.notNull(post, "参数不完整");
+//		Assert.state(StringUtils.isNotBlank(post.getTitle()), "标题不能为空");
+//		Assert.state(StringUtils.isNotBlank(post.getContent()), "内容不能为空");
+//		if (postService.findPostByTitle(post.getTitle()) != null && post.getId()<=0){
+//			String message= "已有词条"+post.getTitle()+"的信息，请勿重新创建";
+//			Assert.state(false,message );
+//		}
+//		AccountProfile profile = getProfile();
+//		post.setAuthorId(profile.getId());
+//
+//		// 修改时, 验证归属
+//		if (post.getId() > 0) {
+//			PostVO exist = postService.get(post.getId());
+//			Assert.notNull(exist, "文章不存在");
+////			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
+//
+//			postService.update(post);
+//		} else {
+//			postService.post(post);
+//		}
+//
+//		return "ok";
+//	}
 
 	/**
 	 * 删除文章

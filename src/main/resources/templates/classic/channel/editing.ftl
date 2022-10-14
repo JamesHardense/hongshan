@@ -126,7 +126,6 @@ seajs.use('post', function (post) {
 //     $("[data-toggle='popover']").popover();
 // });
 var J = jQuery;
-$(function () {
     $('#popup').on('click', function(){
         var div = $("#div1").get(0);
         if(document.getElementById("title").value===""){
@@ -160,6 +159,6 @@ $(function () {
 
 
         });
-})});
+});
 </script>
 </@layout>

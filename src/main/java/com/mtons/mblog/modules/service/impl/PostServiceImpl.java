@@ -16,10 +16,7 @@ import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.data.UserVO;
 import com.mtons.mblog.modules.entity.*;
 import com.mtons.mblog.modules.event.PostUpdateEvent;
-import com.mtons.mblog.modules.repository.ResourceRepository;
-import com.mtons.mblog.modules.repository.PostAttributeRepository;
-import com.mtons.mblog.modules.repository.PostResourceRepository;
-import com.mtons.mblog.modules.repository.PostRepository;
+import com.mtons.mblog.modules.repository.*;
 import com.mtons.mblog.modules.service.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.ListUtils;
@@ -49,6 +46,8 @@ public class PostServiceImpl implements PostService {
 	@Autowired
 	private PostRepository postRepository;
 	@Autowired
+	private LogRepository logRepository;
+	@Autowired
 	private PostAttributeRepository postAttributeRepository;
 	@Autowired
 	private UserService userService;
@@ -64,6 +63,8 @@ public class PostServiceImpl implements PostService {
 	private PostResourceRepository postResourceRepository;
 	@Autowired
 	private ResourceRepository resourceRepository;
+//	@Autowired
+//	private LogRepository logRepository;
 
 	@Override
 	@PostStatusFilter
@@ -163,11 +164,19 @@ public class PostServiceImpl implements PostService {
 	@Transactional
 	public long post(PostVO post) {
 		Post po = new Post();
-
+		Log log =new Log();
 		BeanUtils.copyProperties(post, po);
-
 		po.setCreated(new Date());
 		po.setStatus(post.getStatus());
+
+        log.setAuthorId(po.getAuthorId());
+		log.setChannelId(po.getChannelId());
+		log.setEditorId(po.getAuthorId());
+		log.setSummary(post.getContent());
+		log.setStatus(po.getStatus());
+		log.setCreated(po.getCreated());
+		log.setTitle(po.getTitle());
+
 
 		// 处理摘要
 		if (StringUtils.isBlank(post.getSummary())) {
@@ -177,6 +186,10 @@ public class PostServiceImpl implements PostService {
 		}
 
 		postRepository.save(po);
+		Post post1 = postRepository.findPostByTitle(po.getTitle());
+		log.setId(post1.getId());
+		System.out.println(log.getId());
+		logRepository.save(log);
 //		tagService.batchUpdate(po.getTags(), po.getId());
 
         String key = ResourceLock.getPostKey(po.getId());
@@ -223,7 +236,17 @@ public class PostServiceImpl implements PostService {
 	@Transactional
 	public void update(PostVO p){
 		Optional<Post> optional = postRepository.findById(p.getId());
-
+		Log log = new Log();
+		Post post= postRepository.findPostByTitle(p.getTitle());
+		log.setAuthorId(post.getAuthorId());
+		log.setChannelId(post.getChannelId());
+		log.setEditorId(p.getAuthorId());
+		log.setSummary(p.getContent());
+		log.setStatus(post.getStatus());
+		log.setCreated(post.getCreated());
+		log.setTitle(post.getTitle());
+		log.setId(post.getId());
+		logRepository.save(log);
 		if (optional.isPresent()) {
             String key = ResourceLock.getPostKey(p.getId());
             AtomicInteger lock = ResourceLock.getAtomicInteger(key);
