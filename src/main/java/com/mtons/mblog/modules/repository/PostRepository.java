@@ -53,4 +53,7 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
     @Query("update Post set comments = comments + :increment where id = :id")
     void updateComments(@Param("id") long id, @Param("increment") int increment);
 
+    @Modifying
+    @Query("update Post set status = :status  where id = :id")
+    void updateStatus(@Param("id") long id, @Param("status") int status);
 }

@@ -41,7 +41,7 @@ public class LogController extends BaseController {
 
     @PostMapping("/log/read")
     public Log getReadById(@RequestBody Log log){
-        return logService.findByIdRead(log.getId());
+        return logService.findByIdRead(log.getHid());
     }
 
     @GetMapping("/log/latest")
@@ -57,6 +57,16 @@ public class LogController extends BaseController {
     @PostMapping("/log/title")
     public List<Log> getLogByTitle(@RequestBody Log log){
         return logService.findLatestTitle(log.getTitle());
+    }
+
+    @PostMapping("/log/agree")
+    public Boolean updateAgree(@RequestParam("id") long id, @RequestParam("hid") long hid){
+        return  logService.updateStatus(id,hid,1);
+    }
+
+    @PostMapping("/log/disagree")
+    public Boolean updateDisagree(@RequestParam("id") long id,@RequestParam("hid")long hid){
+        return  logService.updateStatus(id,hid,0);
     }
 
 }

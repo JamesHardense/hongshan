@@ -76,7 +76,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
+                                        <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-primary">审核</a>
                                         <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
                                         <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
                                         <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>

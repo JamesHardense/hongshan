@@ -175,4 +175,6 @@ public interface PostService {
 	long count();
 
 	Post findPostByTitle(String title);
+
+	Boolean updateStatus(long id ,int status);
 }
