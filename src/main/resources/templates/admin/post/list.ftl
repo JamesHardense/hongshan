@@ -52,7 +52,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <#list logs as row>
+
+                                <#list items as row>
                                 <tr>
                                     <td id="id">
                                         <input type="checkbox" name="id" value="${row.id}">
@@ -60,11 +61,12 @@
                                     <td id="title">
                                         <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
                                     </td>
-                                    <th id="name">${row.channel.name}</th>
-                                    <td id="username">${row.author.username}</td>
-                                    <td id="time">${row.created?string('yyyy-MM-dd')}</td>
-                                    <td id="views"><span class="label label-default">${row.views}</span></td>
-                                    <td >
+
+                                    <th>${row.channelId}</th>
+                                    <td>${row.authorId}</td>
+                                    <td>${row.created?string('yyyy-MM-dd')}</td>
+                                    <td><span class="label label-default">${row.views}</span></td>
+                                    <td>
                                         <#if (row.status = 1)>
                                             <span class="label label-default">已发布</span>
                                         </#if>
@@ -73,10 +75,12 @@
                                         </#if>
                                     </td>
                                     <td>
-                                        <a id="shenhe" href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
-                                        <a id="log" href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
-                                        <a id="update" href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
-                                        <a id="delete" href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
+
+                                        <a href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
+                                        <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
+                                        <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
+                                        <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
+
                                     </td>
                                 </tr>
                                 </#list>
@@ -196,7 +200,7 @@ $(function() {
         }, function(){
         });
         return false;
-    });
+    })
     
     $('a[data-action="batch_del"]').click(function () {
 		var check_length=$("input[type=checkbox][name=id]:checked").length;
