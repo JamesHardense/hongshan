@@ -8,9 +8,11 @@ import com.mtons.mblog.web.controller.BaseController;
 import org.jboss.logging.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.mtons.mblog.modules.data.BaikeVO;
+import com.mtons.mblog.modules.data.BasicInfoVO;
 import java.util.List;
 
+import java.util.ArrayList;
 /**
  * 文章操作
  * @author langhsu
@@ -28,8 +30,23 @@ public class BaikeController extends BaseController {
      */
 
     @PostMapping("/baike")
-    public BaiKe getBaike(@RequestBody BaiKe baiKe) {
-        return baiKeService.findByTitle(baiKe.getTitle());
+    public BaikeVO getBaike(@RequestBody BaiKe baiKe) {
+        BaiKe baike=baiKeService.findByTitle(baiKe.getTitle());
+        BaikeVO baikeVO = new BaikeVO();
+        baikeVO.setId(baike.getId());
+        baikeVO.setSummary(baike.getSummary());
+        baikeVO.setTitle(baike.getTitle());
+        String[] basicInfo= baike.getBasicInfo().split(",");
+        List<BasicInfoVO> basicInfoVOS = new ArrayList<>();
+        for (int i=0;i<basicInfo.length;i++){
+            String[] map = basicInfo[i].split(":");
+            BasicInfoVO basicInfoVO=new BasicInfoVO();
+            basicInfoVO.setKey(map[0]);
+            basicInfoVO.setName(map[1]);
+            basicInfoVOS.add(basicInfoVO);
+        }
+        baikeVO.setBasicInfoVOS(basicInfoVOS);
+        return baikeVO;
     }
 
 }

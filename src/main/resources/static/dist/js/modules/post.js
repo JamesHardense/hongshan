@@ -27,23 +27,56 @@ define(function(require, exports, module) {
         bindEvents : function () {
         	var that = this;
 
-        	that.bindTagit();
-        	that.bindValidate();
+        	// that.bindTagit();
+        	// that.bindValidate();
         	that.bindUpload();
 
             $('button[event="post_submit"]').click(function () {
-                var status = $(this).data('status');
-                $("input[name='status']").val(status);
-                $("#submitForm").submit();
+                if(document.getElementById("title").value===""){
+                    alert("请输入词条名称");
+                    document.getElementById("title").focus()
+                    return false;
+                }
+                if(document.getElementById("content").value===""){
+                    alert("请输入词条内容");
+                    document.getElementById("content").focus()
+                    return false;
+                }
+                if(document.getElementById("channelId").value===""){
+                    alert("请输入词条分类");
+                    document.getElementById("channelId").focus()
+                    return false;
+                }
+                // var status = $(this).data('status');
+                // $("input[name='status']").val(status);
+                // $("#submitForm").submit();
+                if(document.getElementById("id").valueOf()===""){
+                    document.getElementById("id").value=0;
+                }
+                var  str ={
+                    title:document.getElementById("title").value,
+                    content:document.getElementById("content").value,
+                    channelId:document.getElementById("channelId").value,
+                    id:document.getElementById("id").value,
+                    authorId:document.getElementById("authorId").value,
+                    editor:document.getElementById("editor").value,
+                    status:document.getElementById("status").value};
+                console.log(str);
+                fetch(`http://localhost:9090/post/submit`,{
+                    method:'POST',
+                    body:JSON.stringify(str),
+                    headers:{'Content-Type':'application/json'}}).then((res=>{
+                       console.log(res)
+                }));
             });
         },
         
-        bindTagit : function () {
-            $('#tags').tagsinput({
-                maxTags: 4,
-                trimValue: true
-            });
-        },
+        // bindTagit : function () {
+        //     $('#tags').tagsinput({
+        //         maxTags: 4,
+        //         trimValue: true
+        //     });
+        // },
         
         bindUpload : function () {
             $('#upload_btn').change(function(){
@@ -103,8 +136,8 @@ define(function(require, exports, module) {
     };
 	
 	exports.init = function () {
-        require.async(['validation', 'validation-additional'], function () {
+        // require.async(['validation', 'validation-additional'], function () {
 		    new PostView().init();
-        });
+        // });
 	}
 });

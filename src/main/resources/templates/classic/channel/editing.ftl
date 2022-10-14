@@ -3,15 +3,15 @@
 
 <form id="submitForm" class="form" action="${base}/post/submit" method="post" enctype="multipart/form-data"
       xmlns="http://www.w3.org/1999/html">
-    <input type="hidden" name="status" value="${view.status!0}"/>
-    <input type="hidden" name="editor" value="${editor!'tinymce'}"/>
+    <input type="hidden" name="status" id="status" value="${view.status!0}"/>
+    <input type="hidden" name="editor" id="editor" value="${editor!'tinymce'}"/>
     <div class="row">
         <div class="col-xs-12 col-md-8 side-left">
             <div id="message"></div>
-            <#if view??>
-                <input type="hidden" name="id" value="${view.id}"/>
-                <input type="hidden" name="authorId" value="${view.authorId}"/>
-            </#if>
+<#--            <#if view??>-->
+                <input type="hidden" name="id" id="id" value="${view.id}"/>
+                <input type="hidden" name="authorId" id="authorId" value="${view.authorId}"/>
+<#--            </#if>-->
             <div class="col-xs-12 col-md-12">
                 <div class="form-group">
                     <div class="text-right">
@@ -56,7 +56,7 @@
                     <h3 class="panel-title">分类</h3>
                 </div>
                 <div class="panel-body">
-                    <select class="form-control" name="channelId" required>
+                    <select class="form-control" name="channelId" id="channelId" required>
                         <option value="">请选择分类</option>
                         <#list channels as row>
                             <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
@@ -86,12 +86,15 @@
                     <div class="text-left">
                         <h5>简介</h5>
                         <span id="summary"></span>
+                        <br>
 <#--                        <#list BaiKe as row>-->
 <#--                            <span>${row.summary}</span>-->
 <#--                        </#list>-->
                         <br>
                         <h5>基本信息</h5>
-                        <span id="basicInfo"></span>
+                        <span id="basicInfo">
+                        <!--存放数据-->
+                        </span>
 <#--                        <#list BaiKe as row>-->
 <#--                            <span>${row.basicInfo}</span>-->
 <#--                        </#list>-->
@@ -126,9 +129,10 @@ var J = jQuery;
 $(function () {
     $('#popup').on('click', function(){
         var div = $("#div1").get(0);
-        // if(document.getElementById("title").value===""){
-        //     alert("请输入词条名称");
-        // }
+        if(document.getElementById("title").value===""){
+            alert("请输入词条名称");
+            return false;
+        }
         if(div.style.display == ""){
             div.style.display = "none";
         }else{
@@ -142,7 +146,19 @@ $(function () {
         }).then((res)=>{
             var response = JSON.parse(res);
             document.getElementById("summary").innerText = response.summary
-            document.getElementById("basicInfo").innerText = response.basicInfo
+            let basicInfoVOS = response.basicInfoVOS;
+            let temp = '';
+            for(let basicInfo of basicInfoVOS){
+                temp +=
+                    '<a>' + basicInfo.key + '</a>' +
+                    '<a>' + ' : ' + '</a>' +
+                    '<a>' + basicInfo.name+ '</a>' +
+                    '<br>';
+            }
+            let tbody=document.getElementById("basicInfo");
+            tbody.innerHTML = temp;
+
+
         });
 })});
 </script>
