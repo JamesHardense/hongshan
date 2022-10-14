@@ -1,133 +1,224 @@
 <#include "/admin/utils/ui.ftl"/>
 <@layout>
-    <link rel='stylesheet' media='all' href='${base}/dist/css/plugins.css'/>
-    <script type="text/javascript" src="${base}/dist/vendors/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
     <section class="content-header">
-        <h1>词条编辑</h1>
+        <h1>词条日志</h1>
         <ol class="breadcrumb">
             <li><a href="${base}/admin">首页</a></li>
-            <li><a href="${base}/admin/post/list">词条管理</a></li>
-            <li class="active">词条编辑</li>
+            <li class="active">词条管理</li>
         </ol>
     </section>
     <section class="content container-fluid">
         <div class="row">
-            <form id="qForm" method="post" action="${base}/admin/post/update">
-                <#if view??>
-                    <input type="hidden" name="id" value="${view.id}"/>
-                </#if>
-                <input type="hidden" name="status" value="${view.status!0}"/>
-                <input type="hidden" name="editor" value="${editor!'tinymce'}"/>
-                <input type="hidden" id="thumbnail" name="thumbnail" value="${view.thumbnail}">
-                <div class="col-md-9 side-left">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">词条编辑</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="title" value="${view.title}" maxlength="64" placeholder="文章标题" required >
-                            </div>
-                            <div class="form-group">
-                                <#include "/admin/editor/${editor}.ftl"/>
-                            </div>
-                        </div>
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">词条列表</h3>
+                        <#--                    <div class="box-tools">-->
+                        <#--                        <a class="btn btn-default btn-sm" href="${base}/admin/post/view">新建</a>-->
+                        <#--                        <a class="btn btn-default btn-sm" href="javascrit:;" data-action="batch_del">批量删除</a>-->
+                        <#--                    </div>-->
                     </div>
-                </div>
-                <div class="col-md-3 side-right">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">预览图</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="thumbnail-box">
-                                <div class="convent_choice" id="thumbnail_image" <#if view.thumbnail?? && view.thumbnail?length gt 0> style="background: url(${base + view.thumbnail});" </#if>>
-                                    <div class="upload-btn">
-                                        <label>
-                                            <span>点击选择一张图片</span>
-                                            <input id="upload_btn" type="file" name="file" accept="image/*" title="点击添加图片">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="box-body">
+                    <div class="box-body">
+                        <form id="qForm" class="form-inline search-row">
+                            <input type="hidden" name="pageNo" value="${page.number + 1}"/>
                             <div class="form-group">
-                                <label>分类</label>
-                                <select class="form-control" name="channelId">
+                                <select class="form-control" name="channelId" data-select="${channelId}">
+                                    <option value="0">查询所有分类</option>
                                     <#list channels as row>
-                                        <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
+                                        <option value="${row.id}">${row.name}</option>
                                     </#list>
                                 </select>
                             </div>
-                            <#--                        <div class="form-group">-->
-                            <#--                            <label>标签</label>-->
-                            <#--                            <input type="text" name="tags" data-role="tagsinput" class="form-control" value="${view.tags}" placeholder="添加相关标签，逗号分隔 (最多4个)">-->
-                            <#--                        </div>-->
-                        </div>
-                        <div class="box-footer">
-                            <button type="button" data-status="1" class="btn btn-default btn-sm" event="post_submit">草稿</button>
-                            <button type="button" data-status="0" class="btn btn-primary btn-sm pull-right" event="post_submit">发布</button>
-                        </div>
+                            <div class="form-group">
+                                <input type="text" name="title" class="form-control" value="${title}" placeholder="请输入标题关键字">
+                            </div>
+                            <button type="submit" class="btn btn-default">查询</button>
+                            <#--                    </form>-->
+                            <div class="table-responsive">
+                                <table id="dataGrid" class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th width="50"><input type="checkbox" class="checkall"></th>
+                                        <#--                                <th width="80">#</th>-->
+                                        <th>词条标题</th>
+                                        <th width="120">分类</th>
+                                        <th width="120">作者</th>
+                                        <th width="120">发表日期</th>
+                                        <th width="100">访问数</th>
+                                        <#--                                <th width="80">状态</th>-->
+                                        <th width="100">状态</th>
+                                        <th width="200">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <#list logs as row>
+                                        <tr>
+                                            <td id="id">
+                                                <input type="checkbox" name="id" value="${row.id}">
+                                            </td>
+                                            <td id="title">
+                                                <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
+                                            </td>
+                                            <th id="name">${row.channel.name}</th>
+                                            <td id="username">${row.author.username}</td>
+                                            <td id="time">${row.created?string('yyyy-MM-dd')}</td>
+                                            <td id="views"><span class="label label-default">${row.views}</span></td>
+                                            <td >
+                                                <#if (row.status = 1)>
+                                                    <span class="label label-default">已发布</span>
+                                                </#if>
+                                                <#if (row.status = 0)>
+                                                    <span class="label label-warning">待审核</span>
+                                                </#if>
+                                            </td>
+                                            <td>
+                                                <a id="shenhe" href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>
+                                                <a id="log" href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
+                                                <a id="update" href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
+                                                <a id="delete" href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
+                                            </td>
+                                        </tr>
+                                    </#list>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="box-footer">
+                        <@pager "list" page 5 />
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </section>
     <script type="text/javascript">
+        var J = jQuery;
+
+        function ajaxReload(json){
+            if(json.code >= 0){
+                if(json.message != null && json.message != ''){
+                    layer.msg(json.message, {icon: 1});
+                }
+                $('#qForm').submit();
+            }else{
+                layer.msg(json.message, {icon: 2});
+            }
+        }
+
+        function doDelete(ids) {
+            J.getJSON('${base}/admin/post/delete', J.param({'id': ids}, true), ajaxReload);
+        }
+
+        function doUpdateFeatured(id, featured) {
+            J.getJSON('${base}/admin/post/featured', J.param({'id': id, 'featured': featured}, true), ajaxReload);
+        }
+
+        function doUpdateWeight(id, weight) {
+            J.getJSON('${base}/admin/post/weight', J.param({'id': id, 'weight': weight}, true), ajaxReload);
+        }
+
         $(function() {
-            $('#upload_btn').change(function(){
-                $(this).upload('${base}/post/upload?crop=thumbnail_post_size', function(data){
-                    if (data.status == 200) {
-                        var path = data.path;
-                        $("#thumbnail_image").css("background", "url(" + path + ") no-repeat scroll center 0 rgba(0, 0, 0, 0)");
-                        $("#thumbnail").val(path);
-                    }
+            fetch(`http://localhost:9090/admin/post/log/latest`,{
+                method:'GET',
+                headers:{'Content-Type':'application/json'}}).then((res)=>{
+                return res.text()
+            }).then(res=>{
+                var response = JSON.parse(res)
+                // console.log(response)
+                for(let row of response){
+                    console.log(row)
+                    console.log(row.channelId)
+                    // document.getElementById("id").value = 14
+                    document.getElementById("name").innerText= row.channelId
+                }
+            });
+            // 删除
+            $('#dataGrid a[rel="delete"]').bind('click', function(){
+                var that = $(this);
+                layer.confirm('确定删除此项吗?', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doDelete(that.attr('data-id'));
+                }, function(){
+                });
+                return false;
+            });
+
+            // 推荐/加精
+            $('#dataGrid a[rel="featured"]').bind('click', function(){
+                var that = $(this);
+                layer.confirm('确定推荐吗?', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doUpdateFeatured(that.attr('data-id'), 1);
+                }, function(){
+                });
+                return false;
+            });
+
+            // 撤销
+            $('#dataGrid a[rel="unfeatured"]').bind('click', function(){
+                var that = $(this);
+                layer.confirm('确定撤销吗?', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doUpdateFeatured(that.attr('data-id'), 0);
+                }, function(){
+                });
+                return false;
+            });
+
+            // 推荐/加精
+            $('#dataGrid a[rel="weight"]').bind('click', function(){
+                var that = $(this);
+                layer.confirm('确定置顶该项吗', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doUpdateWeight(that.attr('data-id'), 1);
+                }, function(){
+                });
+                return false;
+            });
+
+            // 撤销
+            $('#dataGrid a[rel="unweight"]').bind('click', function(){
+                var that = $(this);
+                layer.confirm('确定撤销吗?', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doUpdateWeight(that.attr('data-id'), 0);
+                }, function(){
+                });
+                return false;
+            });
+
+            $('a[data-action="batch_del"]').click(function () {
+                var check_length=$("input[type=checkbox][name=id]:checked").length;
+
+                if (check_length == 0) {
+                    layer.msg("请至少选择一项", {icon: 2});
+                    return false;
+                }
+
+                var ids = [];
+                $("input[type=checkbox][name=id]:checked").each(function(){
+                    ids.push($(this).val());
+                });
+
+                layer.confirm('确定删除此项吗?', {
+                    btn: ['确定','取消'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    doDelete(ids);
+                }, function(){
                 });
             });
-
-            $('button[event="post_submit"]').click(function () {
-                var status = $(this).data('status');
-                $("input[name='status']").val(status);
-                $("form").submit();
-            });
-
-            $("form").submit(function () {
-                if (typeof tinyMCE == "function") {
-                    tinyMCE.triggerSave();
-                }
-            }).validate({
-                ignore: "",
-                rules: {
-                    title: "required",
-                    content: {
-                        required: true,
-                        check_editor: true
-                    }
-                },
-                errorElement: "em",
-                errorPlacement: function (error, element) {
-                    error.addClass("help-block");
-
-                    if (element.prop("type") === "checkbox") {
-                        error.insertAfter(element.parent("label"));
-                    } else if (element.is("textarea")) {
-                        error.insertAfter(element.next());
-                    } else {
-                        error.insertAfter(element);
-                    }
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).closest("div").addClass("has-error").removeClass("has-success");
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).closest("div").addClass("has-success").removeClass("has-error");
-                }
-            });
-
-        });
+        })
     </script>
 </@layout>
