@@ -4,38 +4,34 @@
     <script type="text/javascript" src="${base}/dist/vendors/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
     <section class="content-header">
-        <h1>词条审核</h1>
+        <h1>日志详情</h1>
         <ol class="breadcrumb">
             <li><a href="${base}/admin">首页</a></li>
             <li><a href="${base}/admin/post/list">词条管理</a></li>
-            <li class="active">词条审核</li>
+            <li class="active">日志详情</li>
         </ol>
     </section>
     <section class="content container-fluid">
         <div class="row">
             <form id="qForm" method="post" action="${base}/admin/post/update">
-<#--                <#if view??>-->
+                <#--                <#if view??>-->
                 <input type="hidden" name="id" id="word_id" value="${view.id}"/>
                 <input type="hidden" name="hid" id="hid" value="${view.hid}"/>
-<#--                </#if>-->
+                <#--                </#if>-->
                 <input type="hidden" name="status" value="${view.status!0}"/>
                 <input type="hidden" name="editor" value="${editor!'tinymce'}"/>
                 <input type="hidden" id="thumbnail" name="thumbnail" value="${view.thumbnail}">
                 <div class="col-md-12 side-left">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">词条审核</h3>
+                            <h3 class="box-title">日志详情</h3>
                         </div>
                         <div class="box-body">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="title" id="word_title" maxlength="64" placeholder="词条标题" readonly>
+                                <input type="text" class="form-control" name="title" id="word_title" maxlength="64" placeholder="词条标题" readonly >
                             </div>
                             <div class="form-group">
                                 <textarea class="form-control" id="word_content" rows="10" readonly></textarea>
-                            </div>
-                            <div style="margin-left: 500px;">
-                            <button type="button"  class="btn btn-warning"  id="disagree">审核不通过</button>
-                            <button type="button" class="btn btn-primary" id="agree">审核通过</button>
                             </div>
                         </div>
                     </div>
@@ -68,7 +64,7 @@
                     method:'POST',
                     body:JSON.stringify(
                         {id:document.getElementById("word_id").value,
-                        hid:document.getElementById("hid").value}),
+                            hid:document.getElementById("hid").value}),
                     headers:{'Content-Type':'application/json'}}).then((res)=> {
                     //     return res.text()
                     // }).then((res)=> {
@@ -76,7 +72,7 @@
                     window.location.href = "http://localhost:9090/admin/post/list"
                     //
                 })
-        });
+            });
             $('#disagree').on('click', function(){
                 console.log(document.getElementById("word_id").value)
                 var data = fetch(`http://localhost:9090/admin/post/log/disagree`,{

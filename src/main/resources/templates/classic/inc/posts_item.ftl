@@ -47,7 +47,6 @@
                         <li class="ico-time"><i class="icon-clock"></i>${timeAgo(row.created)}</li>
                         <li class="ico-eye hidden-xs"><i class="icon-book-open"></i>${row.views}</li>
                         <li class="ico-like hidden-xs"><i class="icon-bubble"></i>${row.comments}</li>
-                        <a>${row.status}</a>
                     </ul>
                 </div>
             </div>

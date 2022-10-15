@@ -14,9 +14,11 @@ import com.mtons.mblog.base.lang.Result;
 import com.mtons.mblog.modules.data.AccountProfile;
 import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.entity.Log;
+import com.mtons.mblog.modules.entity.View;
 import com.mtons.mblog.modules.service.ChannelService;
 import com.mtons.mblog.modules.service.LogService;
 import com.mtons.mblog.modules.service.PostService;
+import com.mtons.mblog.modules.service.ViewService;
 import com.mtons.mblog.web.controller.BaseController;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class PostController extends BaseController {
 	private ChannelService channelService;
 	@Autowired
 	private LogService logService;
+
+	@Autowired
+	private ViewService viewService;
 	
 	@RequestMapping("/list")
 	public String list(String title, ModelMap model, HttpServletRequest request) {
@@ -56,7 +61,7 @@ public class PostController extends BaseController {
 		Pageable pageable = wrapPageable(Sort.by(Sort.Direction.DESC, "weight", "created"));
 		Page<PostVO> page = postService.paging4Admin(pageable, channelId, title);
 		model.put("page", page);
-		List<Log> list = logService.findLatestLog();
+		List<View> list = viewService.findAuthorChannel();
 		model.put("items",list);
 		model.put("title", title);
 		model.put("id", id);
@@ -164,6 +169,18 @@ public class PostController extends BaseController {
 		return "/admin/post/audit";
 	}
 
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String toInfo(Long hid, ModelMap model) {
+		String editor = siteOptions.getValue("editor");
+		if (null != hid && hid > 0) {
+			Log audit = logService.findByIdRead(hid);
+			model.put("info", audit);
+		}
+//		model.put("editor", editor);
+//		model.put("channels", channelService.findAll(Consts.IGNORE));
+		return "/admin/post/info";
+	}
+
 	@RequestMapping(value = "/history", method = RequestMethod.GET)
 	public String list1(String title, ModelMap model, HttpServletRequest request) {
 		long id = ServletRequestUtils.getLongParameter(request, "id", Consts.ZERO);
@@ -172,7 +189,7 @@ public class PostController extends BaseController {
 		Pageable pageable = wrapPageable(Sort.by(Sort.Direction.DESC, "weight", "created"));
 		Page<PostVO> page = postService.paging4Admin(pageable, channelId, title);
 		model.put("page", page);
-		List<Log> list = logService.findById(id);
+		List<View> list = viewService.findAuthorById(id);
 		model.put("items",list);
 		model.put("title", title);
 		model.put("id", id);

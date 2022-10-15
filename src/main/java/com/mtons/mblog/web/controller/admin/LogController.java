@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.mtons.mblog.modules.entity.BaiKe;
 import com.mtons.mblog.modules.entity.Log;
 //import com.mtons.mblog.modules.entity.Test;
+import com.mtons.mblog.modules.entity.View;
 import com.mtons.mblog.modules.service.BaiKeService;
 import com.mtons.mblog.modules.service.LogService;
+import com.mtons.mblog.modules.service.ViewService;
 import com.mtons.mblog.web.controller.BaseController;
 import org.jboss.logging.annotations.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import java.util.List;
 public class LogController extends BaseController {
     @Autowired
     private LogService logService;
+
+    @Autowired
+    private ViewService viewService;
 
     /**
      * 查看抽取信息
