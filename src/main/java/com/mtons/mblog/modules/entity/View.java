@@ -99,27 +99,26 @@ public class View implements Serializable {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date created;
 
-    @Column(name = "author_name")
-    private String authorName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "channel_name")
-    private String channelName;
+    @Column(name = "username")
+    private String username;
 
-
-    public String getAuthorName() {
-        return authorName;
+    public String getName() {
+        return name;
     }
 
-    public void setAuthorName(String authorName) {
-        this.authorName = authorName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getChannelName() {
-        return channelName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
