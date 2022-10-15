@@ -2,9 +2,9 @@
     <div class="container">
         <div class="footer-row">
             <nav class="footer-nav">
-                <a class="footer-nav-item footer-nav-logo" href="${base}/">
-                    <img src="<@resource src=options['site_logo']/>" alt="mblog"/>
-                </a>
+<#--                <a class="footer-nav-item footer-nav-logo" href="${base}/">-->
+<#--                    <img src="<@resource src=options['site_logo']/>" height="400" width="400" alt="hongshan"/>-->
+<#--                </a>-->
                 <span class="footer-nav-item">${options['site_copyright']}</span>
                 <span class="footer-nav-item">${options['site_icp']}</span>
             </nav>
