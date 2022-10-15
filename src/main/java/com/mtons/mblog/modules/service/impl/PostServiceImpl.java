@@ -236,17 +236,6 @@ public class PostServiceImpl implements PostService {
 	@Transactional
 	public void update(PostVO p){
 		Optional<Post> optional = postRepository.findById(p.getId());
-		Log log = new Log();
-		Post post= postRepository.findPostByTitle(p.getTitle());
-		log.setAuthorId(post.getAuthorId());
-		log.setChannelId(post.getChannelId());
-		log.setEditorId(p.getAuthorId());
-		log.setSummary(p.getContent());
-		log.setStatus(post.getStatus());
-		log.setCreated(post.getCreated());
-		log.setTitle(post.getTitle());
-		log.setId(post.getId());
-		logRepository.save(log);
 		if (optional.isPresent()) {
             String key = ResourceLock.getPostKey(p.getId());
             AtomicInteger lock = ResourceLock.getAtomicInteger(key);
@@ -393,6 +382,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	@Transactional
 	public Boolean updateStatus(long id, int status) {
 		postRepository.updateStatus(id,status);
 		return true;

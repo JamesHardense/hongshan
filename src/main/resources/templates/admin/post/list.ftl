@@ -22,18 +22,18 @@
                 <div class="box-body">
                     <form id="qForm" class="form-inline search-row">
                         <input type="hidden" name="pageNo" value="${page.number + 1}"/>
-                        <div class="form-group">
-                            <select class="form-control" name="channelId" data-select="${channelId}">
-                                <option value="0">查询所有分类</option>
-                                <#list channels as row>
-                                    <option value="${row.id}">${row.name}</option>
-                                </#list>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="title" class="form-control" value="${title}" placeholder="请输入标题关键字">
-                        </div>
-                        <button type="submit" class="btn btn-default">查询</button>
+<#--                        <div class="form-group">-->
+<#--                            <select class="form-control" name="channelId" data-select="${channelId}">-->
+<#--                                <option value="0">查询所有分类</option>-->
+<#--                                <#list channels as row>-->
+<#--                                    <option value="${row.id}">${row.name}</option>-->
+<#--                                </#list>-->
+<#--                            </select>-->
+<#--                        </div>-->
+<#--                        <div class="form-group">-->
+<#--                            <input type="text" name="title" class="form-control" value="${title}" placeholder="请输入标题关键字">-->
+<#--                        </div>-->
+<#--                        <button type="submit" class="btn btn-default">查询</button>-->
 <#--                    </form>-->
                     <div class="table-responsive">
                         <table id="dataGrid" class="table table-striped table-bordered">
@@ -45,7 +45,7 @@
                                 <th width="120">分类</th>
                                 <th width="120">作者</th>
                                 <th width="120">发表日期</th>
-                                <th width="100">访问数</th>
+<#--                                <th width="100">访问数</th>-->
 <#--                                <th width="80">状态</th>-->
                                 <th width="100">状态</th>
                                 <th width="200">操作</th>
@@ -59,26 +59,27 @@
                                         <input type="checkbox" name="id" value="${row.id}">
                                     </td>
                                     <td id="title">
-                                        <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
+<#--                                        <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>-->
+                                        ${row.title}
                                     </td>
 
                                     <th>${row.channelId}</th>
                                     <td>${row.authorId}</td>
                                     <td>${row.created?string('yyyy-MM-dd')}</td>
-                                    <td><span class="label label-default">${row.views}</span></td>
+<#--                                    <td><span class="label label-default">${row.views}</span></td>-->
                                     <td>
-                                        <#if (row.status = 1)>
-                                            <span class="label label-default">已发布</span>
-                                        </#if>
                                         <#if (row.status = 0)>
                                             <span class="label label-warning">待审核</span>
                                         </#if>
+                                        <#if (row.status = 1)>
+                                            <span class="label label-success">可编辑</span>
+                                        </#if>
                                     </td>
                                     <td>
-
-                                        <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-primary">审核</a>
+                                        <#if (row.status=0)>
+                                        <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-success">审核</a>
+                                        </#if>
                                         <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
-                                        <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>
                                         <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
 
                                     </td>

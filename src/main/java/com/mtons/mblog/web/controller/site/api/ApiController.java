@@ -7,7 +7,7 @@
 |
 +---------------------------------------------------------------------------
 */
-package com.mtons.mblog.web.controller.api;
+package com.mtons.mblog.web.controller.site.api;
 
 import com.mtons.mblog.base.lang.Consts;
 import com.mtons.mblog.base.lang.Result;

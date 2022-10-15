@@ -31,7 +31,7 @@ import java.util.Date;
 		@Index(name = "IK_CHANNEL_ID", columnList = "channel_id")
 })
 @FilterDefs({
-		@FilterDef(name = "POST_STATUS_FILTER", defaultCondition = "status = 0" )})
+		@FilterDef(name = "POST_STATUS_FILTER", defaultCondition = "status = 1" )})
 @Filters({ @Filter(name = "POST_STATUS_FILTER") })
 @Indexed(index = "post")
 @Analyzer(impl = SmartChineseAnalyzer.class)

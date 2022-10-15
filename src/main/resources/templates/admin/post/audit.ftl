@@ -55,20 +55,41 @@
             }).then((res)=> {
                 var response = JSON.parse(res);
                 console.log(response)
+                document.getElementById("word_id").value = response.id;
+                document.getElementById("hid").value = response.hid;
                 document.getElementById("word_title").value = response.title;
                 document.getElementById("word_content").innerText = response.summary;
             })
             $('#agree').on('click', function(){
-                console.log()
+                console.log(document.getElementById("word_id").value)
                 var data = fetch(`http://localhost:9090/admin/post/log/agree`,{
                     method:'POST',
-                    body:JSON.stringify({id:document.getElementById("word_id").value,
+                    body:JSON.stringify(
+                        {id:document.getElementById("word_id").value,
                         hid:document.getElementById("hid").value}),
-                    headers:{'Content-Type':'application/json'}}).then((res)=>{
-                    return res.text()
-                }).then((res)=> {
+                    headers:{'Content-Type':'application/json'}}).then((res)=> {
+                    //     return res.text()
+                    // }).then((res)=> {
+                    // console.log(res)
                     window.location.href = "http://localhost:9090/admin/post/list"
+                    //
                 })
-        })});
+        });
+            $('#disagree').on('click', function(){
+                console.log(document.getElementById("word_id").value)
+                var data = fetch(`http://localhost:9090/admin/post/log/disagree`,{
+                    method:'POST',
+                    body:JSON.stringify(
+                        {
+                            hid:document.getElementById("hid").value}),
+                    headers:{'Content-Type':'application/json'}}).then((res)=> {
+                    //     return res.text()
+                    // }).then((res)=> {
+                    // console.log(res)
+                    window.location.href = "http://localhost:9090/admin/post/list"
+                    //
+                })
+            });
+        });
     </script>
 </@layout>

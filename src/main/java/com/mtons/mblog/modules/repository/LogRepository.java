@@ -34,4 +34,7 @@ public interface LogRepository extends JpaRepository<Log, Long>, JpaSpecificatio
     @Query("update Log set status = :status where hid = :hid")
     void updateStaus(@Param("hid") long id, @Param("status") int status);
 
+    @Query(value = "SELECT * FROM mto_post_history AS a WHERE a.hid =( SELECT MAX(b.hid) FROM mto_post_history AS b WHERE b.id= :id)", nativeQuery = true)
+    Log findLatestById(@Param("id")long id);
+
 }

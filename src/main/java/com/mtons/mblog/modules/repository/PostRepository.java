@@ -56,4 +56,8 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
     @Modifying
     @Query("update Post set status = :status  where id = :id")
     void updateStatus(@Param("id") long id, @Param("status") int status);
+
+    @Modifying
+    @Query("update Post set summary = :summary  where id = :id")
+    void updateSummary(@Param("id") long id, @Param("summary") String summary);
 }

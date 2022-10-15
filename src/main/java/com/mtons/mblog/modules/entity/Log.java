@@ -30,9 +30,10 @@ import java.util.Date;
 @Table(name = "mto_post_history", indexes = {
         @Index(name = "IK_CHANNEL_ID", columnList = "channel_id")
 })
-@FilterDefs({
-        @FilterDef(name = "POST_STATUS_FILTER", defaultCondition = "status = 0" )})
-@Filters({ @Filter(name = "POST_STATUS_FILTER") })
+//@FilterDefs({
+//        @FilterDef(name = "POST_STATUS_FILTER", defaultCondition = "status = 1" )})
+//@Filters({ @Filter(name = "POST_STATUS_FILTER") })
+//@Indexed(index = "post")
 @Analyzer(impl = SmartChineseAnalyzer.class)
 public class Log implements Serializable {
 
@@ -120,7 +121,7 @@ public class Log implements Serializable {
     /**
      * 文章状态
      */
-    private int status;
+    private int status=1;
 
     /**
      * 推荐状态

@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.mtons.mblog.modules.data.AccountProfile;
 import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.entity.BaiKe;
+import com.mtons.mblog.modules.entity.Log;
+import com.mtons.mblog.modules.entity.Post;
 import com.mtons.mblog.modules.entity.Test;
+import com.mtons.mblog.modules.repository.LogRepository;
 import com.mtons.mblog.modules.service.BaiKeService;
 import com.mtons.mblog.modules.service.PostService;
 import com.mtons.mblog.web.controller.BaseController;
@@ -15,6 +18,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import com.mtons.mblog.modules.data.BaikeVO;
 import com.mtons.mblog.modules.data.BasicInfoVO;
+
+import java.util.Date;
 import java.util.List;
 
 import java.util.ArrayList;
@@ -30,6 +35,8 @@ public class BaikeController extends BaseController {
     private BaiKeService baiKeService;
     @Autowired
     private PostService postService;
+    @Autowired
+    private LogRepository logRepository;
 
     /**
      * 查看抽取信息
@@ -78,7 +85,21 @@ public class BaikeController extends BaseController {
             Assert.notNull(exist, "词条不存在");
 //            post.setAuthorId(exist.getAuthorId());
 //			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
-            postService.update(post);
+
+            Log log = new Log();
+
+            Post po= postService.findPostByTitle(post.getTitle());
+            log.setAuthorId(po.getAuthorId());
+            log.setChannelId(po.getChannelId());
+            log.setEditorId(post.getAuthorId());
+            log.setSummary(post.getContent());
+            log.setStatus(0);
+            log.setCreated(new Date());
+            log.setTitle(post.getTitle());
+            log.setId(post.getId());
+            logRepository.save(log);
+            postService.updateStatus(post.getId(),0);
+//            postService.update(post);
         } else {
             postService.post(post);
         }
