@@ -90,6 +90,7 @@
 							<a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
 						</li>
 					</#list>
+                    <button id="btn" style="margin-left: 38px;margin-top: 15px;" type="button" class="btn btn-primary">更多分类</button>
 
                     <#--下拉框例子-->
 <#--                    <div class="dropdown" style="position: absolute;left: 488px;top: 14px;">-->
@@ -186,10 +187,10 @@
             </div>
         </nav>
     </div>
-    <div style="position: relative">
-        <div style="position: absolute;width: 454px;height: 50px;background-color: #FFFFFF;left: 227px">
+    <div style="position: relative;display: none;" id="channelShow">
+        <div style="position: absolute;width: 596px;height: 68px;background-color: #FFFFFF;left: 277px">
             <#list last as list>
-                <a href="${base}/channel/${list.id}">${list.name}</a>
+                <a style="color: #383838;font-size: 14px;top:10px;margin-left: 30px;" href="${base}/channel/${list.id}">${list.name}</a>
             </#list>
         </div>
     </div>
@@ -207,6 +208,17 @@ $(function () {
     //     var opt=$("#myselect").val();
     // ...
     // });
+    // document.getElementById("btn").onclick = function (){
+    //     document.getElementById("channelShow").style.display = "block"
+    // }
+    document.getElementById("btn").onclick = function (){
+        var div = document.getElementById("channelShow");
+        if(div.style.display == ""){
+            div.style.display = "none";
+        }else{
+            div.style.display = "";
+        }
+    }
 });
 </script>
 <!-- Header END -->
