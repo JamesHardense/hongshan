@@ -14,7 +14,7 @@
         \|__|     \|__|\|_______|\|_______|\|_______|\|_______|
     ------------------------------------------------------------
     version: ${site.version}
-    github : https://github.com/langhsu/mblog
+    github : https://github.com/JamesHardense/hongshan
     ------------------------------------------------------------
     -->
     <meta charset="utf-8">

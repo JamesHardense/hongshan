@@ -3,9 +3,6 @@ package com.mtons.mblog.modules.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * @author : langhsu
- */
 @Entity
 @Table(name = "mto_tag")
 public class Tag {

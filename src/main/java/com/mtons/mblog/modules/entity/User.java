@@ -16,8 +16,6 @@ import java.util.Date;
 /**
  * 用户信息
  *
- * @author langhsu
- *
  */
 @Entity
 @Table(name = "mto_user")

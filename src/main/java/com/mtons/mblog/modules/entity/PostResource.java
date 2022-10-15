@@ -7,8 +7,6 @@ import java.io.Serializable;
 
 /**
  * 文章图片
- *
- * @author saxing 2019/4/3 22:39
  */
 @Data
 @Entity

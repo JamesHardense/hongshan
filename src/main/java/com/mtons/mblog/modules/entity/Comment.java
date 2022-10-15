@@ -12,11 +12,6 @@ package com.mtons.mblog.modules.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * 评论
- *
- * @author langhsu
- */
 @Entity
 @Table(name = "mto_comment", indexes = {
         @Index(name = "IK_POST_ID", columnList = "post_id")

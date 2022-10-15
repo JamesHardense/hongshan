@@ -101,23 +101,23 @@
                     </table>
                 </div>
             </div>
-            <div class="box box-success">
-                <div class="box-header with-border">
-                    <h3 class="box-title">缓存</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <button type="button" class="btn btn-primary" data-action="reload_options">
-                        刷新系统变量
-                    </button>
-                    <button type="button" class="btn btn-info" data-action="reset_indexes">
-                        重建索引
-                    </button>
-                </div>
-            </div>
+<#--            <div class="box box-success">-->
+<#--                <div class="box-header with-border">-->
+<#--                    <h3 class="box-title">缓存</h3>-->
+<#--                    <div class="box-tools pull-right">-->
+<#--                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>-->
+<#--                        </button>-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--                <div class="box-body">-->
+<#--                    <button type="button" class="btn btn-primary" data-action="reload_options">-->
+<#--                        刷新系统变量-->
+<#--                    </button>-->
+<#--                    <button type="button" class="btn btn-info" data-action="reset_indexes">-->
+<#--                        重建索引-->
+<#--                    </button>-->
+<#--                </div>-->
+<#--            </div>-->
         </div>
         <div class="col-md-6">
             <div class="box box-info">

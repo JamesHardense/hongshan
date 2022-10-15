@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.base.utils;
 
 import com.mtons.mblog.base.lang.Consts;
@@ -14,9 +5,7 @@ import com.mtons.mblog.modules.data.*;
 import com.mtons.mblog.modules.entity.*;
 import org.springframework.beans.BeanUtils;
 
-/**
- * @author langhsu
- */
+
 public class BeanMapUtils {
     private static String[] USER_IGNORE = new String[]{"password", "extend", "roles"};
 

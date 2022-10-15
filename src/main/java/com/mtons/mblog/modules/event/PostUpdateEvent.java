@@ -8,8 +8,6 @@ import org.springframework.context.ApplicationEvent;
  * - 推送Feed给粉丝
  * - 文章发布者文章数统计
  * - 推送通知
- *
- * created by langhsu at 2018/05/30
  */
 public class PostUpdateEvent extends ApplicationEvent {
     public final static int ACTION_PUBLISH = 1;

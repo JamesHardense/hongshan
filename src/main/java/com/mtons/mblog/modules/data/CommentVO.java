@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.modules.data;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -15,9 +6,7 @@ import com.mtons.mblog.modules.entity.Comment;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author langhsu
- */
+
 public class CommentVO extends Comment implements Serializable {
 	private static final long serialVersionUID = 9192186139010913437L;
 

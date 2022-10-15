@@ -2,9 +2,6 @@ package com.mtons.mblog.modules.entity;
 
 import javax.persistence.*;
 
-/**
- * @author : langhsu
- */
 @Entity
 @Table(name = "mto_post_tag", indexes = {
         @Index(name = "IK_TAG_ID", columnList = "tag_id")

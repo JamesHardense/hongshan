@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 /**
  * 图片
  *
- * @author saxing 2019/4/3 21:24
  */
 @Data
 @Entity

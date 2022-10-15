@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.modules.service.impl;
 
 import com.mtons.mblog.base.lang.Consts;
@@ -22,10 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-/**
- * @author langhsu
- *
- */
 @Service
 @Transactional(readOnly = true)
 public class ChannelServiceImpl implements ChannelService {

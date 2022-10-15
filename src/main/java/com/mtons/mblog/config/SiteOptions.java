@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2019 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.config;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,11 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author : langhsu
- * @version : 1.0
- * @date : 2019/01/18
- */
 @Configuration
 @ConfigurationProperties(prefix = "site")
 public class SiteOptions {

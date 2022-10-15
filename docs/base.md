@@ -3,7 +3,7 @@
 h2用户我想说的是你下载就可以运行了, 所以请你忽略下面的数据库配置, 如何选择h2见 [上传配置](/getting-started)
 
 数据库配置修改如下
-- 新建`db_mblog`数据库, 数据库编码设置为`utf8`/`utf8mb4`
+- 新建数据库, 数据库编码设置为`utf8`/`utf8mb4`
 - `src/main/resources/application-mysql.yml`
 
 ```yml
@@ -13,7 +13,7 @@ spring.datasource.password: root
 ```
 * 如果mysql运行在本机localhost位置不需要修改, 将`username` `password`修改为你的数据库账号和密码
 
-关于其他配置启动后访问 `http://localhost:8080/admin/options`进行配置
+关于其他配置启动后访问 `http://localhost:9090/admin/options`进行配置
 
 
 开关控制

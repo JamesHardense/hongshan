@@ -7,9 +7,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-/**
- * @author langhsu
- */
 @Component
 public class PostUpdateEventHandler implements ApplicationListener<PostUpdateEvent> {
     @Autowired

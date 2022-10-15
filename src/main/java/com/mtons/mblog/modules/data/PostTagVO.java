@@ -6,9 +6,6 @@ import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 
-/**
- * @author : langhsu
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class PostTagVO extends PostTag implements Serializable {

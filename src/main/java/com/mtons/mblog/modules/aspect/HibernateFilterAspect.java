@@ -10,9 +10,6 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- * @author Mark Han
- */
 @Aspect
 @Component
 public class HibernateFilterAspect {

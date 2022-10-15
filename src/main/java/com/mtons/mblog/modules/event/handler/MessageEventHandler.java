@@ -14,9 +14,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-/**
- * @author langhsu on 2015/8/31.
- */
 @Component
 public class MessageEventHandler implements ApplicationListener<MessageEvent> {
     @Autowired

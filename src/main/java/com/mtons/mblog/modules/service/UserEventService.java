@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.modules.service;
 
 import com.mtons.mblog.base.lang.Consts;
@@ -14,9 +5,6 @@ import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.Set;
 
-/**
- * @author langhsu on 2015/8/6.
- */
 public interface UserEventService {
     /**
      * 自增发布文章数
