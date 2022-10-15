@@ -18,7 +18,7 @@
                 <#if !results?? || results.content?size == 0>
                     <li class="content">
                         <div class="content-box posts-aside">
-                            <div class="posts-item">该目录下还没有内容!</div>
+                            <div class="posts-item">该目录下还没有内容或词条正在审核中!</div>
                         </div>
                     </li>
                 </#if>

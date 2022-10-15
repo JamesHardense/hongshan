@@ -91,7 +91,7 @@ public class BaikeController extends BaseController {
 
             Post po= postService.findPostByTitle(post.getTitle());
             log.setAuthorId(po.getAuthorId());
-            log.setChannelId(po.getChannelId());
+            log.setChannelId(post.getChannelId());
             log.setEditorId(post.getAuthorId());
             log.setSummary(post.getContent());
             log.setStatus(0);

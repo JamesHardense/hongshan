@@ -45,8 +45,13 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<Log> findLatestLog() {
-        return logRepository.findLatestLog();
+    public List<Log> findLatestLogs() {
+        return logRepository.findLatestLogs();
+    }
+
+    @Override
+    public Log findLatestLog(long id) {
+        return logRepository.findLatestLog(id);
     }
 
     @Override

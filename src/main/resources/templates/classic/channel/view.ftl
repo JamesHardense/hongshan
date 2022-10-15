@@ -176,8 +176,27 @@
         });
     });
     $('a[data-evt=edit]').click(function () {
-        var id = $(this).attr('data-id');
-        window.location.href='${base}/post/editing?id=' + id;
+        var postId = $(this).attr('data-id');
+        fetch(`http://localhost:9090//admin/post/log/status`,{
+            method:'POST',
+            body:JSON.stringify({id: postId}),
+            headers:{'Content-Type':'application/json'}
+        }).then(res=>{
+            return res.text()
+        }).then((res)=> {
+            if (JSON.parse(res)==1){
+                window.location.href='${base}/post/editing?id=' + postId;
+            }else {
+                layer.confirm("该词条正在审核中，请稍后编辑", {
+                    btn: ['确定'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    layer.closeAll();
+                });
+            }
+
+        })
+
     });
 </script>
 </@layout>

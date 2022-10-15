@@ -51,7 +51,7 @@ public class LogController extends BaseController {
 
     @GetMapping("/log/latest")
     public List<Log> getLogLatest() {
-        return logService.findLatestLog();
+        return logService.findLatestLogs();
     }
 
     @PostMapping("/log/channel")
@@ -79,4 +79,8 @@ public class LogController extends BaseController {
         return logService.deleteLog(log.getHid());
     }
 
+    @PostMapping("/log/status")
+    public int findLogStatus(@RequestBody Log log){
+        return logService.findLatestLog(log.getId()).getStatus();
+    }
 }

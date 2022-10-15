@@ -13,7 +13,8 @@ public interface LogService {
     List<Log> findAllLog();
     List<Log> findById(long id);
     Log findByIdRead(long hid);
-    List<Log> findLatestLog();
+    List<Log> findLatestLogs();
+    Log findLatestLog(long id);
     List<Log> findLatestChannel(long channel_id);
     List<Log> findLatestTitle(String title);
     Boolean updateStatus(long id,long hid,int status);

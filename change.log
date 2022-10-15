@@ -24,7 +24,7 @@
     	mto_posts            -> mto_post
     	mto_posts_attribute  -> mto_post_attribute
     	mto_notify           -> mto_message
-    	mto_users            -> mto_user
+    	mto_s            -> mto_user
     	mto_users_open_oauth -> mto_user_oauth
     	mto_verify           -> mto_security_code
 
