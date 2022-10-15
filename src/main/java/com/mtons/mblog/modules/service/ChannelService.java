@@ -29,4 +29,6 @@ public interface ChannelService {
 	void updateWeight(int id, int weighted);
 	void delete(int id);
 	long count();
+	List<Channel> findChannelSort();
+	List<Channel> findChannelLast();
 }

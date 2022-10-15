@@ -78,40 +78,33 @@
             </div>
 
 
-            <div class="collapse navbar-collapse" style="margin:auto">
-                <ul class="nav navbar-nav">
+            <div class="collapse navbar-collapse" style="margin:auto;display:flex">
+                <ul class="nav navbar-nav" style="position:relative;">
 					<#if profile??>
-						<li data="user">
+						<li data="user" style="margin-top: 8px;">
 							<a href="${base}/users/${profile.id}" nav="user">我的主页</a>
 						</li>
 					</#if>
 					<#list channels as row>
-						<li>
+						<li style="margin-top: 8px;">
 							<a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
 						</li>
 					</#list>
 
                     <#--下拉框例子-->
-                    <div class="dropdown">
-                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">更多
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="#">Java</a>
-                            </li>
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="#">数据挖掘</a>
-                            </li>
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="#">数据通信/网络</a>
-                            </li>
-                            <li role="presentation" class="divider"></li>
-                            <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="#">分离的链接</a>
-                            </li>
-                        </ul>
-                    </div>
+<#--                    <div class="dropdown" style="position: absolute;left: 488px;top: 14px;">-->
+<#--                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">更多-->
+<#--                            <span class="caret"></span>-->
+<#--                        </button>-->
+<#--                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
+<#--                    <#list last as list>-->
+<#--                                <li >-->
+<#--                                    <a  href="#">${list.name}</a>-->
+<#--                                </li>-->
+<#--                            </#list>-->
+
+<#--                        </ul>-->
+<#--                    </div>-->
 
 <#--                        <li>-->
 <#--                            <a style="color: #000000">-->
@@ -148,7 +141,7 @@
 <#--                            </a>-->
 <#--                        </li>-->
                 </ul>
-                <ul class="navbar-button list-inline" id="header_user">
+                <ul class="navbar-button list-inline" id="header_user" style="margin-top: 8px;">
                     <li view="search" class="hidden-xs hidden-sm">
                         <form method="GET" action="${base}/search" accept-charset="UTF-8" class="navbar-form navbar-left">
                             <div class="form-group">
@@ -160,7 +153,7 @@
 
 				<#if profile??>
                     <@controls name="post">
-                        <li>
+                        <li style="margin-top: 3px;">
                             <a href="${base}/post/editing" class="plus"><i class="icon icon-note"></i> 写词条</a>
                         </li>
                     </@controls>
@@ -193,6 +186,13 @@
             </div>
         </nav>
     </div>
+    <div style="position: relative">
+        <div style="position: absolute;width: 454px;height: 50px;background-color: #FFFFFF;left: 227px">
+            <#list last as list>
+                <a href="${base}/channel/${list.id}">${list.name}</a>
+            </#list>
+        </div>
+    </div>
 </header>
 
 <script type="text/javascript">
@@ -203,6 +203,10 @@ $(function () {
             $this.closest('li').addClass("active");  
         }  
     });
+    // $("#myselect").change(function(){
+    //     var opt=$("#myselect").val();
+    // ...
+    // });
 });
 </script>
 <!-- Header END -->

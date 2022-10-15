@@ -33,6 +33,39 @@ public class ChannelServiceImpl implements ChannelService {
 	}
 
 	@Override
+	public List<Channel> findChannelSort() {
+		List<Channel> list;
+		list = channelRepository.findChannels1();
+//		System.out.println(list);
+		return list;
+	}
+
+	@Override
+	public List<Channel> findChannelLast() {
+		List<Channel> first;
+		first= channelRepository.findChannels1();
+		List<Channel> all;
+		all=channelRepository.findChannelsall();
+		List<Channel> last = new ArrayList<>();
+
+		if (first.size()==6){
+			for(int i=0 ;i<all.size();i++){
+				int temp=0;
+				for(int j=0 ;j<first.size();j++){
+					if(first.get(j).getId() == all.get(i).getId()){
+						temp=1;
+					}
+				}
+				if(temp==0){
+					last.add(all.get(i));
+				}
+			}
+		}
+ 		System.out.println(last.size());
+		return last;
+	}
+
+	@Override
 	public Map<Integer, Channel> findMapByIds(Collection<Integer> ids) {
 		List<Channel> list = channelRepository.findAllById(ids);
 		Map<Integer, Channel> rets = new HashMap<>();

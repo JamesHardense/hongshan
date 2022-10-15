@@ -119,24 +119,24 @@
 <#--                </div>-->
 <#--            </div>-->
         </div>
-        <div class="col-md-6">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">最新评论</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body chat" id="chat-box">
-                    <!-- chat item -->
-                    <div class="item">
-                        <p>没有最新内容</p>
-                    </div>
-                    <!-- /.item -->
-                </div>
-            </div>
-        </div>
+<#--        <div class="col-md-6">-->
+<#--            <div class="box box-info">-->
+<#--                <div class="box-header with-border">-->
+<#--                    <h3 class="box-title">最新评论</h3>-->
+<#--                    <div class="box-tools pull-right">-->
+<#--                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>-->
+<#--                        </button>-->
+<#--                    </div>-->
+<#--                </div>-->
+<#--                <div class="box-body chat" id="chat-box">-->
+<#--                    <!-- chat item &ndash;&gt;-->
+<#--                    <div class="item">-->
+<#--                        <p>没有最新内容</p>-->
+<#--                    </div>-->
+<#--                    <!-- /.item &ndash;&gt;-->
+<#--                </div>-->
+<#--            </div>-->
+<#--        </div>-->
     </div>
 </section>
 <script type="text/plain" id="chat">

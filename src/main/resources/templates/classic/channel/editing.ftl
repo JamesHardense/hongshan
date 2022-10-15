@@ -163,7 +163,7 @@ $('button[event="post_submit"]').click(function () {
         return res.text()
     }).then((res)=>{
         console.log(JSON.parse(res));
-        if(res=="ok"){
+        if(JSON.parse(res)== "ok"){
             layer.confirm('等待管理员审核', {
                 btn: ['确定'], //按钮
                 shade: false //不显示遮罩
