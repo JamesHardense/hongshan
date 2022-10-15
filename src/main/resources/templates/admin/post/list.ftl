@@ -39,7 +39,7 @@
                         <table id="dataGrid" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th width="50"><input type="checkbox" class="checkall"></th>
+<#--                                <th width="50"><input type="checkbox" class="checkall"></th>-->
 <#--                                <th width="80">#</th>-->
                                 <th>词条标题</th>
                                 <th width="120">分类</th>
@@ -55,9 +55,9 @@
 
                                 <#list items as row>
                                 <tr>
-                                    <td id="id">
-                                        <input type="checkbox" name="id" value="${row.id}">
-                                    </td>
+<#--                                    <td id="id">-->
+<#--                                        <input type="checkbox" name="id" value="${row.id}">-->
+<#--                                    </td>-->
                                     <td id="title">
 <#--                                        <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>-->
                                         ${row.title}
@@ -80,7 +80,7 @@
                                         <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-success">审核</a>
                                         </#if>
                                         <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
-                                        <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>
+                                        <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.hid}" rel="delete">删除</a>
 
                                     </td>
                                 </tr>
@@ -145,7 +145,19 @@ $(function() {
             btn: ['确定','取消'], //按钮
             shade: false //不显示遮罩
         }, function(){
-			doDelete(that.attr('data-id'));
+            fetch(`http://localhost:9090/admin/post/log/delete`,{
+                method:'POST',
+                body:JSON.stringify({
+                        hid:that.attr('data-id')
+                    }),
+                headers:{'Content-Type':'application/json'}}).then((res)=>{
+                // return res.text()
+                console.log("ok")
+                window.location.href = "http://localhost:9090/admin/post/list"
+            // }).then(res=>{
+
+            })
+			// doDelete(that.attr('data-id'));
         }, function(){
         });
         return false;

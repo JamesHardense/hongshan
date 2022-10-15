@@ -39,33 +39,34 @@
                                 <table id="dataGrid" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th width="50"><input type="checkbox" class="checkall"></th>
+<#--                                        <th width="50"><input type="checkbox" class="checkall"></th>-->
                                         <#--                                <th width="80">#</th>-->
                                         <th>词条标题</th>
                                         <th width="120">分类</th>
                                         <th width="120">作者</th>
                                         <th width="120">发表日期</th>
-                                        <th width="100">访问数</th>
+<#--                                        <th width="100">访问数</th>-->
                                         <#--                                <th width="80">状态</th>-->
                                         <th width="100">状态</th>
-<#--                                        <th width="200">操作</th>-->
+                                        <th width="200">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
                                     <#list items as row>
                                         <tr>
-                                            <td id="id">
-                                                <input type="checkbox" name="id" value="${row.id}">
-                                            </td>
+<#--                                            <td id="id">-->
+<#--                                                <input type="checkbox" name="id" value="${row.id}">-->
+<#--                                            </td>-->
                                             <td id="title">
-                                                <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
+<#--                                                <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>-->
+                                                ${row.title}
                                             </td>
 
                                             <th>${row.channelId}</th>
                                             <td>${row.authorId}</td>
                                             <td>${row.created?string('yyyy-MM-dd')}</td>
-                                            <td><span class="label label-default">${row.views}</span></td>
+<#--                                            <td><span class="label label-default">${row.views}</span></td>-->
                                             <td>
                                                 <#if (row.status = 1)>
                                                     <span class="label label-default">已发布</span>
@@ -74,14 +75,14 @@
                                                     <span class="label label-warning">待审核</span>
                                                 </#if>
                                             </td>
-<#--                                            <td>-->
+                                            <td>
 
-<#--                                                <a href="${base}/admin/post/audit?id=${row.id}" class="btn btn-xs btn-primary">审核</a>-->
+                                                <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-primary">查看</a>
 <#--                                                <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>-->
 <#--                                                <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>-->
 <#--                                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>-->
 
-<#--                                            </td>-->
+                                            </td>
                                         </tr>
                                     </#list>
                                     </tbody>

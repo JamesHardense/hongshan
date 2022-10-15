@@ -66,15 +66,16 @@ define(function(require, exports, module) {
                     body:JSON.stringify(str),
                     headers:{'Content-Type':'application/json'}
                 }).then((res=>{
-                       if(res.status==200){
-                           layer.confirm('等待管理员审核', {
-                               btn: ['确定'], //按钮
-                               shade: false //不显示遮罩
-                           }, function(){
-                               layer.closeAll();
-                               window.location.href = "http://localhost:9090/index"
-                           });
-                       }
+                    console.log(res);
+                       // if(res.status==200){
+                       //     layer.confirm('等待管理员审核', {
+                       //         btn: ['确定'], //按钮
+                       //         shade: false //不显示遮罩
+                       //     }, function(){
+                       //         layer.closeAll();
+                       //         window.location.href = "http://localhost:9090/index"
+                       //     });
+                       // }
                 }));
             });
         },

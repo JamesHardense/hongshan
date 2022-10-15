@@ -71,7 +71,8 @@ public class BaikeController extends BaseController {
         Assert.state(StringUtils.isNotBlank(post.getContent()), "内容不能为空");
         if (postService.findPostByTitle(post.getTitle()) != null && post.getId()<=0){
             String message= "已有词条"+post.getTitle()+"的信息，请勿重新创建";
-            Assert.state(false,message );
+//            Assert.state(false,message );
+            return "已有词条:"+post.getTitle()+" 的信息，请勿重新创建!";
         }
         AccountProfile profile = getProfile();
 //        if (post.getId()<=0){

@@ -69,4 +69,9 @@ public class LogController extends BaseController {
         return  logService.disagree(log.getHid());
     }
 
+    @PostMapping("/log/delete")
+    public Boolean deleteLog(@RequestBody Log log){
+        return logService.deleteLog(log.getHid());
+    }
+
 }

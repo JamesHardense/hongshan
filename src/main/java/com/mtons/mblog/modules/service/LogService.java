@@ -18,4 +18,5 @@ public interface LogService {
     List<Log> findLatestTitle(String title);
     Boolean updateStatus(long id,long hid,int status);
     Boolean disagree(long hid);
+    Boolean deleteLog(long hid);
 }

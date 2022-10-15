@@ -118,13 +118,70 @@
 </form>
 <!-- /form-actions -->
 <script type="text/javascript">
-seajs.use('post', function (post) {
-	post.init();
-}
-);
+// seajs.use('post', function (post) {
+// 	post.init();
+// }
+// );
 // $(function (){
 //     $("[data-toggle='popover']").popover();
 // });
+$('button[event="post_submit"]').click(function () {
+    if(document.getElementById("title").value===""){
+        alert("请输入词条名称");
+        document.getElementById("title").focus()
+        return false;
+    }
+    if(document.getElementById("content").value===""){
+        alert("请输入词条内容");
+        document.getElementById("content").focus()
+        return false;
+    }
+    if(document.getElementById("channelId").value===""){
+        alert("请输入词条分类");
+        document.getElementById("channelId").focus()
+        return false;
+    }
+    // var status = $(this).data('status');
+    // $("input[name='status']").val(status);
+    // $("#submitForm").submit();
+    if(document.getElementById("id").valueOf()===""){
+        document.getElementById("id").value=0;
+    }
+    var  str ={
+        title:document.getElementById("title").value,
+        content:document.getElementById("content").value,
+        channelId:document.getElementById("channelId").value,
+        id:document.getElementById("id").value,
+        authorId:document.getElementById("authorId").value,
+        editor:document.getElementById("editor").value,
+        status:document.getElementById("status").value};
+    fetch(`http://localhost:9090/post/submit`,{
+        method:'POST',
+        body:JSON.stringify(str),
+        headers:{'Content-Type':'application/json'}
+    }).then(res=>{
+        return res.text()
+    }).then((res)=>{
+        console.log(JSON.parse(res));
+        if(res=="ok"){
+            layer.confirm('等待管理员审核', {
+                btn: ['确定'], //按钮
+                shade: false //不显示遮罩
+            }, function(){
+                layer.closeAll();
+                window.location.href = "http://localhost:9090/index"
+            });
+        }else {
+            layer.confirm(res, {
+                btn: ['确定'], //按钮
+                shade: false //不显示遮罩
+            }, function(){
+                layer.closeAll();
+                document.getElementById("title").focus();
+            });
+        }
+    });
+});
 var J = jQuery;
     $('#popup').on('click', function(){
         var div = $("#div1").get(0);
