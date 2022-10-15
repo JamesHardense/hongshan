@@ -19,4 +19,9 @@ public class ViewServiceImpl implements ViewService {
     public List<View> findAuthorChannel() {
         return viewRepository.findAuthorChannel();
     }
+
+    @Override
+    public List<View> findAuthorById(long id) {
+        return viewRepository.findAuthorById(id);
+    }
 }

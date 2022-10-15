@@ -62,8 +62,8 @@
                                                 <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>
                                             </td>
 
-                                            <th>${row.channelId}</th>
-                                            <td>${row.authorId}</td>
+                                            <th>${row.name}</th>
+                                            <td>${row.username}</td>
                                             <td>${row.created?string('yyyy-MM-dd')}</td>
                                             <td><span class="label label-default">${row.views}</span></td>
                                             <td>

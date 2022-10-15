@@ -177,7 +177,7 @@ public class PostController extends BaseController {
 		Pageable pageable = wrapPageable(Sort.by(Sort.Direction.DESC, "weight", "created"));
 		Page<PostVO> page = postService.paging4Admin(pageable, channelId, title);
 		model.put("page", page);
-		List<View> list = viewService.findAuthorChannel();
+		List<View> list = viewService.findAuthorById(id);
 		model.put("items",list);
 		model.put("title", title);
 		model.put("id", id);
