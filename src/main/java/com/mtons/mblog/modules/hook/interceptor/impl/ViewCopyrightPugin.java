@@ -10,9 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @author Beldon 2015/10/31
- */
 @Component
 public class ViewCopyrightPugin extends InterceptorHookSupport {
 

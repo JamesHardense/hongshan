@@ -78,11 +78,11 @@
                 <#--                        data-container="body" data-toggle="popover" data-placement="left"-->
                 <#--                        data-content="左侧的 Popover 中的一些内容">抽取</button>-->
                 <div class="text-center"  >
-                    <h3  class="modal-title">百度词条抽取展示</h3>
+                    <button type="button" id="popup" data-status="0" class="btn btn-primary" style="padding-left: 100px; padding-right: 100px;">词条参考信息抽取</button>
                 </div>
-                <button type="button" id="popup" data-status="0" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px;">抽取</button>
 
-                <div id="div1"  style="display: none">
+
+                <div id="div1"  style="display: none" class="pre-scrollable">
                     <div class="text-left">
                         <h5>简介</h5>
                         <span id="summary"></span>

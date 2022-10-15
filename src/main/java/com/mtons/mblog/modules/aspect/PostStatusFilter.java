@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 文章状态过滤注解
  *
- * @author Mark Han
+ * @author
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

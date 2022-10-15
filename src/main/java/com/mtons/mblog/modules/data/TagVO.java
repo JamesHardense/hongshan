@@ -7,9 +7,6 @@ import lombok.EqualsAndHashCode;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author : langhsu
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TagVO extends Tag implements Serializable {

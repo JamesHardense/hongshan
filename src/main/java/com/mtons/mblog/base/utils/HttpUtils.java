@@ -1,12 +1,4 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
+
 package com.mtons.mblog.base.utils;
 
 import com.mtons.mblog.base.lang.MtonsException;
@@ -19,9 +11,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 import java.io.IOException;
 import java.util.Map;
 
-/**
- * @author langhsu
- */
+
 public class HttpUtils {
 
 	private static HttpClient getClient() {

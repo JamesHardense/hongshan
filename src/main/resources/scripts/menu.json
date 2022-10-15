@@ -24,12 +24,6 @@
     "permission": "user:list"
   },
   {
-    "icon": "fa fa fa-registered icon-xlarge",
-    "name": "角色管理",
-    "url": "admin/role/list",
-    "permission": "role:list"
-  },
-  {
     "icon": "fa fa-circle-o icon-xlarge",
     "name": "主题管理",
     "url": "admin/theme/index",

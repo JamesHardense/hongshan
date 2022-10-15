@@ -1,8 +1,6 @@
 package com.mtons.mblog.modules.hook;
 
-/**
- * @author Beldon 2015/10/29
- */
+
 public interface Hook{
 
 //    boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler);

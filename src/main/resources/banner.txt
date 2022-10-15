@@ -8,6 +8,6 @@
     \|__|     \|__|\|_______|\|_______|\|_______|\|_______|
 ------------------------------------------------------------
 Spring Boot   :     ${spring-boot.version}
-mblog         :     ${site.version}
-mblog storage :     ${site.location}
+hongshan         :     ${site.version}
+hongshan storage :     ${site.location}
 ------------------------------------------------------------

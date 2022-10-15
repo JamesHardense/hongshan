@@ -16,10 +16,10 @@
                     <h3 class="box-title">主题设置</h3>
                     <div class="box-tools">
                         <div class="upload-btn">
-                            <label style="width: 80px; margin: 0;">
-                                <span>上传主题</span>
-                                <input id="upload_btn" type="file" name="file" accept="application/x-zip-compressed" title="点击添加">
-                            </label>
+<#--                            <label style="width: 80px; margin: 0;">-->
+<#--                                <span>上传主题</span>-->
+<#--                                <input id="upload_btn" type="file" name="file" accept="application/x-zip-compressed" title="点击添加">-->
+<#--                            </label>-->
                         </div>
                     </div>
                 </div>

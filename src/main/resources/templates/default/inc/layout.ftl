@@ -14,7 +14,7 @@
         \|__|     \|__|\|_______|\|_______|\|_______|\|_______|
     ------------------------------------------------------------
     version: ${site.version}
-    github : https://github.com/langhsu/mblog
+    github : https://github.com/JamesHardense/hongshan
     ------------------------------------------------------------
     -->
     <meta charset="utf-8">
@@ -22,9 +22,9 @@
     <!--[if IE]>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
     <![endif]-->
-    <meta name="keywords" content="mtons, ${keywords?default(options['site_keywords'])}">
+    <meta name="keywords" content="hongshan, ${keywords?default(options['site_keywords'])}">
     <meta name="description" content="${description?default(options['site_description'])}">
-    <meta name="mtons:mblog" content="${site.version}">
+    <meta name="hongshan" content="${site.version}">
     ${options['site_metas']}
 
     <title>${title?default(options['site_name'])}</title>
@@ -46,9 +46,9 @@
     <script src="${base}/dist/vendors/bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        var _MTONS = _MTONS || {};
-        _MTONS.BASE_PATH = '${base}';
-        _MTONS.LOGIN_TOKEN = '${profile.id}';
+        var _HS = _HS || {};
+        _HS.BASE_PATH = '${base}';
+        _HS.LOGIN_TOKEN = '${profile.id}';
     </script>
 
     <script src="${base}/dist/js/sea.js"></script>

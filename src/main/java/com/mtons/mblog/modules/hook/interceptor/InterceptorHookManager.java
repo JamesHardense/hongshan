@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
-/**
- * @author Beldon 2015/10/30
- */
 @Component
 public class InterceptorHookManager {
 	@Autowired

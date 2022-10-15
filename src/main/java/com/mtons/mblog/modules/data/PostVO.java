@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.modules.data;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -18,10 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
-/**
- * @author langhsu
- * 
- */
 public class PostVO extends Post implements Serializable {
 	private static final long serialVersionUID = -1144627551517707139L;
 

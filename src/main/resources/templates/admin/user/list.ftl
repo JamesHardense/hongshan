@@ -64,7 +64,7 @@
                                             </#if>
                                             <a href="${base}/admin/user/pwd?id=${row.id}" class="btn btn-xs btn-success">修改密码</a>
 
-                                            <a href="${base}/admin/user/view?id=${row.id}" class="btn btn-xs btn-primary">修改角色</a>
+<#--                                            <a href="${base}/admin/user/view?id=${row.id}" class="btn btn-xs btn-primary">修改角色</a>-->
                                         <#else>
                                             <a href="javascript:void(0);" class="btn btn-xs disabled"><i class="fa fa-check-square-o"></i> 不可编辑</a>
                                         </#if>

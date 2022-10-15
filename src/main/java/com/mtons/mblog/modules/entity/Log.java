@@ -1,12 +1,3 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.modules.entity;
 
 import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
@@ -21,11 +12,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 内容表
- * @author langhsu
- *
- */
+
 @Entity
 @Table(name = "mto_post_history", indexes = {
         @Index(name = "IK_CHANNEL_ID", columnList = "channel_id")

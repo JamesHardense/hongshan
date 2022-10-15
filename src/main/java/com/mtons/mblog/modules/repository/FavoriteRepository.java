@@ -6,9 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-/**
- * @author langhsu
- */
 public interface FavoriteRepository extends JpaRepository<Favorite, Long>, JpaSpecificationExecutor<Favorite> {
     Favorite findByUserIdAndPostId(long userId, long postId);
     Page<Favorite> findAllByUserId(Pageable pageable, long userId);

@@ -1,21 +1,9 @@
-/*
-+--------------------------------------------------------------------------
-|   Mblog [#RELEASE_VERSION#]
-|   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
-|   http://www.mtons.com
-|
-+---------------------------------------------------------------------------
-*/
 package com.mtons.mblog.modules.data;
 
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author langhsu
- *
- */
+
 public class AccountProfile implements Serializable {
     private static final long serialVersionUID = 1748764917028425871L;
     private long id;
