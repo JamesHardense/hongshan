@@ -127,7 +127,7 @@ function doUpdateWeight(id, weight) {
 }
 
 $(function() {
-    fetch(`http://localhost:9090/admin/post/log/latest`,{
+    fetch(`http://47.95.33.183:9090/admin/post/log/latest`,{
         method:'GET',
         headers:{'Content-Type':'application/json'}}).then((res)=>{
         return res.text()
@@ -148,7 +148,7 @@ $(function() {
             btn: ['确定','取消'], //按钮
             shade: false //不显示遮罩
         }, function(){
-            fetch(`http://localhost:9090/admin/post/log/delete`,{
+            fetch(`http://47.95.33.183:9090/admin/post/log/delete`,{
                 method:'POST',
                 body:JSON.stringify({
                         hid:that.attr('data-id')
@@ -156,7 +156,7 @@ $(function() {
                 headers:{'Content-Type':'application/json'}}).then((res)=>{
                 // return res.text()
                 console.log("ok")
-                window.location.href = "http://localhost:9090/admin/post/list"
+                window.location.href = "http://47.95.33.183:9090/admin/post/list"
             // }).then(res=>{
 
             })

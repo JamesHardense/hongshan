@@ -2,7 +2,7 @@
 +--------------------------------------------------------------------------
 |   Mblog [#RELEASE_VERSION#]
 |   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   Copyright (c) 2022, hongshan. All Rights Reserved
 |   http://www.mtons.com
 |
 +---------------------------------------------------------------------------
@@ -24,9 +24,7 @@ import org.springframework.util.Assert;
 
 import java.util.Date;
 
-/**
- * @author langhsu on 2015/8/14.
- */
+
 @Service
 public class SecurityCodeServiceImpl implements SecurityCodeService {
     @Autowired

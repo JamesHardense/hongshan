@@ -13,10 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * @author - langhsu
- * @create - 2018/5/18
- */
+
 @Service
 public class RolePermissionServiceImpl implements RolePermissionService {
     @Autowired

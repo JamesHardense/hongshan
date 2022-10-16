@@ -20,9 +20,7 @@ import org.springframework.util.Assert;
 import javax.persistence.criteria.Predicate;
 import java.util.*;
 
-/**
- * @author - langhsu on 2018/2/11
- */
+
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {

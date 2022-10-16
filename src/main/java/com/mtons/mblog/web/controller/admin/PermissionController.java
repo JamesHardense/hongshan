@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * @author - langhsu
- * @create - 2018/5/18
- */
+
 @RestController
 @RequestMapping("/admin/permission")
 public class PermissionController extends BaseController {

@@ -7,9 +7,7 @@ import freemarker.template.TemplateModelException;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by langhsu on 2017/11/14.
- */
+
 public abstract class BaseMethod implements TemplateMethodModelEx {
 
     public String getString(List<TemplateModel> arguments, int index) throws TemplateModelException {

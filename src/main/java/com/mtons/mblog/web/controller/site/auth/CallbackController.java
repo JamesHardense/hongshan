@@ -51,7 +51,6 @@ public class CallbackController extends BaseController {
      *
      * @param request
      * @param response
-     * @author A蛋壳  2015年9月12日 下午3:05:54
      */
     @RequestMapping("/call_weibo")
     public void callWeibo(HttpServletRequest request, HttpServletResponse response) {
@@ -121,7 +120,6 @@ public class CallbackController extends BaseController {
      *
      * @param request
      * @param response
-     * @author A蛋壳  2015年9月12日 下午3:28:21
      */
     @RequestMapping("/call_qq")
     public void callQQ(HttpServletRequest request, HttpServletResponse response) {
@@ -266,7 +264,6 @@ public class CallbackController extends BaseController {
      *
      * @param request
      * @param response
-     * @author A蛋壳  2015年9月12日 下午3:09:39
      */
     @RequestMapping("/call_douban")
     public void callDouban(HttpServletRequest request, HttpServletResponse response) {
@@ -291,7 +288,6 @@ public class CallbackController extends BaseController {
      * @param state
      * @param request
      * @param model
-     * @author A蛋壳  2015年9月12日 下午5:32:51
      */
     @RequestMapping("/douban")
     public String callBack4Douban(String code, String state, HttpServletRequest request, ModelMap model) {

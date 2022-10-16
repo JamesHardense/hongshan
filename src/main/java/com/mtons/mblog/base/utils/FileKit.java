@@ -9,10 +9,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @author - langhsu
- * @create - 2018/3/9
- */
+
 public class FileKit {
     // 文件允许格式
     private static List<String> allowFiles = Arrays.asList(".gif", ".png", ".jpg", ".jpeg", ".bmp");

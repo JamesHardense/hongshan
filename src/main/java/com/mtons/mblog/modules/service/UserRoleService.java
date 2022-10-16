@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * @author - langhsu on 2018/2/11
- */
+
 public interface UserRoleService {
     /**
      * 查询用户已有的角色Id

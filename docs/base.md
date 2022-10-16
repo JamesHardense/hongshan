@@ -13,7 +13,7 @@ spring.datasource.password: root
 ```
 * 如果mysql运行在本机localhost位置不需要修改, 将`username` `password`修改为你的数据库账号和密码
 
-关于其他配置启动后访问 `http://localhost:9090/admin/options`进行配置
+关于其他配置启动后访问 `http://47.95.33.183:9090/admin/options`进行配置
 
 
 开关控制

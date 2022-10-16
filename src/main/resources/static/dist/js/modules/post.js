@@ -2,7 +2,7 @@
 +--------------------------------------------------------------------------
 |   Mblog [#RELEASE_VERSION#]
 |   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   Copyright (c) 2022, hongshan. All Rights Reserved
 |   http://www.mtons.com
 |
 +---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ define(function(require, exports, module) {
                     authorId:document.getElementById("authorId").value,
                     editor:document.getElementById("editor").value,
                     status:document.getElementById("status").value};
-                fetch(`http://localhost:9090/post/submit`,{
+                fetch(`http://47.95.33.183:9090/post/submit`,{
                     method:'POST',
                     body:JSON.stringify(str),
                     headers:{'Content-Type':'application/json'}
@@ -73,7 +73,7 @@ define(function(require, exports, module) {
                        //         shade: false //不显示遮罩
                        //     }, function(){
                        //         layer.closeAll();
-                       //         window.location.href = "http://localhost:9090/index"
+                       //         window.location.href = "http://47.95.33.183:9090/index"
                        //     });
                        // }
                 }));

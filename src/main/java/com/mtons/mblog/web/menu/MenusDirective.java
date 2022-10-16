@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by langhsu on 2017/11/21.
- */
+
 @Component
 public class MenusDirective extends TemplateDirective {
     @Override

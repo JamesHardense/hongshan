@@ -9,11 +9,7 @@ import java.util.Date;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
-/**
- * Freemarker 模型工具类
- *
- * Created by langhsu on 2017/11/14.
- */
+
 public class TemplateModelUtils {
 
     public static final DateFormat FULL_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
