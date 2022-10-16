@@ -72,14 +72,14 @@
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
-                <a  href="${base}/">
+                <a href="${base}/">
                     <img src="<@resource src=options['site_logo']/>" height="65" width="160"/>
                 </a>
             </div>
 
 
-            <div class="collapse navbar-collapse" style="margin:auto;display:flex;position: relative">
-                <div style="position: relative;" class="nav navbar-nav" >
+            <div class="collapse navbar-collapse" style="margin:auto;position: relative">
+                <div style="position: relative;" class="nav navbar-nav">
                 <ul class="nav navbar-nav" style="position:relative;">
                     <#if profile??>
                         <li data="user" style="margin-top: 8px;">
