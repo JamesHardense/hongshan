@@ -12,7 +12,6 @@ import com.mtons.mblog.modules.service.BaiKeService;
 import com.mtons.mblog.modules.service.PostService;
 import com.mtons.mblog.web.controller.BaseController;
 import org.apache.commons.lang3.StringUtils;
-import org.jboss.logging.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
