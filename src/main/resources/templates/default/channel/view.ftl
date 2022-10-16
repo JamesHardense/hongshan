@@ -18,6 +18,11 @@
                     <abbr class="timeago">${timeAgo(view.created)}</abbr>
                     ⋅
                     ${view.views} 阅读
+                    <div class="text-right">
+                        <a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="${view.id}" data-toggle="tooltip" title="编辑词条">
+                            <i class="icon icon-note"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -87,14 +92,14 @@
                 </div>
             </li>
 
-            <li class="list-group-item">
-                <div class="user-datas">
-                    <ul>
-                        <li><strong>${view.author.posts}</strong><span>发布</span></li>
-                        <li class="noborder"><strong>${view.author.comments}</strong><span>评论</span></li>
-                    </ul>
-                </div>
-            </li>
+<#--            <li class="list-group-item">-->
+<#--                <div class="user-datas">-->
+<#--                    <ul>-->
+<#--                        <li><strong>${view.author.posts}</strong><span>发布</span></li>-->
+<#--                        <li class="noborder"><strong>${view.author.comments}</strong><span>评论</span></li>-->
+<#--                    </ul>-->
+<#--                </div>-->
+<#--            </li>-->
             <li class="list-group-item">
                 <div class="text-center">
                     <a class="btn btn-default btn-sm" href="javascript:void(0);" data-id="${view.id}" rel="favor">
@@ -165,6 +170,29 @@
                 return item;
             }
         });
+    });
+    $('a[data-evt=edit]').click(function () {
+        var postId = $(this).attr('data-id');
+        fetch(`http://localhost:9090//admin/post/log/status`,{
+            method:'POST',
+            body:JSON.stringify({id: postId}),
+            headers:{'Content-Type':'application/json'}
+        }).then(res=>{
+            return res.text()
+        }).then((res)=> {
+            if (JSON.parse(res)==1){
+                window.location.href='${base}/post/editing?id=' + postId;
+            }else {
+                layer.confirm("该词条正在审核中，请稍后编辑", {
+                    btn: ['确定'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    layer.closeAll();
+                });
+            }
+
+        })
+
     });
 </script>
 </@layout>

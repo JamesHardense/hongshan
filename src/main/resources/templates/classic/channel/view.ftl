@@ -74,7 +74,7 @@
                             <div class="OwO" id="face-btn"></div>
                         </div>
                         <div class="ats-issue">
-                            <button id="btn-chat" class="btn btn-success btn-sm bt">发送</button>
+                            <button id="btn-chat" class="btn btn-primary btn-sm bt">发送</button>
                         </div>
                     </div>
                 </div>
