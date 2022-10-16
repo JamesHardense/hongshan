@@ -4,6 +4,7 @@ import com.mtons.mblog.modules.aspect.PostStatusFilter;
 import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.data.UserVO;
 import com.mtons.mblog.modules.entity.Post;
+import com.mtons.mblog.modules.repository.PostRepository;
 import com.mtons.mblog.modules.service.PostSearchService;
 import com.mtons.mblog.modules.service.UserService;
 import com.mtons.mblog.base.utils.BeanMapUtils;
@@ -45,52 +46,58 @@ public class PostSearchServiceImpl implements PostSearchService {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostRepository postRepository;
 
     @Override
     @PostStatusFilter
     public Page<PostVO> search(Pageable pageable, String term) throws Exception {
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-        QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Post.class).get();
 
-        Query luceneQuery = builder
-                .keyword()
-                .fuzzy()
-                .withEditDistanceUpTo(1)
-                .withPrefixLength(1)
-                .onFields("title", "summary", "tags")
-                .matching(term).createQuery();
-
-        FullTextQuery query = fullTextEntityManager.createFullTextQuery(luceneQuery, Post.class);
-        query.setFirstResult((int) pageable.getOffset());
-        query.setMaxResults(pageable.getPageSize());
-
-        SmartChineseAnalyzer analyzer = new SmartChineseAnalyzer();
-        SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
-        QueryScorer scorer = new QueryScorer(luceneQuery);
-        Highlighter highlighter = new Highlighter(formatter, scorer);
-
-        List<Post> list = query.getResultList();
-        List<PostVO> rets = list.stream().map(po -> {
+//        Page<Post> list=postRepository.findPostsByTitle(term,1,10);
+        Page<Post> list =postRepository.findAll(pageable);
+//        System.out.println(page);
+//        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+//        QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Post.class).get();
+//
+//        Query luceneQuery = builder
+//                .keyword()
+//                .fuzzy()
+//                .withEditDistanceUpTo(1)
+//                .withPrefixLength(1)
+//                .onFields("title", "summary", "tags")
+//                .matching(term).createQuery();
+//
+//        FullTextQuery query = fullTextEntityManager.createFullTextQuery(luceneQuery, Post.class);
+//        query.setFirstResult((int) pageable.getOffset());
+//        query.setMaxResults(pageable.getPageSize());
+//
+//        SmartChineseAnalyzer analyzer = new SmartChineseAnalyzer();
+//        SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
+//        QueryScorer scorer = new QueryScorer(luceneQuery);
+//        Highlighter highlighter = new Highlighter(formatter, scorer);
+//
+//        List<Post> list = query.getResultList();
+        List<PostVO> rets = list.stream().filter(b->b.getTitle()!=null&&b.getTitle().indexOf(term)>-1).map(po -> {
             PostVO post = BeanMapUtils.copy(po);
-
-            try {
-                // 处理高亮
-                String title = highlighter.getBestFragment(analyzer, "title", post.getTitle());
-                String summary = highlighter.getBestFragment(analyzer, "summary", post.getSummary());
-
-                if (StringUtils.isNotEmpty(title)) {
-                    post.setTitle(title);
-                }
-                if (StringUtils.isNotEmpty(summary)) {
-                    post.setSummary(summary);
-                }
-            } catch (Exception e) {
-                log.error(e.getMessage(), e);
-            }
+//
+//            try {
+//                // 处理高亮
+//                String title = highlighter.getBestFragment(analyzer, "title", post.getTitle());
+//                String summary = highlighter.getBestFragment(analyzer, "summary", post.getSummary());
+//
+//                if (StringUtils.isNotEmpty(title)) {
+//                    post.setTitle(title);
+//                }
+//                if (StringUtils.isNotEmpty(summary)) {
+//                    post.setSummary(summary);
+//                }
+//            } catch (Exception e) {
+//                log.error(e.getMessage(), e);
+//            }
             return post;
         }).collect(Collectors.toList());
         buildUsers(rets);
-        return new PageImpl<>(rets, pageable, query.getResultSize());
+        return new PageImpl<>(rets, pageable, rets.size());
     }
 
     @Override

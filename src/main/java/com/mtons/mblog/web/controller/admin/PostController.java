@@ -66,7 +66,7 @@ public class PostController extends BaseController {
 		model.put("title", title);
 		model.put("id", id);
 		model.put("channelId", channelId);
-		model.put("channels", channelService.findAll(Consts.IGNORE));
+		model.put("channels", channelService.findChannelSort());
 		return "/admin/post/list";
 	}
 	

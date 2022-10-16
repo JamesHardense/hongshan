@@ -43,9 +43,9 @@
                                     </td>
                                     <td>${row.id}</td>
                                     <td>${row.content}</td>
-                                    <td>${row.toId}</td>
+                                    <td>${row.postId}</td>
                                     <td>${row.author.username}</td>
-                                    <td>${row.created?string('yyyy-MM-dd')}</td>
+                                    <td>${row.created?string('yyyy-MM-dd hh:mm:ss')}</td>
                                     <td>
                                         <a href="javascript:void(0);" class="btn btn-xs btn-primary" data-id="${row.id}"
                                            data-action="delete">删除

@@ -41,7 +41,7 @@
             </div>
             <div class="panel-footer">
                 <div class="hidden-xs">
-                    <div class="social-share" data-sites="qq, weibo, wechat, qzone, facebook, twitter, google"></div>
+                    <div class="social-share" data-sites="qq, weibo, wechat, qzone"></div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -97,14 +97,14 @@
                 </div>
             </li>
 
-            <li class="list-group-item">
-                <div class="user-datas">
-                    <ul>
-                        <li><strong>${view.author.posts}</strong><span>发布</span></li>
-                        <li class="noborder"><strong>${view.author.comments}</strong><span>评论</span></li>
-                    </ul>
-                </div>
-            </li>
+<#--            <li class="list-group-item">-->
+<#--                <div class="user-datas">-->
+<#--                    <ul>-->
+<#--                        <li><strong>${view.author.posts}</strong><span>发布</span></li>-->
+<#--                        <li class="noborder"><strong>${view.author.comments}</strong><span>评论</span></li>-->
+<#--                    </ul>-->
+<#--                </div>-->
+<#--            </li>-->
             <li class="list-group-item">
                 <div class="text-center">
                     <a class="btn btn-default btn-sm" href="javascript:void(0);" data-id="${view.id}" rel="favor">

@@ -58,7 +58,7 @@
                 <div class="panel-body">
                     <select class="form-control" name="channelId" id="channelId" required>
                         <option value="">请选择分类</option>
-                        <#list channels as row>
+                        <#list allChannels as row>
                             <option value="${row.id}" <#if (view.channelId == row.id)> selected </#if>>${row.name}</option>
                         </#list>
                     </select>

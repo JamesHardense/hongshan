@@ -42,13 +42,13 @@
 <#--                                <th width="50"><input type="checkbox" class="checkall"></th>-->
 <#--                                <th width="80">#</th>-->
                                 <th>词条标题</th>
-                                <th width="120">分类</th>
-                                <th width="120">作者</th>
-                                <th width="120">发表日期</th>
+                                <th >分类</th>
+                                <th >作者</th>
+                                <th >发表日期</th>
 <#--                                <th width="100">访问数</th>-->
 <#--                                <th width="80">状态</th>-->
-                                <th width="100">状态</th>
-                                <th width="200">操作</th>
+                                <th>状态</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,7 @@
 
                                     <th>${row.name}</th>
                                     <td>${row.username}</td>
-                                    <td>${row.created?string('yyyy-MM-dd')}</td>
+                                    <td>${row.created?string('yyyy-MM-dd hh:mm:ss')}</td>
 <#--                                    <td><span class="label label-default">${row.views}</span></td>-->
                                     <td>
                                         <#if (row.status = 0)>
@@ -78,6 +78,9 @@
                                     <td>
                                         <#if (row.status=0)>
                                         <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-success">审核</a>
+                                        </#if>
+                                        <#if (row.status=1)>
+                                            <a  class="btn btn-xs" style="background-color:gray;color: #ffffff;">审核</a>
                                         </#if>
                                         <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
                                         <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.hid}" rel="delete">删除</a>

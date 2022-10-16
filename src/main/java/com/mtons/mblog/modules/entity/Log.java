@@ -34,11 +34,11 @@ public class Log implements Serializable {
      * 分组/模块ID
      */
 
-    @Field
+//    @Field
     @Column(name = "id", length = 20)
     private long id;
-
-    @Field
+//
+//    @Field
     @Column(name = "editor_id", length = 20)
     private long editorId;
 
@@ -50,7 +50,7 @@ public class Log implements Serializable {
         this.editorId = editorId;
     }
 
-    @Field
+//    @Field
     @NumericField
     @Column(name = "channel_id", length = 5)
     private int channelId;
@@ -58,14 +58,14 @@ public class Log implements Serializable {
     /**
      * 标题
      */
-    @Field
+//    @Field
     @Column(name = "title", length = 64)
     private String title;
 
     /**
      * 摘要
      */
-    @Field
+//    @Field
     @Column(length = 140)
     private String summary;
 
@@ -78,11 +78,11 @@ public class Log implements Serializable {
     /**
      * 标签, 多个逗号隔开
      */
-    @Field
+//    @Field
     @Column(length = 64)
     private String tags;
 
-    @Field
+//    @Field
     @NumericField
     @Column(name = "author_id")
     private long authorId; // 作者

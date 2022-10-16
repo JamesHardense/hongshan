@@ -30,8 +30,8 @@
                                 <th width="80">#</th>
                                 <th>用户名</th>
                                 <th>昵称</th>
-                                <th>邮箱</th>
-                                <th>角色</th>
+<#--                                <th>邮箱</th>-->
+<#--                                <th>角色</th>-->
                                 <th>状态</th>
                                 <th width="300"></th>
                             </tr>
@@ -42,12 +42,12 @@
                                     <td class="text-center">${row.id}</td>
                                     <td>${row.username}</td>
                                     <td>${row.name}</td>
-                                    <td>${row.email}</td>
-                                    <td>
-                                        <#list row.roles as role>
-                                ${role.name}
-                                </#list>
-                                    </td>
+<#--                                    <td>${row.email}</td>-->
+<#--                                    <td>-->
+<#--                                        <#list row.roles as role>-->
+<#--                                ${role.name}-->
+<#--                                </#list>-->
+<#--                                    </td>-->
                                     <td>
                                         <#if (row.status == 0)>
                                             <span class="label label-success">启用</span>
@@ -58,7 +58,7 @@
                                     <td class="text-center">
                                         <#if row.id != 1>
                                             <#if row.status == 0>
-                                                <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" data-action="close">关闭</a>
+                                                <a href="javascript:void(0);" class="btn btn-xs btn-default" data-id="${row.id}" data-action="close">停用</a>
                                             <#else>
                                                 <a href="javascript:void(0);" class="btn btn-xs btn-success" data-id="${row.id}" data-action="open">激活</a>
                                             </#if>

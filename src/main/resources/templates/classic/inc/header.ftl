@@ -78,70 +78,41 @@
             </div>
 
 
-            <div class="collapse navbar-collapse" style="margin:auto;display:flex">
+            <div class="collapse navbar-collapse" style="margin:auto;display:flex;position: relative">
+                <div style="position: relative;" class="nav navbar-nav" >
                 <ul class="nav navbar-nav" style="position:relative;">
-					<#if profile??>
-						<li data="user" style="margin-top: 8px;">
-							<a href="${base}/users/${profile.id}" nav="user">我的主页</a>
-						</li>
-					</#if>
-					<#list channels as row>
-						<li style="margin-top: 8px;">
-							<a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
-						</li>
-					</#list>
-                    <button id="btn" style="margin-left: 38px;margin-top: 15px;" type="button" class="btn btn-primary">更多分类</button>
-
-                    <#--下拉框例子-->
-<#--                    <div class="dropdown" style="position: absolute;left: 488px;top: 14px;">-->
-<#--                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">更多-->
-<#--                            <span class="caret"></span>-->
-<#--                        </button>-->
-<#--                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">-->
-<#--                    <#list last as list>-->
-<#--                                <li >-->
-<#--                                    <a  href="#">${list.name}</a>-->
-<#--                                </li>-->
-<#--                            </#list>-->
-
-<#--                        </ul>-->
-<#--                    </div>-->
-
-<#--                        <li>-->
-<#--                            <a style="color: #000000">-->
-<#--                                社会&nbsp;&nbsp;-->
-<#--                                <select>-->
-<#--                                    <option><a href="${base}/channel/1">学校</a></option>-->
-<#--                                    <option><a href="${base}/channel/2">企业</a></option>-->
-<#--                                    <option><a href="${base}/channel/3">医院</a></option>-->
-<#--                                    <option><a href="${base}/channel/4">科研机构</a></option>-->
-<#--                                </select>-->
-<#--                            </a>-->
-
-<#--                        </li>-->
-<#--                        <li>-->
-<#--                            <a style="color: #000000">-->
-<#--                                科技&nbsp;&nbsp;-->
-<#--                                <select>-->
-<#--                                    <option><a href="${base}/channel/5">软件</a></option>-->
-<#--                                    <option><a href="${base}/channel/6">网站</a></option>-->
-<#--                                    <option><a href="${base}/channel/7">电子产品</a></option>-->
-<#--                                    <option><a href="${base}/channel/8">药品</a></option>-->
-<#--                                </select>-->
-<#--                            </a>-->
-<#--                        </li>-->
-<#--                        <li>-->
-<#--                            <a style="color: #000000">-->
-<#--                                人物&nbsp;&nbsp;-->
-<#--                                <select>-->
-<#--                                    <option><a href="${base}/channel/9">企业人物</a></option>-->
-<#--                                    <option><a href="${base}/channel/10">体育人物</a></option>-->
-<#--                                    <option><a href="${base}/channel/11">科学人物</a></option>-->
-<#--                                    <option><a href="${base}/channel/12">文化人物</a></option>-->
-<#--                                </select>-->
-<#--                            </a>-->
-<#--                        </li>-->
+                    <#if profile??>
+                        <li data="user" style="margin-top: 8px;">
+                            <a href="${base}/users/${profile.id}" nav="user">我的主页</a>
+                        </li>
+                    </#if>
+                    <#list channels as row>
+                        <li style="margin-top: 8px;">
+                            <a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
+                        </li>
+                    </#list>
+                    <button id="btn" style="margin-left: 18px;margin-top: 15px;" type="button" class="btn btn-primary">更多</button>
                 </ul>
+                <#if profile??>
+                    <div style="position: relative;display: none;left: 94px;top: 58px;background-color: #FFFFFF" id="channelShow">
+
+                        <div style="position: absolute;width: 596px;line-height:58px;left: 0px;top: 0px;background-color: #FFFFFF;box-sizing: border-box">
+                            <#list last as list>
+                                <a style="color: #383838;font-size: 14px;top:10px;padding-left: 30px; box-sizing: border-box;display: inline-block" href="${base}/channel/${list.id}">${list.name}</a>
+                            </#list>
+                        </div>
+                    </div>
+                    <#else>
+                    <div style="position: relative;display: none;left: 8px;top: 58px;background-color: #FFFFFF" id="channelShow">
+
+                        <div style="position: absolute;width: 596px;line-height:58px;left: 0px;top: 0px;background-color: #FFFFFF;box-sizing: border-box">
+                            <#list last as list>
+                                <a style="color: #383838;font-size: 14px;top:10px;padding-left: 30px; box-sizing: border-box;display: inline-block" href="${base}/channel/${list.id}">${list.name}</a>
+                            </#list>
+                        </div>
+                    </div>
+                 </#if>
+                </div>
                 <ul class="navbar-button list-inline" id="header_user" style="margin-top: 8px;">
                     <li view="search" class="hidden-xs hidden-sm">
                         <form method="GET" action="${base}/search" accept-charset="UTF-8" class="navbar-form navbar-left">
