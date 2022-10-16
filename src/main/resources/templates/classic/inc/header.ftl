@@ -72,8 +72,9 @@
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
-                <a href="${base}/">
-                    <img src="<@resource src=options['site_logo']/>" height="65" width="160"/>
+
+                <a  href="${base}/">
+                    <img src="<@resource src=options['site_logo']/>" height="65" width="160" style="z-index:1;position: relative">
                 </a>
             </div>
 
@@ -93,25 +94,13 @@
                     </#list>
                     <button id="btn" style="margin-left: 18px;margin-top: 15px;" type="button" class="btn btn-primary">更多</button>
                 </ul>
-                <#if profile??>
-                    <div style="position: relative;display: none;left: 94px;top: 58px;background-color: #FFFFFF" id="channelShow">
-
-                        <div style="position: absolute;width: 596px;line-height:58px;left: 0px;top: 0px;background-color: #FFFFFF;box-sizing: border-box">
-                            <#list last as list>
-                                <a style="color: #383838;font-size: 14px;top:10px;padding-left: 30px; box-sizing: border-box;display: inline-block" href="${base}/channel/${list.id}">${list.name}</a>
-                            </#list>
-                        </div>
+                <div style="position: relative;display: none;left: 8px;top: 58px;background-color: #FFFFFF" id="channelShow">
+                    <div style="position: absolute;width: 596px;line-height:58px;left: 0px;top: 0px;background-color: #FFFFFF;box-sizing: border-box">
+                        <#list last as list>
+                            <a style="color: #383838;font-size: 14px;top:10px;padding-left: 30px; box-sizing: border-box;display: inline-block" href="${base}/channel/${list.id}">${list.name}</a>
+                        </#list>
                     </div>
-                    <#else>
-                    <div style="position: relative;display: none;left: 8px;top: 58px;background-color: #FFFFFF" id="channelShow">
-
-                        <div style="position: absolute;width: 596px;line-height:58px;left: 0px;top: 0px;background-color: #FFFFFF;box-sizing: border-box">
-                            <#list last as list>
-                                <a style="color: #383838;font-size: 14px;top:10px;padding-left: 30px; box-sizing: border-box;display: inline-block" href="${base}/channel/${list.id}">${list.name}</a>
-                            </#list>
-                        </div>
-                    </div>
-                 </#if>
+                </div>
                 </div>
                 <ul class="navbar-button list-inline" id="header_user" style="margin-top: 8px;">
                     <li view="search" class="hidden-xs hidden-sm">

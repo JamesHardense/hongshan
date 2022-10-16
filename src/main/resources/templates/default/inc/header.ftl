@@ -72,66 +72,75 @@
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${base}/">
-                    <img src="<@resource src=options['site_logo']/>"/>
+                <a  href="${base}/">
+                    <img src="<@resource src=options['site_logo']/>" height="65" width="160" style="z-index:1;position: relative">
                 </a>
             </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-					<#if profile??>
-						<li data="user">
-							<a href="${base}/users/${profile.id}" nav="user">我的主页</a>
-						</li>
-					</#if>
-					<#list channels as row>
-						<li>
-							<a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
-						</li>
-					</#list>
-<#--                        <li>-->
-<#--                            <a href="${base}/tags" nav="tags">标签</a>-->
-<#--                        </li>-->
-                </ul>
-                <ul class="navbar-button list-inline" id="header_user">
+
+
+            <div class="collapse navbar-collapse" style="margin:auto;display:flex;position: relative">
+                <div style="position: relative;" class="nav navbar-nav" >
+                    <ul class="nav navbar-nav" style="position:relative;">
+                        <#if profile??>
+                            <li data="user" style="margin-top: 8px;">
+                                <a href="${base}/users/${profile.id}" nav="user">我的主页</a>
+                            </li>
+                        </#if>
+                        <#list channels as row>
+                            <li style="margin-top: 8px;">
+                                <a href="${base}/channel/${row.id}" nav="${row.name}">${row.name}</a>
+                            </li>
+                        </#list>
+                        <button id="btn" style="margin-left: 18px;margin-top: 15px;" type="button" class="btn btn-success">更多</button>
+                    </ul>
+                    <div style="position: relative;display: none;left: 8px;top: 58px;background-color: #FFFFFF" id="channelShow">
+                        <div style="position: absolute;width: 596px;line-height:58px;left: 0px;top: 0px;    background: #171717;box-sizing: border-box">
+                            <#list last as list>
+                                <a style="color: #ffffff;font-size: 14px;top:10px;padding-left: 30px; box-sizing: border-box;display: inline-block" href="${base}/channel/${list.id}">${list.name}</a>
+                            </#list>
+                        </div>
+                    </div>
+                </div>
+                <ul class="navbar-button list-inline" id="header_user" style="margin-top: 8px;">
                     <li view="search" class="hidden-xs hidden-sm">
                         <form method="GET" action="${base}/search" accept-charset="UTF-8" class="navbar-form navbar-left">
                             <div class="form-group">
-                                <input class="form-control search-input mac-style" placeholder="搜索" name="kw" type="text" value="${kw}">
+                                <input class="form-control search-input mac-style" placeholder="搜索" name="kw" type="text"  value="${kw}">
                                 <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
                             </div>
                         </form>
                     </li>
 
-				<#if profile??>
-<#--                    <@controls name="post">-->
-<#--                        <li>-->
-<#--                            <a href="${base}/post/editing" class="plus"><i class="icon icon-note"></i> 写文章</a>-->
-<#--                        </li>-->
-<#--                    </@controls>-->
-                    <li class="dropdown">
-                        <a href="#" class="user dropdown-toggle" data-toggle="dropdown">
-                            <img class="img-circle" src="<@resource src=profile.avatar + '?t=' + .now?time />">
-                            <span>${profile.name}</span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="${base}/users/${profile.id}">我的主页</a>
+                    <#if profile??>
+                        <@controls name="post">
+                            <li style="margin-top: 3px;">
+                                <a href="${base}/post/editing" class="plus"><i class="icon icon-note"></i> 写词条</a>
                             </li>
-                            <li>
-                                <a href="${base}/settings/profile">编辑资料</a>
-                            </li>
-                            <@shiro.hasPermission name="admin">
-                                <li><a href="${base}/admin">后台管理</a></li>
-                            </@shiro.hasPermission>
-                            <li><a href="${base}/logout">退出</a></li>
-                        </ul>
-                    </li>
-				<#else>
-                    <li><a href="${base}/login" class="btn btn-default btn-sm signup">登录</a></li>
-                    <@controls name="register">
+                        </@controls>
+                        <li class="dropdown" style="position: relative;">
+                            <a href="#" class="user dropdown-toggle" data-toggle="dropdown" style="position: absolute;top: 1px;right: -64px;">
+                                <img class="img-circle" src="<@resource src=profile.avatar + '?t=' + .now?time />">
+                                <span style="position: absolute;top: 11px;right: -39px;width: 46px;">${profile.name}</span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="${base}/users/${profile.id}">我的主页</a>
+                                </li>
+                                <li>
+                                    <a href="${base}/settings/profile">编辑资料</a>
+                                </li>
+                                <@shiro.hasPermission name="admin">
+                                    <li><a href="${base}/admin">后台管理</a></li>
+                                </@shiro.hasPermission>
+                                <li><a href="${base}/logout">退出</a></li>
+                            </ul>
+                        </li>
+                    <#else>
+                        <li><a href="${base}/login" class="btn btn-default btn-sm signup">登录</a></li>
+                    <#--                    <@controls name="register">-->
                         <li><a href="${base}/register" class="btn btn-primary btn-sm signup">注册</a></li>
-                    </@controls>
-				</#if>
+                    <#--                    </@controls>-->
+                    </#if>
 
                 </ul>
             </div>
@@ -148,5 +157,13 @@ $(function () {
         }  
     });
 });
+document.getElementById("btn").onclick = function (){
+    var div = document.getElementById("channelShow");
+    if(div.style.display == ""){
+        div.style.display = "none";
+    }else{
+        div.style.display = "";
+    }
+}
 </script>
 <!-- Header END -->

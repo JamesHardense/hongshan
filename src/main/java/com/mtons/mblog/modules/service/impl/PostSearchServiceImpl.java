@@ -54,7 +54,7 @@ public class PostSearchServiceImpl implements PostSearchService {
     public Page<PostVO> search(Pageable pageable, String term) throws Exception {
 
 //        Page<Post> list=postRepository.findPostsByTitle(term,1,10);
-        Page<Post> list =postRepository.findAll(pageable);
+        List<Post> list =postRepository.findAll();
 //        System.out.println(page);
 //        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 //        QueryBuilder builder = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(Post.class).get();
@@ -77,7 +77,7 @@ public class PostSearchServiceImpl implements PostSearchService {
 //        Highlighter highlighter = new Highlighter(formatter, scorer);
 //
 //        List<Post> list = query.getResultList();
-        List<PostVO> rets = list.stream().filter(b->b.getTitle()!=null&&b.getTitle().indexOf(term)>-1).map(po -> {
+        List<PostVO> rets = list.stream().filter(b->b.getTitle()!=null && b.getTitle().indexOf(term)>-1).map(po -> {
             PostVO post = BeanMapUtils.copy(po);
 //
 //            try {
