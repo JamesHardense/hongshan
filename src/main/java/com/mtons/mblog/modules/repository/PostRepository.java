@@ -51,6 +51,6 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
     @Query("update Post set summary = :summary  where id = :id")
     void updateSummary(@Param("id") long id, @Param("summary") String summary);
 
-//    @Query(value = "SELECT * FROM mto_post WHERE title =:title limit 0,5", nativeQuery = true)
-//    Page<Post> findPostsByTitle(@Param("title")String title,@Param("num") int num, @Param("size") int size);
+//    @Query(value = "SELECT * FROM mto_post WHERE title like ", nativeQuery = true)
+//    List<Post> findPostsByTitle(@Param("title")String title);
 }
