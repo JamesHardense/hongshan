@@ -155,7 +155,7 @@ $('button[event="post_submit"]').click(function () {
         authorId:document.getElementById("authorId").value,
         editor:document.getElementById("editor").value,
         status:document.getElementById("status").value};
-    fetch(`http://localhost:9090/post/submit`,{
+    fetch(`http://47.95.33.183:9090/post/submit`,{
         method:'POST',
         body:JSON.stringify(str),
         headers:{'Content-Type':'application/json'}
@@ -169,7 +169,7 @@ $('button[event="post_submit"]').click(function () {
                 shade: false //不显示遮罩
             }, function(){
                 layer.closeAll();
-                window.location.href = "http://localhost:9090/index"
+                window.location.href = "http://47.95.33.183:9090/index"
             });
         }else {
             layer.confirm(res, {
@@ -194,7 +194,7 @@ var J = jQuery;
         }else{
             div.style.display = "";
         }
-        var data = fetch(`http://localhost:9090/post/baike`,{
+        var data = fetch(`http://47.95.33.183:9090/post/baike`,{
             method:'POST',
             body:JSON.stringify({title:document.getElementById("title").value}),
             headers:{'Content-Type':'application/json'}}).then((res)=>{

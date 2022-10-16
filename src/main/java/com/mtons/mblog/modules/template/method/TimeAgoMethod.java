@@ -6,9 +6,7 @@ import com.mtons.mblog.modules.template.BaseMethod;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by langhsu on 2017/11/14.
- */
+
 public class TimeAgoMethod extends BaseMethod {
     private static final long ONE_MINUTE = 60000L;
     private static final long ONE_HOUR = 3600000L;

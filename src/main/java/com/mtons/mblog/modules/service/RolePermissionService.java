@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * @author - langhsu
- * @create - 2018/5/18
+ * @create - Copyright (c) 2022/5/18
  */
 public interface RolePermissionService {
     List<Permission> findPermissions(long roleId);

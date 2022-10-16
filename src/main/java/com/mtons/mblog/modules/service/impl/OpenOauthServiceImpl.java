@@ -2,7 +2,7 @@
 +--------------------------------------------------------------------------
 |   Mblog [#RELEASE_VERSION#]
 |   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   Copyright (c) 2022, hongshan. All Rights Reserved
 |   http://www.mtons.com
 |
 +---------------------------------------------------------------------------
@@ -25,10 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/**
- * 第三方登录授权管理
- * @author langhsu on 2015/8/12.
- */
+
 @Service
 @Transactional
 public class OpenOauthServiceImpl implements OpenOauthService {

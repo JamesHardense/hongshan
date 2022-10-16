@@ -124,7 +124,7 @@
         }
 
         $(function() {
-            fetch(`http://localhost:9090/admin/post/log/list`,{
+            fetch(`http://47.95.33.183:9090/admin/post/log/list`,{
                 method:'GET',
                 headers:{'Content-Type':'application/json'}}).then((res)=>{
                 return res.text()

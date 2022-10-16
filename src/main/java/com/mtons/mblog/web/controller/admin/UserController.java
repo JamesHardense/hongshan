@@ -2,7 +2,7 @@
 +--------------------------------------------------------------------------
 |   Mblog [#RELEASE_VERSION#]
 |   ========================================
-|   Copyright (c) 2014, 2015 mtons. All Rights Reserved
+|   Copyright (c) 2022, hongshan. All Rights Reserved
 |   http://www.mtons.com
 |
 +---------------------------------------------------------------------------
@@ -100,9 +100,10 @@ public class UserController extends BaseController {
 
 		try {
 			userService.updatePassword(id, newPassword);
-			model.put("message", "修改成功");
+			model.put("data", Result.successMessage("修改成功"));
+//			model.put("message", "修改成功");
 		} catch (IllegalArgumentException e) {
-			model.put("message", e.getMessage());
+			model.put("data", Result.successMessage("修改失败"));
 		}
 		return "/admin/user/pwd";
 	}

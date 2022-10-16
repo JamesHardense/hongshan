@@ -19,9 +19,7 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author langhsu on 2015/8/14.
- */
+
 @RestController
 @RequestMapping("/email")
 public class EmailController extends BaseController {

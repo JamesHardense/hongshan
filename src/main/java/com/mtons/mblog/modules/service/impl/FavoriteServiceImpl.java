@@ -18,9 +18,7 @@ import org.springframework.util.Assert;
 
 import java.util.*;
 
-/**
- * @author langhsu on 2015/8/31.
- */
+
 @Slf4j
 @Service
 @Transactional(readOnly = true)

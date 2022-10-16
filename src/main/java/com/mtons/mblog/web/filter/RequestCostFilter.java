@@ -7,9 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-/**
- * @author langhsu on 2015/7/10.
- */
+
 @Slf4j
 public class RequestCostFilter implements Filter {
 

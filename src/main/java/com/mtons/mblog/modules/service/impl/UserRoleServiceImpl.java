@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-/**
- * @author - langhsu on 2018/2/11
- */
+
 @Service
 @Transactional(readOnly = true)
 public class UserRoleServiceImpl implements UserRoleService {
