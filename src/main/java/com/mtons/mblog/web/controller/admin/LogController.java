@@ -65,7 +65,7 @@ public class LogController extends BaseController {
 
     @PostMapping("/log/agree")
     public Boolean updateAgree(@RequestBody Log log){
-        return  logService.updateStatus(log.getId(),log.getHid(),1);
+        return logService.updateStatus(log.getId(),log.getHid(),1);
     }
 
     @PostMapping("/log/disagree")

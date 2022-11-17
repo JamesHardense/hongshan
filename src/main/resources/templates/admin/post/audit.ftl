@@ -48,7 +48,7 @@
         $(function() {
             var urlParam = decodeURI(window.location.href.split("?")[1].split("=")[1])
             console.log(urlParam)
-            var data = fetch(`http://47.95.33.183:9090/admin/post/log/read`,{
+            var data = fetch(`http://localhost:9090/admin/post/log/read`,{
                 method:'POST',
                 body:JSON.stringify({hid:urlParam}),
                 headers:{'Content-Type':'application/json'}}).then((res)=>{
@@ -64,7 +64,7 @@
             })
             $('#agree').on('click', function(){
                 console.log(document.getElementById("word_id").value)
-                var data = fetch(`http://47.95.33.183:9090/admin/post/log/agree`,{
+                var data = fetch(`http://localhost:9090/admin/post/log/agree`,{
                     method:'POST',
                     body:JSON.stringify(
                         {id:document.getElementById("word_id").value,
@@ -73,13 +73,13 @@
                     //     return res.text()
                     // }).then((res)=> {
                     // console.log(res)
-                    window.location.href = "http://47.95.33.183:9090/admin/post/list"
+                    window.location.href = "http://localhost:9090/admin/post/list"
                     //
                 })
         });
             $('#disagree').on('click', function(){
                 console.log(document.getElementById("word_id").value)
-                var data = fetch(`http://47.95.33.183:9090/admin/post/log/disagree`,{
+                var data = fetch(`http://localhost:9090/admin/post/log/disagree`,{
                     method:'POST',
                     body:JSON.stringify(
                         {
@@ -88,7 +88,7 @@
                     //     return res.text()
                     // }).then((res)=> {
                     // console.log(res)
-                    window.location.href = "http://47.95.33.183:9090/admin/post/list"
+                    window.location.href = "http://localhost:9090/admin/post/list"
                     //
                 })
             });

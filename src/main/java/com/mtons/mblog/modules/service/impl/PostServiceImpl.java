@@ -306,7 +306,11 @@ public class PostServiceImpl implements PostService {
 		Post po = postRepository.findById(id).get();
 		// 判断文章是否属于当前登录用户
 		Assert.isTrue(po.getAuthorId() == authorId, "认证失败");
-
+		List<Log> list =logRepository.findById(id);
+		for (int i=0;i<list.size();i++){
+			Log log = list.get(i);
+			logRepository.delete(log);
+		}
         String key = ResourceLock.getPostKey(po.getId());
         AtomicInteger lock = ResourceLock.getAtomicInteger(key);
 		try	{

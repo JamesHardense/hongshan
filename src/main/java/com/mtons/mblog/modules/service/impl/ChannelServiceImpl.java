@@ -61,7 +61,6 @@ public class ChannelServiceImpl implements ChannelService {
 				}
 			}
 		}
- 		System.out.println(last.size());
 		return last;
 	}
 

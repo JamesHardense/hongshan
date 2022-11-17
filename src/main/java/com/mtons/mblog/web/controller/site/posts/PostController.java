@@ -7,7 +7,11 @@ import com.mtons.mblog.base.lang.Consts;
 import com.mtons.mblog.base.lang.Result;
 import com.mtons.mblog.modules.data.AccountProfile;
 import com.mtons.mblog.modules.data.PostVO;
+import com.mtons.mblog.modules.entity.Log;
+import com.mtons.mblog.modules.entity.Post;
+import com.mtons.mblog.modules.entity.PostAttribute;
 import com.mtons.mblog.modules.service.ChannelService;
+import com.mtons.mblog.modules.service.PostAttributeService;
 import com.mtons.mblog.modules.service.PostService;
 import com.mtons.mblog.web.controller.BaseController;
 import com.mtons.mblog.web.controller.site.Views;
@@ -17,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 文章操作
@@ -30,6 +36,8 @@ public class PostController extends BaseController {
 	private PostService postService;
 	@Autowired
 	private ChannelService channelService;
+	@Autowired
+	private PostAttributeService postAttributeService;
 
 	/**
 	 * 发布文章页
@@ -134,4 +142,8 @@ public class PostController extends BaseController {
 		return data;
 	}
 
+	@GetMapping("/check")
+	public List<PostAttribute> getAttribute(){
+		return postAttributeService.checkSummary();
+	}
 }

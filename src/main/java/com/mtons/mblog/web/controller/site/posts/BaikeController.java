@@ -18,8 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import com.mtons.mblog.modules.data.BaikeVO;
 import com.mtons.mblog.modules.data.BasicInfoVO;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 
 import java.util.ArrayList;
 /**
@@ -44,6 +49,20 @@ public class BaikeController extends BaseController {
 
     @PostMapping("/baike")
     public BaikeVO getBaike(@RequestBody BaiKe baiKe) {
+        try {
+            String[] args1=new String[]{"D:/download-necessary/python3.8/python.exe","D:/pycharm-pro/baike-spider/spider_main.py",baiKe.getTitle()};
+            Process pr=Runtime.getRuntime().exec(args1);
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    pr.getInputStream(),"GBK"));
+            String line;
+            while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            }
+            in.close();
+            pr.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         BaiKe baike=baiKeService.findByTitle(baiKe.getTitle());
         BaikeVO baikeVO = new BaikeVO();
         baikeVO.setId(baike.getId());
@@ -85,9 +104,7 @@ public class BaikeController extends BaseController {
             Assert.notNull(exist, "词条不存在");
 //            post.setAuthorId(exist.getAuthorId());
 //			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
-
             Log log = new Log();
-
             Post po= postService.findPostByTitle(post.getTitle());
             log.setAuthorId(po.getAuthorId());
             log.setChannelId(post.getChannelId());
@@ -101,6 +118,7 @@ public class BaikeController extends BaseController {
             postService.updateStatus(post.getId(),0);
 //            postService.update(post);
         } else {
+//            DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect("快手是一家字节条动的","抖音，是由字节跳动孵化的东西是你的这个东西导致的啥东西"))
             postService.post(post);
         }
         return "ok";

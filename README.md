@@ -15,8 +15,8 @@
  ```xml
  配置：src/main/resources/application-mysql.yml (数据库账号密码)
  运行：src/main/java/com/mtons/mblog/BootApplication
- 访问：http://47.95.33.183:9090/
- 后台：http://47.95.33.183:9090/admin
+ 访问：http://localhost:9090/
+ 后台：http://localhost:9090/admin
  账号：默认管理员账号为 admin/12345
  
  TIPS: 

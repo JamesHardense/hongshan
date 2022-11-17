@@ -61,7 +61,7 @@ define(function(require, exports, module) {
                     authorId:document.getElementById("authorId").value,
                     editor:document.getElementById("editor").value,
                     status:document.getElementById("status").value};
-                fetch(`http://47.95.33.183:9090/post/submit`,{
+                fetch(`http://localhost:9090/post/submit`,{
                     method:'POST',
                     body:JSON.stringify(str),
                     headers:{'Content-Type':'application/json'}

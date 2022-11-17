@@ -177,7 +177,7 @@
     });
     $('a[data-evt=edit]').click(function () {
         var postId = $(this).attr('data-id');
-        fetch(`http://47.95.33.183:9090/admin/post/log/status`,{
+        fetch(`http://localhost:9090/admin/post/log/status`,{
             method:'POST',
             body:JSON.stringify({id: postId}),
             headers:{'Content-Type':'application/json'}

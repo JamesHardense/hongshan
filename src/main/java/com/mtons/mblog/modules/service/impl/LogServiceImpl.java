@@ -119,14 +119,13 @@ public class LogServiceImpl implements LogService {
     public Boolean deleteLog(long hid) {
         long id = logRepository.findByIdRead(hid).getId();
         List<Log> logs=logRepository.findById(id);
-
         String title = logRepository.findByIdRead(hid).getTitle();
         for (int i=0;i<logs.size();i++){
             Log log = logs.get(i);
             logRepository.delete(log);
         }
-
         Post post = postRepository.findPostByTitle(title);
+        System.out.println("sdfsdf:"+post);
         postRepository.delete(post);
         postAttributeRepository.deleteById(id);
         return true;
