@@ -116,6 +116,10 @@ public class PostController extends BaseController {
 //
 //			postService.update(post);
 //		} else {
+//			List<PostAttribute> attributes = postAttributeService.checkSummary();
+////			for(PostAttribute postAttribute : attributes){
+////
+////			}
 //			postService.post(post);
 //		}
 //
@@ -139,4 +143,5 @@ public class PostController extends BaseController {
 		}
 		return data;
 	}
+
 }

@@ -84,22 +84,44 @@ public class BaikeController extends BaseController {
     }
 
     @PostMapping("/submit")
-    public String post(@RequestBody PostVO post) {
+    public Result post(@RequestBody PostVO post) {
+        Result result =new Result();
 //		System.out.println(post.getEditor());
         Assert.notNull(post, "参数不完整");
         Assert.state(StringUtils.isNotBlank(post.getTitle()), "标题不能为空");
         Assert.state(StringUtils.isNotBlank(post.getContent()), "内容不能为空");
         if (postService.findPostByTitle(post.getTitle()) != null && post.getId()<=0){
-            String message= "已有词条"+post.getTitle()+"的信息，请勿重新创建";
+            String message= "已有词条"+post.getTitle()+"的信息，请勿重新创建!";
 //            Assert.state(false,message );
-            return "已有词条:"+post.getTitle()+" 的信息，请勿重新创建!";
+            result.setMessage(message);
+            result.setStatus(1);
+            return  result;
+        }
+
+        List<Post> posts = new ArrayList<>();
+        List<String> scores = new ArrayList<>();
+        List<PostAttribute> postAttributes=postAttributeService.checkSummary();
+        for(PostAttribute postAttribute : postAttributes){
+//            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
+            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(postAttribute.getContent()),SimHashUtils.getSimHash(post.getContent()));
+            if(point>=0.8){
+                 Post post1 = postService.get(postAttribute.getId());
+                 String score = String.format("%.2f",point*100);
+                 scores.add(score+"%");
+                 posts.add(post1);
+            }
+        }
+        if(!posts.isEmpty()){
+            result.setStatus(3);
+            result.setMessage("以下词条的内容与您编辑的词条重复度较高，请选择是否合并词条！");
+            result.setPosts(posts);
+            result.setScores(scores);
+            return  result;
         }
         AccountProfile profile = getProfile();
-//        if (post.getId()<=0){
+        if (post.getId()<=0){
             post.setAuthorId(profile.getId());
-//        }
-
-
+        }
         // 修改时, 验证归属
         if (post.getId() > 0) {
             PostVO exist = postService.get(post.getId());
@@ -130,12 +152,13 @@ public class BaikeController extends BaseController {
 //            System.out.println(similarity);
             postService.post(post);
         }
-        return "ok";
+        result.setStatus(0);
+        return result;
     }
 
     @GetMapping("/check")
-    public List<PostAttribute> getAttribute(){
-        return postAttributeService.checkSummary();
-    }
+	public List<PostAttribute> getAttribute(){
+		return postAttributeService.checkSummary();
+	}
 
 }
