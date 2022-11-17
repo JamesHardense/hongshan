@@ -36,8 +36,6 @@ public class PostController extends BaseController {
 	private PostService postService;
 	@Autowired
 	private ChannelService channelService;
-	@Autowired
-	private PostAttributeService postAttributeService;
 
 	/**
 	 * 发布文章页
@@ -140,10 +138,5 @@ public class PostController extends BaseController {
 			data = Result.failure(e.getMessage());
 		}
 		return data;
-	}
-
-	@GetMapping("/check")
-	public List<PostAttribute> getAttribute(){
-		return postAttributeService.checkSummary();
 	}
 }
