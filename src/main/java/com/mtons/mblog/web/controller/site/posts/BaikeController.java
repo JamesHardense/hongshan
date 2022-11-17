@@ -9,6 +9,8 @@ import com.mtons.mblog.modules.service.BaiKeService;
 import com.mtons.mblog.modules.service.PostAttributeService;
 import com.mtons.mblog.modules.service.PostService;
 import com.mtons.mblog.web.controller.BaseController;
+import com.mtons.mblog.web.controller.site.utils.HammingUtils;
+import com.mtons.mblog.web.controller.site.utils.SimHashUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
@@ -100,8 +102,9 @@ public class BaikeController extends BaseController {
         List<String> scores = new ArrayList<>();
         List<PostAttribute> postAttributes=postAttributeService.checkSummary();
         for(PostAttribute postAttribute : postAttributes){
-            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
-            if(point>=80.0){
+//            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
+            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(postAttribute.getContent()),SimHashUtils.getSimHash(post.getContent()));
+            if(point>=0.8){
                  Post post1 = postService.get(postAttribute.getId());
                  String score = String.format("%.2f",point*100);
                  scores.add(score+"%");
@@ -139,7 +142,14 @@ public class BaikeController extends BaseController {
             postService.updateStatus(post.getId(),0);
 //            postService.update(post);
         } else {
-//            DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect("快手是一家字节条动的","抖音，是由字节跳动孵化的东西是你的这个东西导致的啥东西"))
+//            String str0 = "北京字节跳动科技有限公司，简称字节跳动，是一家位于中国北京的跨国互联网技术公司[2]，成立于2012年3月，旗下有产品今日头条和抖音（及其海外版本TikTok）、西瓜视频等。\n";
+//            String str1 = "北京字节跳动科技有限公司，简称字节跳动，是一家位于中国北京的跨国互联网技术公司[2]，成立于2012年3月，旗下有产品今日头条和抖音（及其海外版本TikTok）、西瓜视频等。\n";
+//            // 由字符串得出对应的 simHash值
+//            String simHash0 = SimHashUtils.getSimHash(str0);
+//            String simHash1 = SimHashUtils.getSimHash(str1);
+//            // 由 simHash值求出相似度
+//            double similarity = HammingUtils.getSimilarity(simHash0, simHash1);
+//            System.out.println(similarity);
             postService.post(post);
         }
         result.setStatus(0);
