@@ -99,12 +99,12 @@ public class DuplicateDetection {
         return result;
     }
     //将小数转化为百分数的字符串
-    public static String transferFloatToPersentString(float f)
+    public static Float transferFloatToPersentString(float f)
     {
-        String result;
+        Float result;
         f*=10000;
         int t1=(int)f;
-        result=(((float)t1)/100)+"%";
+        result=(((float)t1)/100);
         return result;
     }
 //        Date start=new Date();

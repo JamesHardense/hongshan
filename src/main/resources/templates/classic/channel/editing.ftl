@@ -163,7 +163,7 @@ $('button[event="post_submit"]').click(function () {
         return res.text()
     }).then((res)=>{
         console.log(JSON.parse(res));
-        if(JSON.parse(res)== "ok"){
+        if(JSON.parse(res).status == 0){
             layer.confirm('等待管理员审核', {
                 btn: ['确定'], //按钮
                 shade: false //不显示遮罩
@@ -171,13 +171,30 @@ $('button[event="post_submit"]').click(function () {
                 layer.closeAll();
                 window.location.href = "http://localhost:9090/index"
             });
-        }else {
-            layer.confirm(res, {
+        }else if (JSON.parse(res).status == 1){
+            layer.confirm(JSON.parse(res).message, {
                 btn: ['确定'], //按钮
                 shade: false //不显示遮罩
             }, function(){
                 layer.closeAll();
                 document.getElementById("title").focus();
+            });
+        }else{
+            layer.confirm(JSON.parse(res).message, {
+                title:"存在重复词条",
+                area:['60%','60%'],
+                btn: ['合并','不合并'], //按钮
+                shade: false //不显示遮罩
+            }, function(){
+                layer.closeAll();
+            },function(){
+                layer.closeAll();
+                layer.confirm("若不想合并词条，需将编辑的词条重复率下降到80%以内", {
+                    btn: ['确定'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    layer.closeAll();
+                });
             });
         }
     });
