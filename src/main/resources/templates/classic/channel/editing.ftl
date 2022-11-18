@@ -180,12 +180,22 @@ $('button[event="post_submit"]').click(function () {
                 document.getElementById("title").focus();
             });
         }else{
-            layer.confirm(JSON.parse(res).message, {
-                title:"存在重复词条",
-                area:['60%','60%'],
+            // console.log(JSON.parse(res).posts.title)
+            let posts = JSON.parse(res).posts
+            let scores = JSON.parse(res).scores
+            layer.confirm(JSON.parse(res).message+"重复词条为:"+str, {
+                type:1,
+                title:"存在重复率高的词条",
+                area:['30%','50%'],
                 btn: ['合并','不合并'], //按钮
-                shade: false //不显示遮罩
+                shade: false, //不显示遮罩
+                resize:false,
+                content:"<table>"+
+                    "<thead><tr><th>id</th><th>词条标题</th><th>重复率</th></tr></thead>"+
+                    "<tbody><tr><td>"+posts[0].id+"</td><td>"+posts[0].title+"</td><td>"+scores[0]+"</td></tr></tbody>"+
+                    "</table>"
             }, function(){
+                window.location.href = "http://localhost:9090/post/"+posts[0].id
                 layer.closeAll();
             },function(){
                 layer.closeAll();
