@@ -63,6 +63,8 @@ public class PostServiceImpl implements PostService {
 	private PostResourceRepository postResourceRepository;
 	@Autowired
 	private ResourceRepository resourceRepository;
+	@Autowired
+	private PostService postService;
 //	@Autowired
 //	private LogRepository logRepository;
 
@@ -306,7 +308,7 @@ public class PostServiceImpl implements PostService {
 		Post po = postRepository.findById(id).get();
 		// 判断文章是否属于当前登录用户
 		Assert.isTrue(po.getAuthorId() == authorId, "认证失败");
-		List<Log> list =logRepository.findById(id);
+		List<Log> list =logRepository.deleteListById(id);
 		for (int i=0;i<list.size();i++){
 			Log log = list.get(i);
 			logRepository.delete(log);

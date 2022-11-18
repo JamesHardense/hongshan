@@ -126,7 +126,7 @@ public class BaikeController extends BaseController {
 //            post.setAuthorId(exist.getAuthorId());
 //			Assert.isTrue(exist.getAuthorId() == profile.getId(), "该文章不属于你");
             Log log = new Log();
-            Post po= postService.findPostByTitle(post.getTitle());
+            Post po= postService.get(post.getId());
             log.setAuthorId(po.getAuthorId());
             log.setChannelId(post.getChannelId());
             log.setEditorId(post.getAuthorId());

@@ -17,6 +17,9 @@ public interface LogRepository extends JpaRepository<Log, Long>, JpaSpecificatio
     @Query(value = "SELECT * FROM mto_post_history WHERE id =:id and status = 1", nativeQuery = true)
     List<Log> findById(@Param("id")long id);
 
+    @Query(value = "SELECT * FROM mto_post_history WHERE id =:id ", nativeQuery = true)
+    List<Log> deleteListById(@Param("id")long id);
+
     @Query(value = "SELECT * FROM mto_post_history WHERE hid =:hid", nativeQuery = true)
     Log findByIdRead(@Param("hid")long hid);
 

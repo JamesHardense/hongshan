@@ -11,6 +11,7 @@ import com.mtons.mblog.modules.repository.PostRepository;
 import com.mtons.mblog.modules.service.LogService;
 import com.mtons.mblog.modules.service.PostService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,7 +71,7 @@ public class LogServiceImpl implements LogService {
         logRepository.updateStaus(hid,status);
         Log log=logRepository.findByIdRead(hid);
         List<Log> list=logRepository.findById(id);
-        Post post = postRepository.findPostByTitle(log.getTitle());
+        Post post = postService.get(id);
         PostVO postVO = new PostVO();
         postVO.setAuthorId(log.getAuthorId());
         postVO.setEditor("markdown");
@@ -91,7 +92,7 @@ public class LogServiceImpl implements LogService {
         long id= log.getId();
         String title = log.getTitle();
         List<Log> list=logRepository.findById(log.getId());
-        Post post = postRepository.findPostByTitle(title);
+        Post post = postService.get(log.getId());
 //        PostVO postVO = new PostVO();
 //        postVO.setAuthorId(log.getAuthorId());
 //        postVO.setEditor("markdown");
@@ -118,14 +119,16 @@ public class LogServiceImpl implements LogService {
     @Transactional
     public Boolean deleteLog(long hid) {
         long id = logRepository.findByIdRead(hid).getId();
-        List<Log> logs=logRepository.findById(id);
-        String title = logRepository.findByIdRead(hid).getTitle();
+        List<Log> logs=logRepository.deleteListById(id);
+        System.out.println(logs.size());
         for (int i=0;i<logs.size();i++){
             Log log = logs.get(i);
             logRepository.delete(log);
         }
-        Post post = postRepository.findPostByTitle(title);
-        System.out.println("sdfsdf:"+post);
+        PostVO postVO = postService.get(id);
+        Post post=new Post();
+        BeanUtils.copyProperties(postVO, post);
+        System.out.println("sdfsdf:"+post.getId());
         postRepository.delete(post);
         postAttributeRepository.deleteById(id);
         return true;
