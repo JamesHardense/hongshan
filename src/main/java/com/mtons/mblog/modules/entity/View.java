@@ -50,6 +50,17 @@ public class View implements Serializable {
     @Column(name = "editor_id", length = 20)
     private long editorId;
 
+    @Column(name = "editor_name")
+    private String editorName;
+
+    public String getEditorName() {
+        return editorName;
+    }
+
+    public void setEditorName(String editorName) {
+        this.editorName = editorName;
+    }
+
     public long getEditorId() {
         return editorId;
     }

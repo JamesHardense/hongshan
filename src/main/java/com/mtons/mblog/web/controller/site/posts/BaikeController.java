@@ -20,13 +20,11 @@ import com.mtons.mblog.modules.data.BasicInfoVO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
-
-import java.util.ArrayList;
 /**
  * 文章操作
  * @author langhsu
@@ -99,23 +97,22 @@ public class BaikeController extends BaseController {
         }
 
         List<Post> posts = new ArrayList<>();
-        List<String> scores = new ArrayList<>();
         List<PostAttribute> postAttributes=postAttributeService.checkSummary();
         for(PostAttribute postAttribute : postAttributes){
 //            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
             double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(postAttribute.getContent()),SimHashUtils.getSimHash(post.getContent()));
             if(point>=0.8){
                  Post post1 = postService.get(postAttribute.getId());
-                 String score = String.format("%.2f",point*100);
-                 scores.add(score+"%");
+                 Double score = Double.valueOf(String.format("%.2f",point*100));
+                 post1.setScore(score);
                  posts.add(post1);
             }
         }
         if(!posts.isEmpty()){
+            List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
             result.setStatus(3);
             result.setMessage("以下词条的内容与您编辑的词条重复度较高，请选择是否合并词条！");
-            result.setPosts(posts);
-            result.setScores(scores);
+            result.setPost(list.get(0));
             return  result;
         }
         AccountProfile profile = getProfile();

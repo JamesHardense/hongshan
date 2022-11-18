@@ -116,6 +116,16 @@ public class Post implements Serializable {
 	 */
 	private int weight;
 
+	private double score;
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
 	public long getId() {
 		return id;
 	}

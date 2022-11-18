@@ -44,6 +44,7 @@
                                         <th>词条标题</th>
                                         <th >分类</th>
                                         <th >作者</th>
+                                        <th>编辑者</th>
                                         <th >发表日期</th>
 <#--                                        <th width="100">访问数</th>-->
                                         <#--                                <th width="80">状态</th>-->
@@ -65,6 +66,7 @@
 
                                             <th>${row.name}</th>
                                             <td>${row.username}</td>
+                                            <td>${row.editorName}</td>
                                             <td>${row.created?string('yyyy-MM-dd hh:mm:ss')}</td>
 <#--                                            <td><span class="label label-default">${row.views}</span></td>-->
                                             <td>

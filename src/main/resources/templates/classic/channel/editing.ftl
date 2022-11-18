@@ -105,6 +105,10 @@
             </div>
             <br>
             <br>
+            <div class="boxCon" id="displayBox" style="display:none">
+                　　<table id="displayBoxTable" lay-filter="displayBoxTable" align="center"></table>
+
+            </div>
 <#--            <div class="col-xs-12 col-md-12">-->
 <#--                <div class="form-group">-->
 <#--                    <div class="text-center">-->

@@ -5,8 +5,7 @@ import java.util.List;
 public class Result {
     private int  status;
     private String message;
-    private List<Post> posts;
-    private List<String> scores;
+    private Post post;
 
     public int getStatus() {
         return status;
@@ -24,19 +23,12 @@ public class Result {
         this.message = message;
     }
 
-    public List<Post> getPosts() {
-        return posts;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
-    public List<String> getScores() {
-        return scores;
-    }
-
-    public void setScores(List<String> scores) {
-        this.scores = scores;
-    }
 }
