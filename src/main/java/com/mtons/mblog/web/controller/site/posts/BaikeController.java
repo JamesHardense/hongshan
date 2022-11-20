@@ -5,13 +5,17 @@ import com.mtons.mblog.modules.data.AccountProfile;
 import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.entity.*;
 import com.mtons.mblog.modules.repository.LogRepository;
+import com.mtons.mblog.modules.repository.PostAttributeRepository;
+import com.mtons.mblog.modules.repository.PostRepository;
 import com.mtons.mblog.modules.service.BaiKeService;
+import com.mtons.mblog.modules.service.LogService;
 import com.mtons.mblog.modules.service.PostAttributeService;
 import com.mtons.mblog.modules.service.PostService;
 import com.mtons.mblog.web.controller.BaseController;
 import com.mtons.mblog.web.controller.site.utils.HammingUtils;
 import com.mtons.mblog.web.controller.site.utils.SimHashUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +45,8 @@ public class BaikeController extends BaseController {
     private LogRepository logRepository;
     @Autowired
     private PostAttributeService postAttributeService;
+    @Autowired
+    private LogService logService;
 
     /**
      * 查看抽取信息
@@ -112,7 +118,7 @@ public class BaikeController extends BaseController {
             List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
             result.setStatus(3);
             result.setMessage("以下词条的内容与您编辑的词条重复度较高，请选择是否合并词条！");
-            result.setPost(list.get(0));
+            result.setPosts(list);
             return  result;
         }
         AccountProfile profile = getProfile();
@@ -158,4 +164,12 @@ public class BaikeController extends BaseController {
 		return postAttributeService.checkSummary();
 	}
 
+    @PostMapping("/repeat/delete")
+    public String delete(@RequestBody List<Long> ids) {
+        if(logService.deletePosts(ids))
+           return "ok";
+        else
+            return "false";
+
+    }
 }

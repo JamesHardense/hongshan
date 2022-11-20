@@ -185,7 +185,7 @@ $('button[event="post_submit"]').click(function () {
             });
         }else{
             // console.log(JSON.parse(res).posts.title)
-            let post = JSON.parse(res).post
+            let posts = JSON.parse(res).posts
 
             layer.confirm(JSON.parse(res).message+"重复词条为:"+str, {
                 type:1,
@@ -196,7 +196,7 @@ $('button[event="post_submit"]').click(function () {
                 resize:false,
                 content:"<table style='border-collapse: collapse;margin: 0 auto;text-align: center;font-family: 华文楷体;font-size: 14px;'>"+
                     "<thead style='text-align: center;'><tr style='background: #fff'><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>词条名称</th><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>重复率</th><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>词条内容</th></tr></thead>"+
-                    "<tbody><tr style='background: #F5FAFA'><td style='border:1px solid #cad9ea;color: #666;width: 120px;height: 30px;'>"+post.title+"</td><td style='border:1px solid #cad9ea;color: #666;width: 80px;height: 30px;'>"+post.score+'%'+"</td><td style='border:1px solid #cad9ea;color: #666;width: 426px;height: 63px;overflow: scroll;display: block'>"+post.summary+"</td></tr></tbody>"+
+                    "<tbody><tr style='background: #F5FAFA'><td style='border:1px solid #cad9ea;color: #666;width: 120px;height: 30px;'>"+posts[0].title+"</td><td style='border:1px solid #cad9ea;color: #666;width: 80px;height: 30px;'>"+posts[0].score+'%'+"</td><td style='border:1px solid #cad9ea;color: #666;width: 426px;height: 63px;overflow: scroll;display: block'>"+posts[0].summary+"</td></tr></tbody>"+
                     "</table>"
             }, function(){
                 window.location.href = "http://localhost:9090/post/"+post.id

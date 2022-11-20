@@ -42,9 +42,10 @@
 <#--                                        <th width="50"><input type="checkbox" class="checkall"></th>-->
                                         <#--                                <th width="80">#</th>-->
                                         <th>词条标题</th>
-                                        <th >分类</th>
-                                        <th >作者</th>
-                                        <th>编辑者</th>
+                                        <th width="650">内容</th>
+                                        <th>查重率</th>
+<#--                                        <th >作者</th>-->
+<#--                                        <th>编辑者</th>-->
                                         <th >发表日期</th>
 <#--                                        <th width="100">访问数</th>-->
                                         <#--                                <th width="80">状态</th>-->
@@ -64,9 +65,10 @@
                                                 ${row.title}
                                             </td>
 
-                                            <th>${row.name}</th>
-                                            <td>${row.username}</td>
-                                            <td>${row.editorName}</td>
+                                            <th>${row.summary}</th>
+                                            <th>${row.score}%</th>
+<#--                                            <td>${row.username}</td>-->
+<#--                                            <td>${row.editorName}</td>-->
                                             <td>${row.created?string('yyyy-MM-dd hh:mm:ss')}</td>
 <#--                                            <td><span class="label label-default">${row.views}</span></td>-->
                                             <td>
