@@ -84,7 +84,7 @@
                                         </#if>
                                         <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
                                         <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.hid}" rel="delete">删除</a>
-
+                                        <a href="${base}/admin/post/check?id=${row.id}" class="btn btn-xs btn-primary">查重</a>
                                     </td>
                                 </tr>
                                 </#list>

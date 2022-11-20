@@ -100,7 +100,7 @@ public class BaikeController extends BaseController {
         List<PostAttribute> postAttributes=postAttributeService.checkSummary();
         for(PostAttribute postAttribute : postAttributes){
 //            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
-            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(postAttribute.getContent()),SimHashUtils.getSimHash(post.getContent()));
+            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(post.getContent()),SimHashUtils.getSimHash(postAttribute.getContent()));
             if(point>=0.8){
                  Post post1 = postService.get(postAttribute.getId());
                  Double score = Double.valueOf(String.format("%.2f",point*100));

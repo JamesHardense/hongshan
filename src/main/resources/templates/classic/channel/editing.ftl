@@ -186,16 +186,17 @@ $('button[event="post_submit"]').click(function () {
         }else{
             // console.log(JSON.parse(res).posts.title)
             let post = JSON.parse(res).post
+
             layer.confirm(JSON.parse(res).message+"重复词条为:"+str, {
                 type:1,
-                title:"存在重复率高的词条",
-                area:['80%','60%'],
-                btn: ['合并','不合并'], //按钮
+                title:"存在重复率高的词条,提示：点击合并将会跳转到重复词条，点击不合并将会提示降重",
+                area:['50%','70%'],
+                btn: ['合并','不合并'], //按钮j
                 shade: false, //不显示遮罩
                 resize:false,
-                content:"<table>"+
-                    "<thead><tr><th>id</th><th>词条标题</th><th>重复率</th><th>具体内容</th></tr></thead>"+
-                    "<tbody><tr><td>"+post.id+"</td><td>"+post.title+"</td><td>"+post.score+'%'+"</td><td>"+post.summary+"</td></tr></tbody>"+
+                content:"<table style='border-collapse: collapse;margin: 0 auto;text-align: center;font-family: 华文楷体;font-size: 14px;'>"+
+                    "<thead style='text-align: center;'><tr style='background: #fff'><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>词条名称</th><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>重复率</th><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>词条内容</th></tr></thead>"+
+                    "<tbody><tr style='background: #F5FAFA'><td style='border:1px solid #cad9ea;color: #666;width: 120px;height: 30px;'>"+post.title+"</td><td style='border:1px solid #cad9ea;color: #666;width: 80px;height: 30px;'>"+post.score+'%'+"</td><td style='border:1px solid #cad9ea;color: #666;width: 426px;height: 63px;overflow: scroll;display: block'>"+post.summary+"</td></tr></tbody>"+
                     "</table>"
             }, function(){
                 window.location.href = "http://localhost:9090/post/"+post.id

@@ -197,4 +197,21 @@ public class PostController extends BaseController {
 		model.put("channels", channelService.findAll(Consts.IGNORE));
 		return "/admin/post/history";
 	}
+
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	public String Chceklist(String title, ModelMap model, HttpServletRequest request) {
+		long id = ServletRequestUtils.getLongParameter(request, "id", Consts.ZERO);
+		int channelId = ServletRequestUtils.getIntParameter(request, "channelId", Consts.ZERO);
+
+		Pageable pageable = wrapPageable(Sort.by(Sort.Direction.DESC, "weight", "created"));
+		Page<PostVO> page = postService.paging4Admin(pageable, channelId, title);
+		model.put("page", page);
+		List<View> list = viewService.findAuthorById(id);
+		model.put("items",list);
+		model.put("title", title);
+		model.put("id", id);
+		model.put("channelId", channelId);
+		model.put("channels", channelService.findAll(Consts.IGNORE));
+		return "/admin/post/check";
+	}
 }
