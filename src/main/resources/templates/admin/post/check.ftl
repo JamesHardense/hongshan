@@ -80,6 +80,7 @@
                                             <td>
 
                                                 <a href="${base}/post/${row.id}" class="btn btn-xs btn-primary">合并</a>
+                                                <a href="${base}/admin/post/list" class="btn btn-xs btn-info">不合并</a>
 <#--                                                <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>-->
 <#--                                                <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>-->
 <#--                                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>-->
