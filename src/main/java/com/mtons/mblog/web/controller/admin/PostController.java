@@ -14,12 +14,15 @@ import com.mtons.mblog.base.lang.Result;
 import com.mtons.mblog.modules.data.AccountProfile;
 import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.entity.Log;
+import com.mtons.mblog.modules.entity.Post;
+import com.mtons.mblog.modules.entity.PostAttribute;
 import com.mtons.mblog.modules.entity.View;
-import com.mtons.mblog.modules.service.ChannelService;
-import com.mtons.mblog.modules.service.LogService;
-import com.mtons.mblog.modules.service.PostService;
-import com.mtons.mblog.modules.service.ViewService;
+import com.mtons.mblog.modules.repository.PostAttributeRepository;
+import com.mtons.mblog.modules.service.*;
 import com.mtons.mblog.web.controller.BaseController;
+import com.mtons.mblog.web.controller.site.utils.HammingUtils;
+import com.mtons.mblog.web.controller.site.utils.SimHashUtils;
+import javafx.geometry.Pos;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,7 +37,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author langhsu
@@ -52,6 +58,8 @@ public class PostController extends BaseController {
 
 	@Autowired
 	private ViewService viewService;
+	@Autowired
+	private PostAttributeService postAttributeService;
 	
 	@RequestMapping("/list")
 	public String list(String title, ModelMap model, HttpServletRequest request) {
@@ -196,5 +204,37 @@ public class PostController extends BaseController {
 		model.put("channelId", channelId);
 		model.put("channels", channelService.findAll(Consts.IGNORE));
 		return "/admin/post/history";
+	}
+
+	@RequestMapping(value = "/check", method = RequestMethod.GET)
+	public String Chceklist(String title, ModelMap model, HttpServletRequest request) {
+		long id = ServletRequestUtils.getLongParameter(request, "id", Consts.ZERO);
+		int channelId = ServletRequestUtils.getIntParameter(request, "channelId", Consts.ZERO);
+
+		Pageable pageable = wrapPageable(Sort.by(Sort.Direction.DESC, "weight", "created"));
+		Page<PostVO> page = postService.paging4Admin(pageable, channelId, title);
+		model.put("page", page);
+//		List<View> list = viewService.findAuthorById(id);
+		List<Post> posts=new ArrayList<>();
+		List<PostAttribute> postAttributes=postAttributeService.checkSummary();
+		PostVO post = postService.get(id);
+		for(PostAttribute postAttribute : postAttributes){
+//            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
+			double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(post.getContent()),SimHashUtils.getSimHash(postAttribute.getContent()));
+			if(point>=0.8){
+				Post post1 = postService.get(postAttribute.getId());
+				Double score = Double.valueOf(String.format("%.2f",point*100));
+				post1.setScore(score);
+				posts.add(post1);
+			}
+		}
+		System.out.println(post.getScore());
+		List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
+		model.put("items",list);
+		model.put("title", title);
+		model.put("id", id);
+		model.put("channelId", channelId);
+		model.put("channels", channelService.findAll(Consts.IGNORE));
+		return "/admin/post/check";
 	}
 }

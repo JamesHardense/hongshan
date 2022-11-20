@@ -10,6 +10,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PostAttributeRepository extends JpaRepository<PostAttribute, Long>, JpaSpecificationExecutor<PostAttribute> {
-    @Query(value = "SELECT * FROM mto_post_attribute", nativeQuery = true)
+    @Query(value = "SELECT * FROM mto_post_attribute AS a LEFT JOIN mto_post AS b ON a.id=b.id WHERE b.status=1", nativeQuery = true)
     List<PostAttribute> checkSummary();
 }

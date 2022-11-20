@@ -133,4 +133,22 @@ public class LogServiceImpl implements LogService {
         postAttributeRepository.deleteById(id);
         return true;
     }
+
+    @Override
+    @Transactional
+    public Boolean deletePosts(List<Long> ids) {
+        for(int i=0;i<ids.size();i++){
+            List<Log> logs=logRepository.deleteListById(ids.get(i));
+            for(int j=0;j<logs.size();j++){
+                logRepository.delete(logs.get(j));
+            }
+            PostVO postVO = postService.get(ids.get(i));
+            Post post=new Post();
+            BeanUtils.copyProperties(postVO, post);
+            postRepository.delete(post);
+            postAttributeRepository.deleteById(ids.get(i));
+
+        }
+        return true;
+    }
 }

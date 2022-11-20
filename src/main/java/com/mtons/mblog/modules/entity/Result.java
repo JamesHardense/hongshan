@@ -5,7 +5,7 @@ import java.util.List;
 public class Result {
     private int  status;
     private String message;
-    private Post post;
+    private List<Post> posts;
 
     public int getStatus() {
         return status;
@@ -23,12 +23,11 @@ public class Result {
         this.message = message;
     }
 
-    public Post getPost() {
-        return post;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPosts(List<Post> post) {
+        this.posts = post;
     }
-
 }

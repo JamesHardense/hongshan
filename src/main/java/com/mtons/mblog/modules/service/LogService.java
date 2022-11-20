@@ -20,4 +20,5 @@ public interface LogService {
     Boolean updateStatus(long id,long hid,int status);
     Boolean disagree(long hid);
     Boolean deleteLog(long hid);
+    Boolean deletePosts(List<Long> ids);
 }
