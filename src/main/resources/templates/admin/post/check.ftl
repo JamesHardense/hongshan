@@ -78,9 +78,10 @@
                                                 </#if>
                                             </td>
                                             <td>
-
-                                                <a href="${base}/post/${row.id}" class="btn btn-xs btn-primary">合并</a>
-                                                <a href="${base}/admin/post/list" class="btn btn-xs btn-info">不合并</a>
+<#--                                                href="${base}/post/${row.id}"-->
+<#--                                                href="${base}/admin/post/list"-->
+                                                <a id="merge" onclick="merge()" title="点击合并的话，将会跳转到当前词条并且删除中其他重复词条" class="btn btn-xs btn-primary">合并</a>
+                                                <a id="unmerge" title="点击不合并的话，将会跳转到词条管理页面" class="btn btn-xs btn-info">不合并</a>
 <#--                                                <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>-->
 <#--                                                <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>-->
 <#--                                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>-->
@@ -102,6 +103,17 @@
     </section>
     <script type="text/javascript">
         var J = jQuery;
+
+        function merge(){
+            layer.confirm('确定合并到当前词条吗?', {
+                btn: ['确定','取消'], //按钮
+                shade: false //不显示遮罩
+            }, function(){
+                alert("确定")
+            }, function(){
+                alert("取消")
+            });
+        }
 
         function ajaxReload(json){
             if(json.code >= 0){
@@ -141,6 +153,8 @@
                 //     document.getElementById("name").innerText= row.channelId
                 // }
             });
+
+            // $('#merge')
             // 删除
             $('#dataGrid a[rel="delete"]').bind('click', function(){
                 var that = $(this);

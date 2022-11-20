@@ -80,11 +80,17 @@
                                         <a href="${base}/admin/post/audit?hid=${row.hid}" class="btn btn-xs btn-success">审核</a>
                                         </#if>
                                         <#if (row.status=1)>
-                                            <a  class="btn btn-xs" style="background-color:gray;color: #ffffff;">审核</a>
+                                            <a class="btn btn-xs disabled" style="background-color:gray;color: #ffffff;">审核</a>
                                         </#if>
                                         <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>
                                         <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.hid}" rel="delete">删除</a>
-                                        <a href="${base}/admin/post/check?id=${row.id}" class="btn btn-xs btn-primary">查重</a>
+                                        <#if (row.status=0)>
+                                            <a class="btn btn-xs disabled" style="background-color:gray;color: #ffffff;">查重</a>
+                                        </#if>
+                                        <#if (row.status=1)>
+                                            <a href="${base}/admin/post/check?id=${row.id}" class="btn btn-xs btn-primary">查重</a>
+                                        </#if>
+
                                     </td>
                                 </tr>
                                 </#list>
