@@ -151,7 +151,7 @@ $('button[event="post_submit"]').click(function () {
     if(document.getElementById("id").valueOf()===""){
         document.getElementById("id").value=0;
     }
-    var  str ={
+    var str ={
         title:document.getElementById("title").value,
         content:document.getElementById("content").value,
         channelId:document.getElementById("channelId").value,
@@ -190,16 +190,16 @@ $('button[event="post_submit"]').click(function () {
             layer.confirm(JSON.parse(res).message+"重复词条为:"+str, {
                 type:1,
                 title:"存在重复率高的词条,提示：点击合并将会跳转到重复词条，点击不合并将会提示降重",
-                area:['50%','70%'],
+                area:['50%','50%'],
                 btn: ['合并','不合并'], //按钮j
                 shade: false, //不显示遮罩
                 resize:false,
                 content:"<table style='border-collapse: collapse;margin: 0 auto;text-align: center;font-family: 华文楷体;font-size: 14px;'>"+
                     "<thead style='text-align: center;'><tr style='background: #fff'><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>词条名称</th><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>重复率</th><th style='border:1px solid #cad9ea;color: #666;height: 46px;text-align: center;'>词条内容</th></tr></thead>"+
-                    "<tbody><tr style='background: #F5FAFA'><td style='border:1px solid #cad9ea;color: #666;width: 120px;height: 30px;'>"+posts[0].title+"</td><td style='border:1px solid #cad9ea;color: #666;width: 80px;height: 30px;'>"+posts[0].score+'%'+"</td><td style='border:1px solid #cad9ea;color: #666;width: 426px;height: 63px;overflow: scroll;display: block'>"+posts[0].summary+"</td></tr></tbody>"+
+                    "<tbody><tr style='background: #F5FAFA'><td style='border:1px solid #cad9ea;color: #666;width: 120px;height: 100px;'>"+posts[0].title+"</td><td style='border:1px solid #cad9ea;color: #666;width: 80px;height: 100px;'>"+posts[0].score+'%'+"</td><td style='border:1px solid #cad9ea;color: #666;width: 426px;height: 100px;text-align:left;'>"+posts[0].summary+"</td></tr></tbody>"+
                     "</table>"
             }, function(){
-                window.location.href = "http://localhost:9090/post/"+post.id
+                window.location.href = "http://localhost:9090/post/"+posts[0].id
                 layer.closeAll();
             },function(){
                 layer.closeAll();
@@ -225,7 +225,7 @@ var J = jQuery;
         }else{
             div.style.display = "";
         }
-        var data = fetch(`http://localhost:9090/post/baike`,{
+        fetch(`http://localhost:9090/post/baike`,{
             method:'POST',
             body:JSON.stringify({title:document.getElementById("title").value}),
             headers:{'Content-Type':'application/json'}}).then((res)=>{

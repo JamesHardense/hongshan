@@ -41,37 +41,37 @@
                                     <tr>
 <#--                                        <th width="50"><input type="checkbox" class="checkall"></th>-->
                                         <#--                                <th width="80">#</th>-->
-                                        <th style="width: 149px;text-align: center;">词条标题</th>
-                                        <th style="width: 442px;text-align: center;">内容</th>
-                                        <th style="width: 68px;text-align: center;">查重率</th>
+                                        <th>词条标题</th>
+                                        <th width="650">内容</th>
+                                        <th>查重率</th>
 <#--                                        <th >作者</th>-->
 <#--                                        <th>编辑者</th>-->
-                                        <th style="width: 150px;text-align: center;">发表日期</th>
+                                        <th >发表日期</th>
 <#--                                        <th width="100">访问数</th>-->
                                         <#--                                <th width="80">状态</th>-->
-                                        <th style="text-align: center;">状态</th>
-                                        <th style="text-align: center;">操作</th>
+                                        <th >状态</th>
+                                        <th >操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
                                     <#list items as row>
-                                        <tr style="text-align: center;">
+                                        <tr>
 <#--                                            <td id="id">-->
 <#--                                                <input type="checkbox" name="id" value="${row.id}">-->
 <#--                                            </td>-->
-                                            <td id="title" style="line-height: 39.5px;">
+                                            <td id="title">
 <#--                                                <a href="${base}/post/${row.id}" target="_blank">${row.title}</a>-->
                                                 ${row.title}
                                             </td>
 
-                                            <td >${row.summary}</td>
-                                            <td style="line-height: 39.5px;">${row.score}%</td>
+                                            <th>${row.summary}</th>
+                                            <th>${row.score}%</th>
 <#--                                            <td>${row.username}</td>-->
 <#--                                            <td>${row.editorName}</td>-->
-                                            <td style="line-height: 39.5px;">${row.created?string('yyyy-MM-dd hh:mm:ss')}</td>
+                                            <td>${row.created?string('yyyy-MM-dd hh:mm:ss')}</td>
 <#--                                            <td><span class="label label-default">${row.views}</span></td>-->
-                                            <td style="line-height: 39.5px;">
+                                            <td>
                                                 <#if (row.status = 1)>
                                                     <span class="label label-default">已发布</span>
                                                 </#if>
@@ -79,11 +79,10 @@
                                                     <span class="label label-warning">待审核</span>
                                                 </#if>
                                             </td>
-                                            <td style="line-height: 39.5px;">
-<#--                                                href="${base}/post/${row.id}"-->
-<#--                                                href="${base}/admin/post/list"-->
-                                                <a id="merge" onclick="merge()" title="点击合并的话，将会跳转到当前词条并且删除中其他重复词条" class="btn btn-xs btn-primary">合并</a>
-                                                <a id="unmerge" href="${base}/index" title="点击不合并的话，将会跳转到词条管理页面" class="btn btn-xs btn-info">不合并</a>
+                                            <td>
+
+                                                <a href="${base}/post/${row.id}" class="btn btn-xs btn-primary">合并</a>
+                                                <a href="${base}/admin/post/list" class="btn btn-xs btn-info">不合并</a>
 <#--                                                <a href="${base}/admin/post/history?id=${row.id}" class="btn btn-xs btn-warning">日志</a>-->
 <#--                                                <a href="${base}/admin/post/view?id=${row.id}" class="btn btn-xs btn-success">修改</a>-->
 <#--                                                <a href="javascript:void(0);" class="btn btn-xs btn-danger" data-id="${row.id}" rel="delete">删除</a>-->
@@ -105,17 +104,6 @@
     </section>
     <script type="text/javascript">
         var J = jQuery;
-
-        function merge(){
-            layer.confirm('确定合并到当前词条吗?', {
-                btn: ['确定','取消'], //按钮
-                shade: false //不显示遮罩
-            }, function(){
-                // window.location.href = "http://localhost:9090/index"
-            }, function(){
-                window.location.href = "http://localhost:9090/index"
-            });
-        }
 
         function ajaxReload(json){
             if(json.code >= 0){
@@ -155,8 +143,6 @@
                 //     document.getElementById("name").innerText= row.channelId
                 // }
             });
-
-            // $('#merge')
             // 删除
             $('#dataGrid a[rel="delete"]').bind('click', function(){
                 var that = $(this);

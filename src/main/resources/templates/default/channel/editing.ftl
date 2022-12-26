@@ -186,14 +186,14 @@
         }else{
             div.style.display = "";
         }
-        var data = fetch(`http://localhost:9090/post/baike`,{
+        fetch(`http://localhost:9090/post/baike`,{
             method:'POST',
             body:JSON.stringify({title:document.getElementById("title").value}),
             headers:{'Content-Type':'application/json'}}).then((res)=>{
             return res.text()
         }).then((res)=>{
             var response = JSON.parse(res);
-            document.getElementById("summary").innerText = response.summary
+            document.getElementById("summary").innerText = response.summary;
             let basicInfoVOS = response.basicInfoVOS;
             let temp = '';
             for(let basicInfo of basicInfoVOS){
@@ -205,8 +205,6 @@
             }
             let tbody=document.getElementById("basicInfo");
             tbody.innerHTML = temp;
-
-
         });
     });
 </script>

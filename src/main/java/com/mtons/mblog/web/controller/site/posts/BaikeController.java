@@ -1,21 +1,16 @@
 package com.mtons.mblog.web.controller.site.posts;
 
-import com.alibaba.fastjson.JSON;
 import com.mtons.mblog.modules.data.AccountProfile;
 import com.mtons.mblog.modules.data.PostVO;
 import com.mtons.mblog.modules.entity.*;
 import com.mtons.mblog.modules.repository.LogRepository;
-import com.mtons.mblog.modules.repository.PostAttributeRepository;
-import com.mtons.mblog.modules.repository.PostRepository;
 import com.mtons.mblog.modules.service.BaiKeService;
 import com.mtons.mblog.modules.service.LogService;
 import com.mtons.mblog.modules.service.PostAttributeService;
 import com.mtons.mblog.modules.service.PostService;
 import com.mtons.mblog.web.controller.BaseController;
-import com.mtons.mblog.web.controller.site.utils.HammingUtils;
-import com.mtons.mblog.web.controller.site.utils.SimHashUtils;
+import com.mtons.mblog.web.controller.site.utils.IKUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +20,6 @@ import com.mtons.mblog.modules.data.BasicInfoVO;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 /**
@@ -56,7 +49,7 @@ public class BaikeController extends BaseController {
     @PostMapping("/baike")
     public BaikeVO getBaike(@RequestBody BaiKe baiKe) {
         try {
-            String[] args1=new String[]{"D:/download-necessary/python3.8/python.exe","D:/pycharm-pro/baike-spider/spider_main.py",baiKe.getTitle()};
+            String[] args1=new String[]{"python","D:/idea_pro/hongshan/baike-spider/spider_main.py",baiKe.getTitle()};
             Process pr=Runtime.getRuntime().exec(args1);
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     pr.getInputStream(),"GBK"));
@@ -106,7 +99,9 @@ public class BaikeController extends BaseController {
         List<PostAttribute> postAttributes=postAttributeService.checkSummary();
         for(PostAttribute postAttribute : postAttributes){
 //            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
-            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(post.getContent()),SimHashUtils.getSimHash(postAttribute.getContent()));
+            List<String> list1 = IKUtils.segStr(postAttribute.getContent(), true);
+            List<String> list2 = IKUtils.segStr(post.getContent(), true);
+            double point = Jaccard.jaccardSimilarity(list1,list2);
             if(point>=0.8){
                  Post post1 = postService.get(postAttribute.getId());
                  Double score = Double.valueOf(String.format("%.2f",point*100));

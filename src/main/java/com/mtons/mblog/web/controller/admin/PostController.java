@@ -228,7 +228,6 @@ public class PostController extends BaseController {
 				posts.add(post1);
 			}
 		}
-		System.out.println(post.getScore());
 		List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
 		model.put("items",list);
 		model.put("title", title);

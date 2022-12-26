@@ -48,7 +48,7 @@ public class ChannelServiceImpl implements ChannelService {
 		all=channelRepository.findChannelsall();
 		List<Channel> last = new ArrayList<>();
 
-		if (first.size()==6){
+		if (first.size()==4){
 			for(int i=0 ;i<all.size();i++){
 				int temp=0;
 				for(int j=0 ;j<first.size();j++){
