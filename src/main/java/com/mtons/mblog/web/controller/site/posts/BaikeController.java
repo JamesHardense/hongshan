@@ -104,28 +104,29 @@ public class BaikeController extends BaseController {
             return  result;
         }
 
-        List<Post> posts = new ArrayList<>();
-        List<PostAttribute> postAttributes=postAttributeService.checkSummary();
-        for(PostAttribute postAttribute : postAttributes){
-//            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
-            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(post.getContent()),SimHashUtils.getSimHash(postAttribute.getContent()));
-            if(point>=0.8){
-                 Post post1 = postService.get(postAttribute.getId());
-                 Double score = Double.valueOf(String.format("%.2f",point*100));
-                 post1.setScore(score);
-                 posts.add(post1);
-            }
-        }
-        if(!posts.isEmpty()){
-            List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
-            result.setStatus(3);
-            result.setMessage("以下词条的内容与您编辑的词条重复度较高，请选择是否合并词条！");
-            result.setPosts(list);
-            return  result;
-        }
+//        List<Post> posts = new ArrayList<>();
+//        List<PostAttribute> postAttributes=postAttributeService.checkSummary();
+//        for(PostAttribute postAttribute : postAttributes){
+////            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
+//            double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(post.getContent()),SimHashUtils.getSimHash(postAttribute.getContent()));
+//            if(point>=0.8){
+//                 Post post1 = postService.get(postAttribute.getId());
+//                 Double score = Double.valueOf(String.format("%.2f",point*100));
+//                 post1.setScore(score);
+//                 posts.add(post1);
+//            }
+//        }
+//        if(!posts.isEmpty()){
+//            List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
+//            result.setStatus(3);
+//            result.setMessage("以下词条的内容与您编辑的词条重复度较高，请选择是否合并词条！");
+//            result.setPosts(list);
+//            return  result;
+//        }
         AccountProfile profile = getProfile();
         if (post.getId()<=0){
             post.setAuthorId(profile.getId());
+
         }
         // 修改时, 验证归属
         if (post.getId() > 0) {
@@ -155,6 +156,25 @@ public class BaikeController extends BaseController {
 //            // 由 simHash值求出相似度
 //            double similarity = HammingUtils.getSimilarity(simHash0, simHash1);
 //            System.out.println(similarity);
+            List<Post> posts = new ArrayList<>();
+            List<PostAttribute> postAttributes=postAttributeService.checkSummary();
+            for(PostAttribute postAttribute : postAttributes){
+//            Float point =DuplicateDetection.transferFloatToPersentString(DuplicateDetection.detect(postAttribute.getContent(),post.getContent()));
+                double point = HammingUtils.getSimilarity(SimHashUtils.getSimHash(post.getContent()),SimHashUtils.getSimHash(postAttribute.getContent()));
+                if(point>=0.8){
+                    Post post1 = postService.get(postAttribute.getId());
+                    Double score = Double.valueOf(String.format("%.2f",point*100));
+                    post1.setScore(score);
+                    posts.add(post1);
+                }
+            }
+            if(!posts.isEmpty()){
+                List<Post> list=posts.stream().sorted(Comparator.comparing(Post::getScore,Comparator.reverseOrder())).collect(Collectors.toList());
+                result.setStatus(3);
+                result.setMessage("以下词条的内容与您编辑的词条重复度较高，请选择是否合并词条！");
+                result.setPosts(list);
+                return  result;
+            }
             postService.post(post);
         }
         result.setStatus(0);
